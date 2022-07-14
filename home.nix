@@ -37,6 +37,7 @@ in
 
   xdg.mimeApps.defaultApplications = {
     "text/plain" = "emc";
+    "application/pdf" = "zathura";
     "video/*" = "mpv";
     "image/*" = "sxvi";
     # "inode/directory" = "lf";
@@ -53,6 +54,9 @@ in
   # Packages
   home.packages = with pkgs; [
     # TODO mkchromecast + audio controls
+
+    # general
+    maim  # screenshoots
 
     # ide
     jetbrains.clion
@@ -84,6 +88,7 @@ in
     libreoffice
     zathura
     firefox # TODO keep as seperate package (ff from module with different name, then add keybinds (shift)-alt-b to open them)
+    texlive.combined.scheme-full  # latex full
 
     # passwords
     libsecret
@@ -122,15 +127,27 @@ in
       gas = "git annex sync";
       gasc = "git annex sync --content";
     };
-    
-  };
 
+    initExtra = ''
+      source "$HOME/scripts/lfcd.sh"
+    '';
+  };
 
   services.mpd = {
     enable = true;
     musicDirectory = "/home/lerrrtaste/annex/music/library";
     playlistDirectory = "/home/lerrrtaste/annex/music/playlists";
   };
+
+  # TODO configure with spotify secrets
+  #services.mopidy = {
+  #  enable = true;
+  #  extensionPackages = [ pkgs.mopidy-spotify ];
+  #  configuration = ''
+  #    [core]
+  #    restore_state = false;
+  #  '';
+  #};
 
   programs = { 
     git = {
