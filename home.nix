@@ -35,18 +35,30 @@ in
     VISUAL="vim";
   };
 
-  xdg.mimeApps.defaultApplications = {
-    "text/plain" = "emc";
-    "application/pdf" = "zathura";
-    "video/*" = "mpv";
-    "image/*" = "sxvi";
-    # "inode/directory" = "lf";
+  xdg = {
+    enable = true;
+    mime.enable = true;
+    mimeApps.enable = true;
+
+    mimeApps = {
+      defaultApplications = {
+        "text/plain" = "emc";
+        "application/pdf" = ["zorg.pwmt.zathura-pdf-mupdf.desktop"];  #FIXME overriden by libreoffice
+        "video/*" = "mpv";
+        "image/*" = "sxvi";
+        # "inode/directory" = "lf";
+      };
+    };
+  };
+
+  home.file.".xinitrc" = {
+    source = ./xinitrc;
   };
 
   # Setup Keybindings FIXME
   services.xcape = {
     enable = true;
-    mapExpression= {
+    mapExpression = {
       Caps_Lock = "Escape";
     };
   };
@@ -65,7 +77,7 @@ in
     # dev tools
     git
     rsync
-    docker
+    # docker
     docker-compose
     gnumake
 
@@ -100,6 +112,8 @@ in
     # busybox  # git-annex webapp
     libmusicbrainz
     picard
+    jre # language tool emacs layer
+    languagetool
   ];
 
   # Packages with options
@@ -123,7 +137,6 @@ in
       nsh = "home-manager switch";
 
       # Other
-      emc = "emacsclient -c -a 'emacs --daemon'";
       gas = "git annex sync";
       gasc = "git annex sync --content";
     };
@@ -178,6 +191,9 @@ in
           "missing"  # beet missing for missing tracks
           "unimported"  # beet unimported for tracks still in the import dir
         ];
+        unimported = {
+          ignore_subdirectories = "no";
+        };
       };
     };
   };

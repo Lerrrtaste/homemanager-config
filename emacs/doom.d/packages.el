@@ -52,4 +52,32 @@
 (package! copilot
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
 
+
+;; FIXME
+;; (use-package! langtool
+;;         :init
+;;         (setq langtool-java-classpath "~/.nix-profile/share/languagetool.jar:~/.nix-profile/share/languagetool.jar/*"))
+;;         (setq langtool-java-bin "~/.nix-profile/bin/java")
+;;         (setq langtool-language-tool-jar "~/.nix-profile/share/langtool-command-line.jar")
+;;         ;;(setq langtool-language-tool-server-jar "~/.nix-profile/share/languagetool-http-server.jar")
+;;         ;;(setq langtool-server-user-arguments '("-p" "8082"))
+;;         ;;(setq langtool-http-server-host "localhost")
+;;         ;;(setq langtool-http-server-port 8082))
+;;
+;; (use-package! flycheck-languagetool
+;;         :hook
+;;         (text-mode . (lambda () (require 'flycheck-languagetool)))
+;;
+;;         :init
+;;         (setq flycheck-languagetool-server-jar "~/.nix-profile/share/languagetool-server.jar")
+;;         (setq flycheck-languagetool-server-port "8082")
+;;         (setq flycheck-languagetool-language "en-GB"))
+;;
+;; (package! langtool)
+;; (package! flycheck-languagetool)
+
+
 (package! tldr)
+
+(package! geben)
+(package! phpactor)
