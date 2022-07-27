@@ -1,11 +1,20 @@
+#+title: Main Config
+#+author: Laurenz Foglia
+#+email: lerrrtaste@protonmail.com
+
+* General Configuration
+
+#+BEGIN_SRC emacs-lisp
+#;;; packackage  --- Summary
+
+;;; Commentary:
+;;; Private Configuration
+
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Place your private configuration here! Remember, you do not need to run 'doom
-;; sync' after modifying this file!
 
+;;; Code:
 
-;; Some functionality uses this to identify you, e.g. GPG configuration, email
-;; clients, file templates and snippets. It is optional.
 (setq user-full-name "Laurenz Foglia"
       user-mail-address "lerrrtaste@protonmail.com" );
 
@@ -32,18 +41,21 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
 
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type 'relative)
 
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
+;;; Appearance
+(defvar doom-theme 'doom-one)
+
+;; Line Number Style
+;; nil = no line numbers, t = line numbers, 'relative = relative line numbers
+(defvar display-line-numbers-type t)
+
+;;; ORG
+;; Org default directory
 (setq org-directory "~/annex/org/")
 
 
-;; COPILOT
+;;; Code Completion
 ;; accept completion from copilot and fallback to company
 (defun my-tab ()
   (interactive)
@@ -119,3 +131,4 @@
 (setq deft-recursive t)
 
 (setf org-blank-before-new-entry '((heading . t) (plain-list-item . auto)))
+#+END_SRC
