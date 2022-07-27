@@ -117,3 +117,5 @@
 
 (setq deft-directory "~/annex/org/")
 (setq deft-recursive t)
+
+(setf org-blank-before-new-entry '((heading . t) (plain-list-item . auto)))

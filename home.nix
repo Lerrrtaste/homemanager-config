@@ -63,6 +63,14 @@ in
     };
   };
 
+#   serviecs.sxhkd = {
+#     enable = true;
+#     keybindings = {
+#
+#      "super + "
+#     }
+#   }
+
   # Packages
   home.packages = with pkgs; [
     # TODO mkchromecast + audio controls
@@ -73,6 +81,7 @@ in
     # ide
     jetbrains.clion
     jetbrains.idea-ultimate
+    godot
 
     # dev tools
     git
