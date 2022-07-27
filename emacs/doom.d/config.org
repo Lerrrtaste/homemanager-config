@@ -2,62 +2,166 @@
 #+author: Laurenz Foglia
 #+email: lerrrtaste@protonmail.com
 
-* General Configuration
+* Notes and Todos
+** Doom Macros
+- load! - for loading a externel el file relativ to this one
+- use-package! - configuring packages
+- add-load-path! - add directories to load-path (for packages with require or use-package)
+- map! - bind new keys
 
+ Whenever you reconfigure a package, make sure to wrap your config in an
+ `after!' block, otherwise Doom's defaults may override your settings. E.g.
+
+   (after! PACKAGE
+     (setq x y))
+
+ The exceptions to this rule:
+
+   - Setting file/directory variables (like `org-directory')
+   - Setting variables which explicitly tell you to set them before their
+     package is loaded (see 'C-h v VARIABLE' to look up their documentation).
+   - Setting doom variables (which start with 'doom-' or '+').
+
+ Here are some additional functions/macros that will help you configure Doom.
+
+ - `load!' for loading external *.el files relative to this one
+ - `use-package!' for configuring packages
+ - `after!' for running code after a package has loaded
+ - `add-load-path!' for adding directories to the `load-path', relative to
+   this file. Emacs searches the `load-path' when you load packages with
+   `require' or `use-package'.
+ - `map!' for binding new keys
+
+ To get information about any of these functions/macros, move the cursor over
+ the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
+ This will open documentation for it, including demos of how they are used.
+ Alternatively, use `C-h o' to look up a symbol (functions, variables, faces,
+ etc).
+
+ You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
+ they are implemented.
+
+
+
+* Boilerplate Configuration
+** Frontmatter
+Flycheck told me to start the file like this, but I dont think its necessary.
+Also contains the line for lexical binding which speeds things up.
 #+BEGIN_SRC emacs-lisp
-#;;; packackage  --- Summary
-
+;;; packackage  --- Summary
 ;;; Commentary:
 ;;; Private Configuration
-
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
-
-
 ;;; Code:
+#+END_SRC
 
+
+** Personal Information
+Used by GPG, Git, Mail, Snippets, etc.
+#+BEGIN_SRC emacs-lisp
 (setq user-full-name "Laurenz Foglia"
       user-mail-address "lerrrtaste@protonmail.com" );
-
-;; Doom exposes five (optional) variables for controlling fonts in Doom:
-;;
-;; - `doom-font' -- the primary font to use
-;; - `doom-variable-pitch-font' -- a non-monospace font (where applicable)
-;; - `doom-big-font' -- used for `doom-big-font-mode'; use this for
-;;   presentations or streaming.
-;; - `doom-unicode-font' -- for unicode glyphs
-;; - `doom-serif-font' -- for the `fixed-pitch-serif' face
-;;
-;; See 'C-h v doom-font' for documentation and more examples of what they
-;; accept. For example:
-;;
-;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
-;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
-;;
-;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
-;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
-;; refresh your font settings. If Emacs still can't find your font, it likely
-;; wasn't installed correctly. Font issues are rarely Doom issues!
-
-;; There are two ways to load a theme. Both assume the theme is installed and
-; available. You can either set `doom-theme' or manually load a theme with the
-;; `load-theme' function. This is the default:
+#+END_SRC
 
 
-;;; Appearance
-(defvar doom-theme 'doom-one)
+** Better defaults
+#+BEGIN_SRC emacs-lisp
+(setq-default
+ delete-by-moving-to-trash t ; delete to trash
+ x-stretch-cursor t ; stretch cursor to whole flyph width
+)
 
-;; Line Number Style
-;; nil = no line numbers, t = line numbers, 'relative = relative line numbers
-(defvar display-line-numbers-type t)
+(setq
+ undo-limit 800000000  ; set undo limit to 800mb
+ evil-want-fine-undo t ; dont insert all changes at once, more granular
+ auto-save-default t   ; autosave
+ truncate-string-ellipsis "…"      ; save space with unicode ellispis
+ password-cache-expiry nil ; dont cache passwords
+ scroll-margin 3 ; keep a margin
+ scroll-preserve-screen-position 'always ; dont move the point
+)
 
-;;; ORG
-;; Org default directory
-(setq org-directory "~/annex/org/")
+(global-subword-mode 1) ; iterate through CamelCase words
+#+END_SRC
 
 
-;;; Code Completion
-;; accept completion from copilot and fallback to company
-(defun my-tab ()
+
+* Doom Configuration
+** TODO init.el
+I could let org-babel generate the init.el file too, but I would need to adjust the nix
+module and script. Maybe later.
+(Something like this https://github.com/tecosaur/emacs-config/#installation)
+
+
+** Appearance
+*** Colors
+#+BEGIN_SRC emacs-lisp
+(setq doom-theme 'doom-moonlight) ; more godot like but doesnt fit to dwm yet (doom-one was defaul)
+#+END_SRC
+
+
+*** Code / Editor
+#+BEGIN_SRC emacs-lisp
+(setq display-line-numbers-type 'relative) ; line number stayle (nil, t, 'relative)
+#+END_SRC
+
+
+*** TODO Fonts
+Maybe Fira Code or https://github.com/source-foundry/Hack
+Check that fonts are available with https://tecosaur.github.io/emacs-config/config.html#font-face
+
+- `doom-font' -- the primary font to use
+- `doom-variable-pitch-font' -- a non-monospace font (where applicable)
+- `doom-big-font' -- used for `doom-big-font-mode'; use this for
+  presentations or streaming.
+- `doom-unicode-font' -- for unicode glyphs
+- `doom-serif-font' -- for the `fixed-pitch-serif' face
+
+(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
+
+
+*** TODO Modeline
+maybe nothing but check out whats possible sometime
+
+
+** Dashboard
+Its a major mode so many keybindings are available.
+#+BEGIN_SRC emacs-lisp
+(map! :leader :desc "Dashboard" "d" #'+doom-dashboard/open) ; add keybinding to open dashboard
+(defun +doom-dashboard-setup-modified-keymap () ; add keybindings to dasboard major mode keymap
+  (setq +doom-dashboard-mode-map (make-sparse-keymap))
+  (map! :map +doom-dashboard-mode-map
+        :desc "Find file" :ne "f" #'find-file
+        :desc "Recent files" :ne "r" #'consult-recent-file
+        :desc "Nixos Config Dir" :ne "o" (cmd! (doom-project-find-file "~/.config/nixos/"))
+        :desc "Homemanager Config Dir" :ne "h" (cmd! (doom-project-find-file "~/.config/nixpkgs/"))
+        :desc "Emacs Config Dir" :ne "E" (cmd! (doom-project-find-file "~/.config/nixpkgs/emacs/doom.d/"))
+        :desc "Emacs Config Dotfile" :ne "e" (cmd! (doom-project-find-file "~/.config/nixpkgs/emacs/doom.d/config.org"))
+        :desc "Notes (deft)" :ne "d" #'deft
+        )
+
+)
+
+(add-transient-hook! #'+doom-dashboard-mode (+doom-dashboard-setup-modified-keymap))
+(add-transient-hook! #'+doom-dashboard-mode :append (+doom-dashboard-setup-modified-keymap))
+(add-hook! 'doom-init-ui-hook :append (+doom-dashboard-setup-modified-keymap))
+#+END_SRC
+
+
+* Packages
+** Code Completion
+*** FIXME Copilot
+Load Copilot recipe (from github) and add keybindings for by word completion or full completion.
+Fall back to company suggestion if copilot has no completion.
+
+This doesnt feel good yet...
+
+#+BEGIN_SRC emacs-lisp
+(package! copilot
+  :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
+
+(defun my-tab () ;; accept completion from copilot and fallback to company
   (interactive)
   (or (copilot-accept-completion)
       (company-indent-or-complete-common nil)))
@@ -72,63 +176,104 @@
          :map company-mode-map
          ("<tab>" . 'my-tab)
          ("TAB" . 'my-tab)))
-
-;; Whenever you reconfigure a package, make sure to wrap your config in an
-;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
-;;
-;;   (after! PACKAGE
-;;     (setq x y))
-;;
-;; The exceptions to this rule:
-;;
-;;   - Setting file/directory variables (like `org-directory')
-;;   - Setting variables which explicitly tell you to set them before their
-;;     package is loaded (see 'C-h v VARIABLE' to look up their documentation).
-;;   - Setting doom variables (which start with 'doom-' or '+').
-;;
-;; Here are some additional functions/macros that will help you configure Doom.
-;;
-;; - `load!' for loading external *.el files relative to this one
-;; - `use-package!' for configuring packages
-;; - `after!' for running code after a package has loaded
-;; - `add-load-path!' for adding directories to the `load-path', relative to
-;;   this file. Emacs searches the `load-path' when you load packages with
-;;   `require' or `use-package'.
-;; - `map!' for binding new keys
-;;
-;; To get information about any of these functions/macros, move the cursor over
-;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
-;; This will open documentation for it, including demos of how they are used.
-;; Alternatively, use `C-h o' to look up a symbol (functions, variables, faces,
-;; etc).
-;;
-;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
-;; they are implemented.
+#+END_SRC
 
 
-;; add keynindings only when in dired mode
-;; h for directory up
-;; l for open
-;; (add-hook 'dired-mode-hook
-;;           (lambda ()
-;;             (define-key dired-mode-map (kbd "h") 'dired-up-directory)
-;;             (define-key dired-mode-map (kbd "l") 'dired-find-file)))
+*** Company
+Earlier and numbered completions.
+#+BEGIN_SRC emacs-lisp
+(after! company
+  (setq company-idle-delay 0.4
+        company-minimum-prefix-length 2)
+  (setq company-show-numbers t)
+  (add-hool 'evil-normal-state-entry-hook #'company-abort)) ;;abort directly
+#+END_SRC
 
-;; (defvar custom-keys-minor-mode-map
-;;   (let ((map (make-sparse-keymap)))
-;;     (define-key map (kbd "h") 'dired-up-directory)
-;;     map)
-;;   "custom-keys-minor-mode-map")
-;;
-;; (define minor-mode custom-keys-minor-mode
-;;   "custpmmmm"
-;;   :init-value t
-;;   :lighter "custom-keys")
-;;
-;; (custom-keys-minor-mode 1)
+Bigger History for better completions
+#+BEGIN_SRC emacs-lisp
+(setq-default history-length 1500)
+(setq-default prescient-history-length 1500)
+#+END_SRC
 
+
+** Quality of Life
+*** Which-key
+Make which-key popup faster until I got the keybindings burned in more.
+#+BEGIN_SRC emacs-lisp
+(setq which-key-idle-delay 0.2)
+#+END_SRC
+
+And hide evil- prefix spam.
+#+BEGIN_SRC emacs-lisp
+(setq which-key-allow-multiple-replacements t)
+(after! which-key
+  (pushnew!
+   which-key-replacement-alist
+   '(("" . "\\`+?evil[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "◂\\1"))
+   '(("\\`g s" . "\\`evilem--?motion-\\(.*\\)") . (nil . "◃\\1"))
+   ))
+#+END_SRC
+
+
+*** Snippets
+Enable nested snippets
+#+BEGIN_SRC emacs-lisp
+(setq yas-trigger-in-field t)
+#+END_SRC
+
+**** TODO More Snippets
+from somewhere
+also gitignores
+
+
+** Tools
+TODO read https://tecosaur.github.io/emacs-config/config.html#tools
+
+*** TODO Projectile
+Dont automatically add projects just by opening a file.
+
+
+*** TODO Treemacs
+automatically hide generated files
+
+
+*** TODO Dired
+- Up and Down with vim keybindings!
+
+
+* Fun
+** TODO xkcd's
+
+
+* Languages
+** General
+*** TODO configure things
+https://tecosaur.github.io/emacs-config/config.html#language-configuration
+
+** TODO Org
+**** Directiories
+#+BEGIN_SRC emacs-lisp
+(setq org-directory "~/annex/org/") ; default org directory
 (setq deft-directory "~/annex/org/")
 (setq deft-recursive t)
+#+END_SRC
 
+
+**** Layout
+#+BEGIN_SRC emacs-lisp
 (setf org-blank-before-new-entry '((heading . t) (plain-list-item . auto)))
 #+END_SRC
+
+**** TODO LaTeX Export
+**** TODO Exporting
+**** TODO Agenda
+**** TODO Tweaks
+**** TODO Capture
+**** TODO Roam
+**** TODO Snippet Helpers
+**** TODO Flycheck
+
+** TODO Latex
+** TODO GDScript
+** TODO Python
+** TODO Markdown
