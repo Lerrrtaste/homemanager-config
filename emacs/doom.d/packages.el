@@ -49,8 +49,6 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
-(package! copilot
-  :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
 
 
 ;; FIXME
@@ -76,6 +74,8 @@
 ;; (package! langtool)
 ;; (package! flycheck-languagetool)
 
+(package! copilot
+  :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
 
 (package! tldr)
 

@@ -158,8 +158,6 @@ Fall back to company suggestion if copilot has no completion.
 This doesnt feel good yet...
 
 #+BEGIN_SRC emacs-lisp
-(package! copilot
-  :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
 
 (defun my-tab () ;; accept completion from copilot and fallback to company
   (interactive)
@@ -186,7 +184,7 @@ Earlier and numbered completions.
   (setq company-idle-delay 0.4
         company-minimum-prefix-length 2)
   (setq company-show-numbers t)
-  (add-hool 'evil-normal-state-entry-hook #'company-abort)) ;;abort directly
+  (add-hook 'evil-normal-state-entry-hook #'company-abort)) ;;abort directly
 #+END_SRC
 
 Bigger History for better completions
@@ -230,8 +228,18 @@ also gitignores
 TODO read https://tecosaur.github.io/emacs-config/config.html#tools
 
 *** TODO Projectile
-Dont automatically add projects just by opening a file.
+Only auto add projects from ~/repos/
+Some things that should happen when opening a project:
+- open treemacs
+- TODO optional switch to new workspace if current one has a project open
+- TODO if project is open in another workspace switch to that one
+- TODO extra keybind to override the above behaviour ("open-here")
 
+#+BEGIN_SRC emacs-lisp
+(setq projectile-track-known-projects-automatically nil) ; Dont automatically add projects just by opening a file
+(setq projectile-project-search-path '("~/repos/")) ; only auto add from repos folder (TODO probably doesnt work like this)
+; FIXME ; (setq projectile-switch-project-action #'treemacs)
+#+END_SRC
 
 *** TODO Treemacs
 automatically hide generated files
