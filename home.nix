@@ -150,8 +150,9 @@ in
       gasc = "git annex sync --content";
     };
 
+    # TODO automatically fetch using fetchFromGithub and source all files
     initExtra = ''
-      source "$HOME/scripts/lfcd.sh"
+      source "$HOME/repos/github.com/lerrrtaste/scripts/lfcd.sh"
     '';
   };
 
