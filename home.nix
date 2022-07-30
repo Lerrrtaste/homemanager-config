@@ -160,7 +160,7 @@ in
 
   services.barrier = {
     client.enable = if builtins.getEnv "HOSTNAME" == "mrfusion" then true else false;
-    server.enable = if builtins.getEnv "HOSTNAME" == "delorean" then true else false;
+    client.server = "delorean";
   };
 
   services.mpd = {
