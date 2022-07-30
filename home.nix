@@ -79,10 +79,11 @@ in
   home.packages = with pkgs; [
     # general
     maim  # screenshoots
+    barrier
 
     # ide
-    jetbrains.clion
-    jetbrains.idea-ultimate
+    # jetbrains.clion
+    # jetbrains.idea-ultimate
     godot
 
     # dev tools
@@ -158,10 +159,10 @@ in
     '';
   };
 
-  services.barrier = {
-    client.enable = if builtins.getEnv "HOSTNAME" == "mrfusion" then true else false;
-    client.server = "delorean";
-  };
+ # services.barrier = {
+ #   client.enable = if builtins.getEnv "HOSTNAME" == "mrfusion" then true else false;
+ #   client.server = "delorean";
+ # };
 
   services.mpd = {
     enable = true;
