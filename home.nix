@@ -32,7 +32,6 @@ in
 
   # Import my other modules
   imports = [
-    ./development.nix 
     ./vim/init.nix
     ./emacs/init.nix
     ./modules/ncmpcpp.nix
@@ -157,6 +156,11 @@ in
       export PATH=$PATH:${scripts_src}
       for f in ${scripts_src}/src_*; do source $f; done
     '';
+  };
+
+  services.barrier = {
+    client.enable = if builtins.getEnv "HOSTNAME" == "mrfusion" then true else false;
+    server.enable = if builtins.getEnv "HOSTNAME" == "delorean" then true else false;
   };
 
   services.mpd = {
