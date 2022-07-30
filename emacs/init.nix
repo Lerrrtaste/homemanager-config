@@ -23,6 +23,8 @@
     nodejs
   ];
 
+  # FIXME it always detects changes when there are non
+  # maybe link the files so i can reload by hand too someow
   home.file.".doom.d" = {
     source = ./doom.d;
     recursive = true;

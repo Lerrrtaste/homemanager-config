@@ -1,3 +1,12 @@
+#        ____                                         _____                                __                     __
+#       / /\ \                                       / /\_ \                              /\ \__                 /\ \__
+#      / /\ \ \___     ___     ___ ___      __      / /\//\ \      __   _ __   _ __   _ __\ \ ,_\    __      ____\ \ ,_\    __
+#     / /  \ \  _ `\  / __`\ /' __` __`\  /'__`\   / /   \ \ \   /'__`\/\`'__\/\`'__\/\`'__\ \ \/  /'__`\   /',__\\ \ \/  /'__`\
+#    / /    \ \ \ \ \/\ \L\ \/\ \/\ \/\ \/\  __/  / /     \_\ \_/\  __/\ \ \/ \ \ \/ \ \ \/ \ \ \_/\ \L\.\_/\__, `\\ \ \_/\  __/
+#   /_/      \ \_\ \_\ \____/\ \_\ \_\ \_\ \____\/_/      /\____\ \____\\ \_\  \ \_\  \ \_\  \ \__\ \__/.\_\/\____/ \ \__\ \____\
+#  /_/        \/_/\/_/\/___/  \/_/\/_/\/_/\/____/_/       \/____/\/____/ \/_/   \/_/   \/_/   \/__/\/__/\/_/\/___/   \/__/\/____/
+#
+
 { config, pkgs, ... }:
 
 let
@@ -5,7 +14,11 @@ let
   conf_dest_base = "/home/lerrrtaste/.config/";
   conf_home = "nixpkgs/home.nix";
   conf_os = "nixos/configuration.nix";
-in 
+  scripts_src = if builtins.pathExists("/home/lerrrtaste/repos/github.com/lerrrtaste/custom-dwm") then
+    /home/lerrrtaste/repos/github.com/lerrrtaste/scripts
+  else
+    builtins.fetchGit "https://github.com/lerrrtaste/scripts.git";  # to force download --option tarball-ttl 0 (default 1 hr)
+in
 {
   nixpkgs.config.allowUnfree = true;
 
@@ -35,27 +48,27 @@ in
     VISUAL="vim";
   };
 
-  xdg = {
-    enable = true;
-    mime.enable = true;
-    mimeApps.enable = true;
+  #xdg = {
+  #  enable = true;
+  #  mime.enable = true;
+  #  mimeApps.enable = true;
 
-    mimeApps = {
-      defaultApplications = {
-        "text/plain" = "emc";
-        "application/pdf" = ["zorg.pwmt.zathura-pdf-mupdf.desktop"];  #FIXME overriden by libreoffice
-        "video/*" = "mpv";
-        "image/*" = "sxvi";
-        # "inode/directory" = "lf";
-      };
-    };
-  };
+  #  mimeApps = {  # FIXME asap
+  #    defaultApplications = {
+  #      "text/plain" = "emc";
+  #      "application/pdf" = ["zorg.pwmt.zathura-pdf-mupdf.desktop"];  #FIXME overriden by libreoffice
+  #      "video/*" = "mpv";
+  #      "image/*" = "sxvi";
+  #    };
+  #  };
+  #};
 
   home.file.".xinitrc" = {
     source = ./xinitrc;
   };
 
-  # Setup Keybindings FIXME
+  # Setup Keybindings
+  # TODO (see if it can be replaced with dwm autostart cmd)
   services.xcape = {
     enable = true;
     mapExpression = {
@@ -63,18 +76,8 @@ in
     };
   };
 
-#   serviecs.sxhkd = {
-#     enable = true;
-#     keybindings = {
-#
-#      "super + "
-#     }
-#   }
-
   # Packages
   home.packages = with pkgs; [
-    # TODO mkchromecast + audio controls
-
     # general
     maim  # screenshoots
 
@@ -91,14 +94,13 @@ in
     gnumake
 
     # files
-    # duplicati
     git-annex
     lf
-    sshfs
+    # sshfs
     p7zip
+    xfce.thunar
 
     # media
-    # mpd # music player daemon (alternatively mopidy has spotify control (nonfree))
     mkchromecast
     mpv
     sxiv  # image viewer
@@ -118,7 +120,7 @@ in
     # protonvpn-cli
 
     # Deps
-    # busybox  # git-annex webapp
+    # busybox  # git-annex webapp TODO conflicts with default
     libmusicbrainz
     picard
     jre # language tool emacs layer
@@ -128,7 +130,7 @@ in
   # Packages with options
   programs.bash = {
     enable = true;
-    shellAliases = {
+    shellAliases = {  # TODO port edit aliases to dashboard keymap
       # Edit desitnation state
       neo = "vim " + conf_dest_base + conf_os;
       neh = "vim " + conf_dest_base + conf_home; 
@@ -152,7 +154,8 @@ in
 
     # TODO automatically fetch using fetchFromGithub and source all files
     initExtra = ''
-      source "$HOME/repos/github.com/lerrrtaste/scripts/lfcd.sh"
+      export PATH=$PATH:${scripts_src}
+      for f in ${scripts_src}/src_*; do source $f; done
     '';
   };
 
