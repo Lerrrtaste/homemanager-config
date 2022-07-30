@@ -80,6 +80,7 @@ in
     # general
     maim  # screenshoots
     barrier
+    thefuck
 
     # ide
     # jetbrains.clion
@@ -150,12 +151,20 @@ in
       # Other
       gas = "git annex sync";
       gasc = "git annex sync --content";
+
+      # Files
+      rm = "rm -i";
+      cp = "cp -i";
+      mv = "mv -i";
+      mkdir = "mkdir -p";
+
     };
 
     # TODO automatically fetch using fetchFromGithub and source all files
     initExtra = ''
       export PATH=$PATH:${scripts_src}
       for f in ${scripts_src}/src_*; do source $f; done
+      eval "$(thefuck --alias)"
     '';
   };
 
