@@ -78,7 +78,7 @@ Used by GPG, Git, Mail, Snippets, etc.
  truncate-string-ellipsis "…"      ; save space with unicode ellispis
  password-cache-expiry nil ; dont cache passwords
  scroll-margin 3 ; keep a margin
- scroll-preserve-screen-position 'always ; dont move the point
+ ; scroll-preserve-screen-position 'always ; dont move the point
 )
 
 (global-subword-mode 1) ; iterate through CamelCase words
@@ -222,6 +222,16 @@ Enable nested snippets
 **** TODO More Snippets
 from somewhere
 also gitignores
+
+
+*** Beacon
+Where point
+#+BEGIN_SRC emacs-lisp
+(beacon-mode 1) ; global minor mode
+(setq beacon-blink-when-point-moves-vertically 4) ; blink when moving 4 or more lines vertically
+(setq beacon-blink-when-point-moves-horizontally nil) ; don't blink when moving horizontally
+(setq beacon-blink-when-focused t) ; blink when Emacs is focused
+#+END_SRC
 
 
 ** Tools

@@ -81,3 +81,5 @@
 
 (package! geben)
 (package! phpactor)
+
+(package! beacon)
