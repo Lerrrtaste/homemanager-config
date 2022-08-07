@@ -212,6 +212,34 @@ And hide evil- prefix spam.
    ))
 #+END_SRC
 
+*** Beacon
+Where point
+#+BEGIN_SRC emacs-lisp
+(beacon-mode 1) ; global minor mode
+(setq beacon-blink-when-point-moves-vertically 4) ; blink when moving 4 or more lines vertically
+(setq beacon-blink-when-point-moves-horizontally nil) ; don't blink when moving horizontally
+(setq beacon-blink-when-focused t) ; blink when Emacs is focused
+#+END_SRC
+
+
+** Code Help
+*** cheat.sh
+#+BEGIN_SRC emacs-lisp
+(setq cheat-sh-url "https://cheat.sh/%s?T") ; use https
+
+(map! :leader
+      (:prefix-map ("s" . "search")
+       (:prefix ("c" . "cheat.sh")
+        :desc "thing" "t" #'cheat-sh
+        :desc "region" "R" #'cheat-sh-region
+        :desc "region (maybe)" "r" #'cheat-sh-maybe-region
+        :desc "help" "h" #'cheat-sh-help
+        :desc "list" "l" #'cheat-sh-list
+        :desc "search thing" "s" #'cheat-sh-search
+        :desc "search topic" "S" #'cheat-sh-search-topic)))
+
+#+END_SRC
+
 
 *** Snippets
 Enable nested snippets
@@ -222,16 +250,6 @@ Enable nested snippets
 **** TODO More Snippets
 from somewhere
 also gitignores
-
-
-*** Beacon
-Where point
-#+BEGIN_SRC emacs-lisp
-(beacon-mode 1) ; global minor mode
-(setq beacon-blink-when-point-moves-vertically 4) ; blink when moving 4 or more lines vertically
-(setq beacon-blink-when-point-moves-horizontally nil) ; don't blink when moving horizontally
-(setq beacon-blink-when-focused t) ; blink when Emacs is focused
-#+END_SRC
 
 
 ** Tools

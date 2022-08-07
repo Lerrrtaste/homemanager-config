@@ -83,3 +83,5 @@
 (package! phpactor)
 
 (package! beacon)
+
+(package! cheat-sh)
