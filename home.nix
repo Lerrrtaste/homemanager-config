@@ -81,6 +81,7 @@ in
     maim  # screenshoots
     barrier
     thefuck
+    termdown
 
     # ide
     # jetbrains.clion
@@ -99,7 +100,6 @@ in
     lf
     # sshfs
     p7zip
-    xfce.thunar
 
     # media
     mkchromecast
@@ -112,7 +112,7 @@ in
     libreoffice
     zathura
     firefox # TODO keep as seperate package (ff from module with different name, then add keybinds (shift)-alt-b to open them)
-    # texlive.combined.scheme-full  # latex full (ca 5 gb!)
+    texlive.combined.scheme-full  # latex full (ca 5 gb!)
 
     # passwords
     libsecret

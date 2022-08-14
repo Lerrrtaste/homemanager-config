@@ -237,7 +237,6 @@ Where point
         :desc "list" "l" #'cheat-sh-list
         :desc "search thing" "s" #'cheat-sh-search
         :desc "search topic" "S" #'cheat-sh-search-topic)))
-
 #+END_SRC
 
 

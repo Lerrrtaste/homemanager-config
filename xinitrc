@@ -73,7 +73,7 @@ while true; do
   fi
 
   #TODO bluetooth if powered and or connected (then device)
-  #TODO ncmpcpp line if playing
+  #TODO ncmpcpp line if playing (scrolling)
   #TODO if battery is low, show warning in red
   #TODO scheduled shutdown timer
   #TODO use icons (then maybe a icon for weather too)
