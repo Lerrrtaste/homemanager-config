@@ -113,6 +113,7 @@ in
     zathura
     firefox # TODO keep as seperate package (ff from module with different name, then add keybinds (shift)-alt-b to open them)
     texlive.combined.scheme-full  # latex full (ca 5 gb!)
+    teams
 
     # passwords
     libsecret
