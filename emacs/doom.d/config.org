@@ -178,19 +178,27 @@ This doesnt feel good yet...
 
 
 *** Company
-Earlier and numbered completions.
+Earlier completions.
 #+BEGIN_SRC emacs-lisp
 (after! company
   (setq company-idle-delay 0.4
-        company-minimum-prefix-length 2)
-  (setq company-show-numbers t)
+        company-minimum-prefix-length 2 ;; show after 2 characters
+        )
   (add-hook 'evil-normal-state-entry-hook #'company-abort)) ;;abort directly
 #+END_SRC
 
-Bigger History for better completions
+Use all buffers and longer history
 #+BEGIN_SRC emacs-lisp
+(setq company-dabbrev-other-buffers t)
+(setq company-dabbrev-code-other-buffers t)
 (setq-default history-length 1500)
 (setq-default prescient-history-length 1500)
+#+END_SRC
+
+Display Numbers to select with M-<num>
+#+BEGIN_SRC emacs-lisp
+(setq company-show-numbers t)
+(setq company-complete-numbers t)
 #+END_SRC
 
 
