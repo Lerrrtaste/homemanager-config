@@ -35,7 +35,7 @@ in
     ./vim/init.nix
     ./emacs/init.nix
     ./modules/ncmpcpp.nix
-    # ./firefox/init.nix # FIXME google docs doesnt load
+    #./modules/firefox.nix # FIXME google docs doesnt load
   ];
 
   # Setup Home
