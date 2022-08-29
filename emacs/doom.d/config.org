@@ -300,6 +300,7 @@ https://tecosaur.github.io/emacs-config/config.html#language-configuration
 (setq gdscript-indent-offset 4) ;; 4 spaces wide tabs
 ;; (setq gdscript-godot-executable "~/bin/godot") ;; FIXME pin version
 (setq gdscript-gdformat-save-and-format t) ;; save and format all buffers before running executable
+#+END_SRC
 
 *** LSP Keybindings
 Show, Hide, Glance and Focus ui-doc-popup
@@ -312,12 +313,12 @@ Show, Hide, Glance and Focus ui-doc-popup
         :desc "Focus doc-popup" "P" #'lsp-ui-doc-focus)
 #+END_SRC
 
-Find Definition, Implementations
+Find Definition and Declaration
 #+BEGIN_SRC emacs-lisp
 (map! :map gdscript-mode-map
       :localleader
-        :desc "Find definition" "d" #'lsp-find-definition
-        :desc "Find implementations" "i" #'lsp-find-implementation)
+        :desc "Find definition" "f" #'lsp-find-definition
+        :desc "Find declarations" "F" #'lsp-find-declaration)
 #+END_SRC
 
 ** TODO Org
