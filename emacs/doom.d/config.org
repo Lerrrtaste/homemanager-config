@@ -293,6 +293,33 @@ automatically hide generated files
 *** TODO configure things
 https://tecosaur.github.io/emacs-config/config.html#language-configuration
 
+** GDscript
+*** Mode Settings
+#+BEGIN_SRC emacs-lisp
+(setq gdscript-use-tab-indents t) ;; tabs not spaces
+(setq gdscript-indent-offset 4) ;; 4 spaces wide tabs
+;; (setq gdscript-godot-executable "~/bin/godot") ;; FIXME pin version
+(setq gdscript-gdformat-save-and-format t) ;; save and format all buffers before running executable
+
+*** LSP Keybindings
+Show, Hide, Glance and Focus ui-doc-popup
+#+BEGIN_SRC emacs-lisp
+(map! :map gdscript-mode-map
+      :localleader
+        :desc "Show doc-popup" "p" #'lsp-ui-doc-show
+        :desc "Hide doc-popup" "h" #'lsp-ui-doc-hide
+        :desc "Glance doc-popup" "g" #'lsp-ui-doc-glance
+        :desc "Focus doc-popup" "P" #'lsp-ui-doc-focus)
+#+END_SRC
+
+Find Definition, Implementations
+#+BEGIN_SRC emacs-lisp
+(map! :map gdscript-mode-map
+      :localleader
+        :desc "Find definition" "d" #'lsp-find-definition
+        :desc "Find implementations" "i" #'lsp-find-implementation)
+#+END_SRC
+
 ** TODO Org
 **** Directiories
 #+BEGIN_SRC emacs-lisp
@@ -317,6 +344,5 @@ https://tecosaur.github.io/emacs-config/config.html#language-configuration
 **** TODO Flycheck
 
 ** TODO Latex
-** TODO GDScript
 ** TODO Python
 ** TODO Markdown
