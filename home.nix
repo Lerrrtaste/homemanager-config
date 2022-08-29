@@ -107,6 +107,7 @@ in
     sxiv  # image viewer
     gimp
     python39Packages.deemix  # TODO manage config with home.files
+    qbittorrent
 
     # office
     libreoffice
