@@ -308,17 +308,23 @@ Show, Hide, Glance and Focus ui-doc-popup
 (map! :map gdscript-mode-map
       :localleader
         :desc "Show doc-popup" "p" #'lsp-ui-doc-show
-        :desc "Hide doc-popup" "h" #'lsp-ui-doc-hide
-        :desc "Glance doc-popup" "g" #'lsp-ui-doc-glance
-        :desc "Focus doc-popup" "P" #'lsp-ui-doc-focus)
+        :desc "Hide doc-popup" "P" #'lsp-ui-doc-hide
+        :desc "Glance doc-popup" "k" #'lsp-ui-doc-glance
+        :desc "Focus doc-popup" "P" #'lsp-ui-doc-focus-frame)
 #+END_SRC
 
 Find Definition and Declaration
 #+BEGIN_SRC emacs-lisp
 (map! :map gdscript-mode-map
       :localleader
-        :desc "Find definition" "f" #'lsp-find-definition
-        :desc "Find declarations" "F" #'lsp-find-declaration)
+        :desc "Find definition" "j" #'lsp-find-definition
+        :desc "Find declarations" "J" #'lsp-find-declaration)
+#+END_SRC
+
+*** Minor Modes
+#+BEGIN_SRC emacs-lisp
+(add-hook 'gdscript-mode-hook #'lsp)
+(add-hook 'gdscript-mode-hook #'copilot-mode)
 #+END_SRC
 
 ** TODO Org
