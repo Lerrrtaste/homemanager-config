@@ -86,7 +86,7 @@ in
     # ide
     # jetbrains.clion
     # jetbrains.idea-ultimate
-    godot
+    # godot # TODO reanable once v3.5.x
 
     # dev tools
     git
@@ -128,6 +128,7 @@ in
     picard
     jre # language tool emacs layer
     languagetool
+    python310Packages.gdtoolkit # for gdscript-mode autoformatting
   ];
 
   # Packages with options
