@@ -115,6 +115,7 @@ in
     firefox # TODO keep as seperate package (ff from module with different name, then add keybinds (shift)-alt-b to open them)
     texlive.combined.scheme-full  # latex full (ca 5 gb!)
     teams
+    # protonmail-bridge # TODO write emacs mu4e config
 
     # passwords
     libsecret
@@ -165,10 +166,18 @@ in
 
     # TODO automatically fetch using fetchFromGithub and source all files
     initExtra = ''
-      export PATH=$PATH:${scripts_src}
-      for f in ${scripts_src}/src_*; do source $f; done
-      eval "$(thefuck --alias)"
+      export PATH=$PATH:${scripts_src} # add my scripts to path
+      for f in ${scripts_src}/src_*; do source $f; done # source my scripts with src_
+      eval "$(thefuck --alias)" # for thefuck
+      eval "$(direnv hook bash)" # for direnv
+
     '';
+  };
+
+  # Python Dev Envs (TODO move to nix shell?)
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
   };
 
  # services.barrier = {
@@ -195,7 +204,7 @@ in
   programs = { 
     git = {
       enable = true;
-      userName = "Lerrrtaste";
+      userName = "Laurenz Foglia";
       userEmail = "lerrrtaste@protonmail.com";
       diff-so-fancy.enable = true;
     };
