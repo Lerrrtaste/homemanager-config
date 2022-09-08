@@ -262,6 +262,11 @@ also gitignores
 ** Tools
 TODO read https://tecosaur.github.io/emacs-config/config.html#tools
 
+*** TODO mu4e
+Needs protonmail-bridge, mbsync, smtpmail
+https://gist.github.com/A6GibKm/238b754a4a90051f60906b9efa3e8000
+
+
 *** TODO Projectile
 Only auto add projects from ~/repos/
 Some things that should happen when opening a project:
@@ -275,6 +280,7 @@ Some things that should happen when opening a project:
 (setq projectile-project-search-path '("~/repos/")) ; only auto add from repos folder (TODO probably doesnt work like this)
 ; FIXME ; (setq projectile-switch-project-action #'treemacs)
 #+END_SRC
+
 
 *** TODO Treemacs
 automatically hide generated files
@@ -292,6 +298,21 @@ automatically hide generated files
 ** General
 *** TODO configure things
 https://tecosaur.github.io/emacs-config/config.html#language-configuration
+
+*** Comment / Uncomment
+Comment/Uncomment line or region if active
+(Using evil-nerd-commenter instead)
+#+BEGIN_SRC emacs-lisp
+;; (defun comment-or-uncomment-region-or-line ()
+;;   "Comment or Uncomment line or region"
+;;   (interactive)
+;;   (let (beg end)
+;;     (if (region-active-p)
+;;         (setq beg (region-beginning) end (region-end))
+;;         (setq beg (line-beginning-position) end (line-end-position)))
+;;     (comment-or-uncomment-region beg end)
+;;     (next-line)))
+#+END_SRC
 
 ** GDscript
 *** Mode Settings

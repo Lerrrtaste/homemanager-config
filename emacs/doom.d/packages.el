@@ -83,3 +83,5 @@
 (package! beacon)
 
 (package! cheat-sh)
+
+(package! restclient)
