@@ -196,6 +196,7 @@ Use all buffers and longer history
 #+END_SRC
 
 Display Numbers to select with M-<num>
+TODO rebind number seelction, because dwm is using bindings
 #+BEGIN_SRC emacs-lisp
 (setq company-show-numbers t)
 (setq company-complete-numbers t)
