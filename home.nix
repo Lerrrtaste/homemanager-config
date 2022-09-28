@@ -92,7 +92,7 @@ in
     git
     rsync
     # docker
-    docker-compose
+    # docker-compose
     gnumake
 
     # files

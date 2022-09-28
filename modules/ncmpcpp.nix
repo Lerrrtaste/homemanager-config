@@ -25,7 +25,7 @@
       "browser_display_mode" = "columns";
       "progressbar_look" = "->";
       "media_library_primary_tag" = "album_artist";
-      "media_library_albums_split_by_date" = "yes";
+      "media_library_albums_split_by_date" = "no";
       "startup_screen" = "media_library";
       "display_volume_level" = "no"; #FIXME
       "ignore_leading_the" = "yes";
