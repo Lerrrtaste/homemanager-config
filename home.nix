@@ -121,6 +121,7 @@ in
     libsecret
     keepassxc
     onlykey
+    # onlykey-agent # TODO one day (crashes, how to use?)
     # protonvpn-cli
 
     # Deps
@@ -162,15 +163,25 @@ in
       mv = "mv -i";
       mkdir = "mkdir -p";
       ncdu = "ncdu --exclude .git --exclude-kernfs -L -rr --confirm-quit";
+
     };
 
     # TODO automatically fetch using fetchFromGithub and source all files
     initExtra = ''
-      export PATH=$PATH:${scripts_src} # add my scripts to path
-      for f in ${scripts_src}/src_*; do source $f; done # source my scripts with src_
-      eval "$(thefuck --alias)" # for thefuck
-      eval "$(direnv hook bash)" # for direnv
+      # Append custom scripts to Path
+      export PATH=$PATH:${scripts_src}
 
+      # Enable onlykey-agent
+      # export GNUPGHOME=~/.gnupg/onlykey;
+
+      # Source scripts with "src_" prefix
+      for f in ${scripts_src}/src_*; do source $f; done
+
+      # the fuck
+      eval "$(thefuck --alias)"
+
+      # direnv
+      eval "$(direnv hook bash)" # for direnv
     '';
   };
 
