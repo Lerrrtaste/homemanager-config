@@ -72,12 +72,12 @@ Used by GPG, Git, Mail, Snippets, etc.
 )
 
 (setq
- undo-limit 800000000  ; set undo limit to 800mb
+ undo-limit 100000000  ; set undo limit to 100mb
  evil-want-fine-undo t ; dont insert all changes at once, more granular
  auto-save-default t   ; autosave
  truncate-string-ellipsis "…"      ; save space with unicode ellispis
  password-cache-expiry nil ; dont cache passwords
- scroll-margin 3 ; keep a margin
+ scroll-margin 4 ; keep a margin
  ; scroll-preserve-screen-position 'always ; dont move the point
 )
 
@@ -122,7 +122,16 @@ Check that fonts are available with https://tecosaur.github.io/emacs-config/conf
 
 
 *** TODO Modeline
-maybe nothing but check out whats possible sometime
+Show Battery
+#+BEGIN_SRC emacs-lisp
+(unless (string-match-p "^Power N/A" (battery))
+  (display-battery-mode 1))
+#+END_SRC
+
+Show Time
+#+BEGIN_SRC emacs-lisp
+(display-time-mode 1)
+#+END_SRC
 
 
 ** Dashboard
