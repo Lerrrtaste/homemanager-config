@@ -97,9 +97,9 @@ in
 
     # files
     git-annex
-    lf
     # sshfs
     p7zip
+    trash-cli
 
     # media
     mkchromecast
@@ -245,6 +245,41 @@ in
           ignore_subdirectories = "no";
         };
       };
+    };
+
+    lf = {
+      enable = true;
+      settings = { };
+      keybindings = {
+        D = "trash";
+        U = "!du -chs * | sort -h | less";
+        I = "set hidden!";
+
+        # bookmarks
+        m = "mark-save";
+        M = "mark-remove";
+        L = "mark-load";
+        H = "cd ~";
+
+        # movement
+        "J" = "bottom";
+        "K" = "top";
+      };
+      commands = {
+        trash = "trash-put $fx"; # TODO print feedback (maybe require confirm y/n)
+      };
+      # TODO replace with pistol (https://github.com/workflow/nixos-config/blob/7a57692adaa883b23c213fc7fe5c4be38e56eb81/home/lf.nix#L115)
+      previewer.source = pkgs.writeShellScript "pv.sh" ''
+            #!/bin/sh
+            case "$1" in
+                *.tar*) tar tf "$1";;
+                *.zip) unzip -l "$1";;
+                *.rar) unrar l "$1";;
+                *.7z) 7z l "$1";;
+                *.pdf) pdftotext "$1" -;;
+                *) highlight -O ansi "$1" || cat "$1";;
+            esac
+          '';
     };
   };
 
