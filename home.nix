@@ -79,7 +79,7 @@ in
   home.packages = with pkgs; [
     # general
     maim  # screenshoots
-    barrier
+    # barrier
     thefuck
     termdown
 
@@ -93,7 +93,7 @@ in
     rsync
     # docker
     # docker-compose
-    gnumake
+    # gnumake
 
     # files
     git-annex
@@ -102,12 +102,12 @@ in
     trash-cli
 
     # media
-    mkchromecast
+    # mkchromecast
     mpv
     sxiv  # image viewer
     gimp
     python39Packages.deemix  # TODO manage config with home.files
-    qbittorrent
+    # qbittorrent
 
     # office
     libreoffice
