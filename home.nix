@@ -106,8 +106,8 @@ in
     mpv
     sxiv  # image viewer
     gimp
-    python39Packages.deemix  # TODO manage config with home.files
-    # qbittorrent
+    # python39Packages.deemix  # TODO manage config with home.files
+    qbittorrent
 
     # office
     libreoffice
@@ -126,11 +126,11 @@ in
 
     # Deps
     # busybox  # git-annex webapp TODO conflicts with default
-    libmusicbrainz
-    picard
-    jre # language tool emacs layer
-    languagetool
-    python310Packages.gdtoolkit # for gdscript-mode autoformatting
+    libmusicbrainz # beets
+    picard # beets
+    # jre # language tool emacs layer
+    # languagetool
+    # python310Packages.gdtoolkit # for gdscript-mode autoformatting
   ];
 
   # Packages with options
@@ -156,6 +156,7 @@ in
       # Other
       gas = "git annex sync";
       gasc = "git annex sync --content";
+      gad = "git annex add .";
 
       # Files
       rm = "rm -i";
