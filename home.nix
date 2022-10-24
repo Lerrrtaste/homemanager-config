@@ -108,6 +108,7 @@ in
     gimp
     # python39Packages.deemix  # TODO manage config with home.files
     qbittorrent
+    youtube-dl
 
     # office
     libreoffice
@@ -164,6 +165,10 @@ in
       mv = "mv -i";
       mkdir = "mkdir -p";
       ncdu = "ncdu --exclude .git --exclude-kernfs -L -rr --confirm-quit";
+
+      # Termdowns
+      td = "termdown -b";
+      tdc = "termdown -b -c 60"; # critical
 
     };
 
