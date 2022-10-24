@@ -280,13 +280,9 @@ Add keybindings for evil-vc-gutter-hydra (SPC g ,)
        :desc "gutter" "," #'+vc/gutter-hydra/body))
 #+END_SRC
 
-#+RESULTS:
-: +vc/git-gutter-hydra/body
-
 *** TODO mu4e
 Needs protonmail-bridge, mbsync, smtpmail
 https://gist.github.com/A6GibKm/238b754a4a90051f60906b9efa3e8000
-
 
 *** TODO Projectile
 Only auto add projects from ~/repos/
@@ -296,23 +292,31 @@ Some things that should happen when opening a project:
 - TODO if project is open in another workspace switch to that one
 - TODO extra keybind to override the above behaviour ("open-here")
 
+
 #+BEGIN_SRC emacs-lisp
 (setq projectile-track-known-projects-automatically nil) ; Dont automatically add projects just by opening a file
 (setq projectile-project-search-path '("~/repos/")) ; only auto add from repos folder (TODO probably doesnt work like this)
 ; FIXME ; (setq projectile-switch-project-action #'treemacs)
 #+END_SRC
 
-
 *** TODO Treemacs
 automatically hide generated files
 
-
 *** TODO Dired
-- Up and Down with vim keybindings!
+- FIXME Up and Down with vim keybindindgs
 
+  #+BEGIN_SRC emacs-lisp
+  (map! :after evil
+        (:map dired-mode-map
+        "l" #'dired-find-file
+        "h" #'dired-up-directory
+        "C-l" #'evil-forward-char
+        "C-h" #'evil-backward-char))
+  #+END_SRC
 
 * Fun
 ** TODO xkcd's
+
 
 
 * Languages
