@@ -40,7 +40,7 @@ Battery() {
  fi
  
  bHasBacklight=false
- if [[ $(command -v light) ]]; then
+ if [[ $(command -v brightnessctl g) ]]; then
    bHasBacklight=true
  fi
 
@@ -64,7 +64,7 @@ while true; do
 
   # backlight
   if $bHasBacklight; then
-    text+=" | LIT $(light | cut -d. -f1)%"
+    text+=" | LIT $(($(brightnessctl g) * 100 / 255))%"
   fi
 
   # battery
