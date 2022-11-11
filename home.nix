@@ -86,7 +86,7 @@ in
     # ide
     # jetbrains.clion
     # jetbrains.idea-ultimate
-    # godot # TODO reanable once v3.5.x
+    godot # TODO reanable once v3.5.x
 
     # dev tools
     git
@@ -100,6 +100,7 @@ in
     # sshfs
     p7zip
     trash-cli
+    tree
 
     # media
     # mkchromecast
@@ -131,7 +132,7 @@ in
     picard # beets
     # jre # language tool emacs layer
     # languagetool
-    # python310Packages.gdtoolkit # for gdscript-mode autoformatting
+    python310Packages.gdtoolkit # for gdscript-mode autoformatting
   ];
 
   # Packages with options
@@ -178,7 +179,7 @@ in
       export PATH=$PATH:${scripts_src}
 
       # Enable onlykey-agent
-      # export GNUPGHOME=~/.gnupg/onlykey;
+      export GNUPGHOME=~/.gnupg/onlykey;
 
       # Source scripts with "src_" prefix
       for f in ${scripts_src}/src_*; do source $f; done
