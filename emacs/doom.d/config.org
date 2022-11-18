@@ -117,8 +117,10 @@ Check that fonts are available with https://tecosaur.github.io/emacs-config/conf
 - `doom-unicode-font' -- for unicode glyphs
 - `doom-serif-font' -- for the `fixed-pitch-serif' face
 
-(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
+#+BEGIN_SRC emacs-lisp
+(setq doom-font (font-spec :family "Fira Code Nerd Font" :size 13 :weight 'normal))
+      ;; doom-variable-pitch-font (font-spec :family "Fira " :size 13))
+#+END_SRC
 
 
 *** TODO Modeline
