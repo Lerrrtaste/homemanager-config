@@ -35,7 +35,7 @@ in
     ./vim/init.nix
     ./emacs/init.nix
     ./modules/ncmpcpp.nix
-    #./modules/firefox.nix # FIXME google docs doesnt load
+    # ./modules/firefox.nix
   ];
 
   # Setup Home
@@ -114,10 +114,11 @@ in
     # office
     libreoffice
     zathura
-    firefox # TODO keep as seperate package (ff from module with different name, then add keybinds (shift)-alt-b to open them)
+    tridactyl-native
     # texlive.combined.scheme-full  # latex full (ca 5 gb!)
     teams
-    # protonmail-bridge # TODO write emacs mu4e config
+    # protonmailo-bridge # TODO write emacs mu4e config
+    firefox
 
     # passwords
     libsecret
