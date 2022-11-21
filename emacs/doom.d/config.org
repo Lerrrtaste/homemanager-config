@@ -118,8 +118,8 @@ Check that fonts are available with https://tecosaur.github.io/emacs-config/conf
 - `doom-serif-font' -- for the `fixed-pitch-serif' face
 
 #+BEGIN_SRC emacs-lisp
-(setq doom-font (font-spec :family "Fira Code Nerd Font" :size 13 :weight 'normal))
-      ;; doom-variable-pitch-font (font-spec :family "Fira " :size 13))
+(setq doom-font (font-spec :family "Fira Code Nerd Font" :size 12 :weight 'normal :antialias t)
+      doom-variable-pitch-font (font-spec :family "Fira Code Nerd Font" :weigt 'light :size 12 :antialias t))
 #+END_SRC
 
 
@@ -218,7 +218,7 @@ TODO rebind number seelction, because dwm is using bindings
 *** Which-key
 Make which-key popup faster until I got the keybindings burned in more.
 #+BEGIN_SRC emacs-lisp
-(setq which-key-idle-delay 0.4)
+(setq which-key-idle-delay 0.5)
 #+END_SRC
 
 And hide evil- prefix spam.
@@ -434,7 +434,7 @@ Inactive states
               ("WAIT" :foreground "yellow" :weight bold)
               ("HOLD" :foreground "magenta" :weight bold)
               ("MAYBE" :foreground "cyan" :weight bold)
-              ("CANCELLED" :foreground "forest green" :weight bold)
+              ("CANCELLED" :foreground "forest green" :weight bold))))
 #+END_SRC
 
 
