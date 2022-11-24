@@ -80,19 +80,19 @@ while true; do
   fi
 
   # bluetooth
-  if $bHasBluetooth; then
-    isPowered=$(bluetoothctl show | grep Powered | awk '{print $2}')
-    isConnect=$(bluetoothctl show | grep Connected | awk '{print $2}')
-    if [ "$isPowered" = "yes" ]; then
-      if [ "$isConnect" = "yes" ]; then
-        text+=" | $(bluetoothctl show | grep Name | awk '{print $2}')"
-      else
-        text+=" | "
-      fi
-    else
-      text+=" | "
-    fi
-  fi
+  # if $bHasBluetooth; then
+  #   isPowered=$(bluetoothctl show | grep Powered | awk '{print $2}')
+  #   isConnect=$(bluetoothctl show | grep Connected | awk '{print $2}')
+  #   if [ "$isPowered" = "yes" ]; then
+  #     if [ "$isConnect" = "yes" ]; then
+  #       text+=" | $(bluetoothctl show | grep Name | awk '{print $2}')"
+  #     else
+  #       text+=" | "
+  #     fi
+  #   else
+  #     text+=" | "
+  #   fi
+  # fi
 
   # battery
   if $bHasBattery; then
