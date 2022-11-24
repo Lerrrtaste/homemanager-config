@@ -145,8 +145,8 @@ in
       neh = "vim " + conf_dest_base + conf_home; 
 
       # Edit source state
-      nco = "chezmoi edit " + conf_dest_base + conf_os;
-      nch = "chezmoi edit " + conf_dest_base + conf_home;
+      # nco = "chezmoi edit " + conf_dest_base + conf_os;
+      # nch = "chezmoi edit " + conf_dest_base + conf_home;
       
       # Open working state dir
       nlo = "lf " + conf_dest_base + "/nixos";
@@ -156,10 +156,16 @@ in
       nso = "sudo nixos-rebuild switch";
       nsh = "home-manager switch";
 
-      # Other
+      # Annex
       gas = "git annex sync";
       gasc = "git annex sync --content";
       gad = "git annex add .";
+
+      gal = "git annex lock .";
+      gau = "git annex unlock .";
+
+      gol = "git annex lock ~/annex/org";
+      gou = "git annex unlock ~/annex/org";
 
       # Files
       rm = "rm -i";
@@ -180,7 +186,7 @@ in
       export PATH=$PATH:${scripts_src}
 
       # Enable onlykey-agent
-      export GNUPGHOME=~/.gnupg/onlykey;
+      # export GNUPGHOME=~/.gnupg/onlykey;
 
       # Source scripts with "src_" prefix
       for f in ${scripts_src}/src_*; do source $f; done
