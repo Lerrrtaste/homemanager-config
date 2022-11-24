@@ -44,8 +44,20 @@ Battery() {
    bHasBacklight=true
  fi
 
+ bHasBluetooth=false
+  if [[ $(command -v bluetoothctl g) ]]; then
+    bHasBluetooth=true
+  fi
+
 while true; do
   text=""
+
+  # low battery
+  if $bHasBattery; then
+    if [ $(Battery) -le 20 ]; then
+      text="BATTERY LOW | "
+    fi
+  fi
 
   # date and time
   text+="$(date +%Y-%m-%d)"
@@ -67,14 +79,27 @@ while true; do
     text+=" | LIT $(($(brightnessctl g) * 100 / 255))%"
   fi
 
+  # bluetooth
+  if $bHasBluetooth; then
+    isPowered=$(bluetoothctl show | grep Powered | awk '{print $2}')
+    isConnect=$(bluetoothctl show | grep Connected | awk '{print $2}')
+    if [ "$isPowered" = "yes" ]; then
+      if [ "$isConnect" = "yes" ]; then
+        text+=" | $(bluetoothctl show | grep Name | awk '{print $2}')"
+      else
+        text+=" | "
+      fi
+    else
+      text+=" | "
+    fi
+  fi
+
   # battery
   if $bHasBattery; then
     text+=" | BAT $(Battery)%"
   fi
 
-  #TODO bluetooth if powered and or connected (then device)
   #TODO ncmpcpp line if playing (scrolling)
-  #TODO if battery is low, show warning in red
   #TODO scheduled shutdown timer
   #TODO use icons (then maybe a icon for weather too)
   #TODO make readable
