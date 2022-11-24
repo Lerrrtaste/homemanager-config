@@ -387,6 +387,8 @@ Find Definition and Declaration
 **** Layout
 #+BEGIN_SRC emacs-lisp
 (setf org-blank-before-new-entry '((heading . t) (plain-list-item . auto)))
+(setq org-hide-emphasis-markers t) ; dont show markup
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))) ; use bullets for headlines
 #+END_SRC
 
 **** TODO LaTeX Export
@@ -420,21 +422,22 @@ Inactive states
 - CANCEL - Task no longer relevant
 
 #+BEGIN_SRC emacs-lisp
+;; FIXME they only show up after doom reload?
 (setq org-todo-keywords
       '((sequence "TODO(t)" "STRT(s)" "NEXT(n)" "|" "DONE(d)")
         (sequence "WAIT(w@/!)" "HOLD(h@/!)" "|" "MAYBE(m@/!)" "CANCELLED(c@/!)")))
 
 
-; Colors
-(setq org-todo-keyword-faces
-      (quote (("TODO" :foreground "red" :weight bold)
-              ("NEXT" :foreground "blue" :weight bold)
-              ("STRT" :foreground "orange" :weight bold)
-              ("DONE" :foreground "forest green" :weight bold)
-              ("WAIT" :foreground "yellow" :weight bold)
-              ("HOLD" :foreground "magenta" :weight bold)
-              ("MAYBE" :foreground "cyan" :weight bold)
-              ("CANCELLED" :foreground "forest green" :weight bold))))
+;; ; Colors
+;; (setq org-todo-keyword-faces
+;;       (quote (("TODO" :foreground "red" :weight bold)
+;;               ("NEXT" :foreground "blue" :weight bold)
+;;               ("STRT" :foreground "orange" :weight bold)
+;;               ("DONE" :foreground "forest green" :weight bold)
+;;               ("WAIT" :foreground "yellow" :weight bold)
+;;               ("HOLD" :foreground "magenta" :weight bold)
+;;               ("MAYBE" :foreground "cyan" :weight bold)
+;;               ("CANCELLED" :foreground "forest green" :weight bold))))
 #+END_SRC
 
 

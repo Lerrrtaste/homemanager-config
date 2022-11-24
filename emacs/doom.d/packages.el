@@ -85,3 +85,5 @@
 (package! cheat-sh)
 
 (package! restclient)
+
+(package! org-bullets)
