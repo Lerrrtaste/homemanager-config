@@ -1,6 +1,10 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, hm-firefox, ... }:
 
 {
+# For touchscreen support
+# environment.sessionVariables = {
+#   MOZ_USE_XINPUT2 = "1";
+# };
 
   programs.firefox = {
     enable = true;
@@ -23,14 +27,14 @@
         # };
         # DisableFirefoxStudies = true;
         # DisableTelemetry = true;
-        # DisablePocket = true;
-        # DisableFirefoxAccounts = true;
+        DisablePocket = true;
+        DisableFirefoxAccounts = true;
         # DisableFormHistory = true;
         # DisablePasswordReveal = true;
         # NoDefaultBookmarks = true;
-        # DontCheckDefaultBrowser = true;
-        # OfferToSaveLogins = false;
-        # PasswordManagerEnabled = false;
+        DontCheckDefaultBrowser = true;
+        OfferToSaveLogins = false;
+        PasswordManagerEnabled = false;
         # SearchSuggestEnabled = false;
         # UserMessaging = {
         #   ExtensionRecommendations = false;
@@ -39,41 +43,91 @@
         # TODO remove adds from newtab page
         # TODO dont keep tabs after closing
         # TODO enable https only mode
+        # ExtensionSettings = {};
       };
     };
 
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-  #     # essential
+      # essential
   #     keepassxc-browser
-  #     languagetool # not free
+      languagetool
       tridactyl
+      bitwarden
 
-  #     # qol
-  #     old-reddit-redirect
-       terms-of-service-didnt-read
-  #     consent-o-matic
+      # qol
+      old-reddit-redirect
+      terms-of-service-didnt-read
+      consent-o-matic
+    # toolkit-for-ynab # doesnt exist
   #     df-youtube
 
-  #     # privacy
-  #     multi-account-containers
+      # privacy
+      multi-account-containers
   #     # link-cleaner
-  #     temporary-containers
+      temporary-containers
   #     # noscript
   #     # decentraleyes
   #     # clearurls
   #     cookie-autodelete
         privacy-badger
-  #     # ublock-origin
+      ublock-origin
   #     # canvasblocker
     ];
 
     profiles = {
   #     # TODO import bookmarks!
-      main = {
-        id = 3;
-        name = "test";
+      default = {
+        id = 0;
+        name = "nixmain";
         isDefault = true;
+
+          # "linux" = {
+          #   toolbar = true;
+          #   bookmarks = {
+          #     nixos = {
+          #       name = "nixos";
+          #       url = "https://nixos.org/";
+          #     };
+          #     nixpkgs = {
+          #       keyword = "Nixpkgs";
+          #       url = "https://search.nixos.org/packages";
+          #     };
+          #     home-manager = {
+          #       # Home Manager Manual
+          #       keyword = "hmm";
+          #       url = "https://nix-community.github.io/home-manager/";
+          #     };
+          #     home-manager-opt = {
+          #       # Home Manager Configuration Options
+          #       keyword = "hmo";
+          #       url = "https://nix-community.github.io/home-manager/options.html";
+          #     };
+          #     nur = {
+          #       # Nix User Repositories
+          #       keyword = "nur";
+          #       url = "https://nur.nix-community.org/";
+          #     };
+          #   };
+          # };
+
+          # hda
+          # {
+          #   name = "hda";
+          #   toolbar = true;
+          #   bookmarks = [
+          #     { name = "obs"; url = "https://obs.h-da.de/"; }
+          #     { name = "moodle"; url = "https://lernen.h-da.de/"; }
+          #     { name = "mail"; url = "https://webmail.h-da.de/"; }
+          #   ];
+        # };
+
         settings = {
+          "browser.toolbars.bookmarks.visibility" = "always";
+          "browser.toolbars.bookmarks.showOtherBookmarks" = false;
+          "browser.bookmarks.restore_default_bookmarks" = false;
+          "browser.places.importBookmarksHTML" = "true";
+  #
+  #
   #         "app.normandy.api_url" = "";
   #         "app.normandy.enabled" = false;
   #         "app.shield.optoutstudies.enabled" = false;
@@ -131,7 +185,7 @@
   #         "extensions.getAddons.showPane" = false;
   #         "extensions.greasemonkey.stats.optedin" = false;
   #         "extensions.greasemonkey.stats.url" = "";
-  #         "extensions.pocket.enabled" = false;
+          "extensions.pocket.enabled" = false;
   #         "extensions.shield-recipe-client.api_url" = "";
   #         "extensions.shield-recipe-client.enabled" = false;
   #         "extensions.webservice.discoverURL" = "";
