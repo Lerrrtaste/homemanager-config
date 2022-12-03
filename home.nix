@@ -14,7 +14,7 @@ let
   conf_dest_base = "/home/lerrrtaste/.config/";
   conf_home = "nixpkgs/home.nix";
   conf_os = "nixos/configuration.nix";
-  scripts_src = if builtins.pathExists("/home/lerrrtaste/repos/github.com/lerrrtaste/custom-dwm") then
+  scripts_src = if builtins.pathExists("/home/lerrrtaste/repos/github.com/lerrrtaste/scripts") then
     /home/lerrrtaste/repos/github.com/lerrrtaste/scripts
   else
     builtins.fetchGit "https://github.com/lerrrtaste/scripts.git";  # to force download --option tarball-ttl 0 (default 1 hr)
@@ -35,7 +35,7 @@ in
     ./vim/init.nix
     ./emacs/init.nix
     ./modules/ncmpcpp.nix
-    # ./modules/firefox.nix
+    ./modules/firefox.nix
   ];
 
   # Setup Home
@@ -46,6 +46,7 @@ in
     EDITOR="vim";
     VISUAL="vim";
   };
+
 
   #xdg = {
   #  enable = true;
@@ -118,7 +119,7 @@ in
     # texlive.combined.scheme-full  # latex full (ca 5 gb!)
     teams
     # protonmailo-bridge # TODO write emacs mu4e config
-    firefox
+    # firefox
 
     # passwords
     libsecret
