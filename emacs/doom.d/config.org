@@ -122,6 +122,13 @@ Check that fonts are available with https://tecosaur.github.io/emacs-config/conf
       doom-variable-pitch-font (font-spec :family "Fira Code Nerd Font" :weigt 'light :size 12 :antialias t))
 #+END_SRC
 
+Disable * ligatures for org mode headers
+
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (set-fontset-font t '(#x2a1d . #x2a1d) doom-font))
+#+END_SRC
+
 
 *** TODO Modeline
 Show Battery
@@ -388,7 +395,8 @@ Find Definition and Declaration
 #+BEGIN_SRC emacs-lisp
 (setf org-blank-before-new-entry '((heading . t) (plain-list-item . auto)))
 (setq org-hide-emphasis-markers t) ; dont show markup
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))) ; use bullets for headlines
+;; (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))) ; use bullets for headlines
+(add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
 #+END_SRC
 
 **** TODO LaTeX Export

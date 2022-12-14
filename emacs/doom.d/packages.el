@@ -77,13 +77,13 @@
 (package! copilot
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
 
-(package! geben)
-(package! phpactor)
+;; (package! geben)
+;; (package! phpactor)
 
-(package! beacon)
+;; (package! beacon)
 
 (package! cheat-sh)
 
 (package! restclient)
 
-(package! org-bullets)
+(package! org-superstar)
