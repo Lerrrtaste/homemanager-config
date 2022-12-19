@@ -70,7 +70,7 @@
   #     # clearurls
   #     cookie-autodelete
         privacy-badger
-      ublock-origin
+        ublock-origin
   #     # canvasblocker
     ];
 

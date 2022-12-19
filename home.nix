@@ -47,8 +47,19 @@ in
     VISUAL="vim";
   };
 
+  manual.manpages.enable = false;
 
-  #xdg = {
+  xdg = {
+    mimeApps = {
+      enable = true;
+      associations.added = {
+        "application/pdf" = ["org.pwmt.zathura.desktop"];
+      };
+      defaultApplications = {
+        "application/pdf" = ["org.pwmt.zathura.desktop"];
+      };
+    };
+  };
   #  enable = true;
   #  mime.enable = true;
   #  mimeApps.enable = true;
@@ -83,11 +94,12 @@ in
     # barrier
     thefuck
     termdown
+    tipp10
 
     # ide
     # jetbrains.clion
     # jetbrains.idea-ultimate
-    godot # TODO reanable once v3.5.x
+    # godot # TODO reanable once v3.5.x
 
     # dev tools
     git
@@ -109,8 +121,8 @@ in
     sxiv  # image viewer
     gimp
     # python39Packages.deemix  # TODO manage config with home.files
-    qbittorrent
-    youtube-dl
+    # qbittorrent
+    # youtube-dl
 
     # office
     libreoffice
@@ -130,11 +142,11 @@ in
 
     # Deps
     # busybox  # git-annex webapp TODO conflicts with default
-    libmusicbrainz # beets
-    picard # beets
+    # libmusicbrainz # beets
+    # picard # beets
     # jre # language tool emacs layer
     # languagetool
-    python310Packages.gdtoolkit # for gdscript-mode autoformatting
+    # python310Packages.gdtoolkit # for gdscript-mode autoformatting
   ];
 
   # Packages with options
@@ -167,6 +179,8 @@ in
 
       gol = "git annex lock ~/annex/org";
       gou = "git annex unlock ~/annex/org";
+
+      ga = "git annex";
 
       # Files
       rm = "rm -i";
@@ -236,7 +250,7 @@ in
     };
 
     beets = {
-      enable = true;
+      enable = false;
       settings = {
         directory = "/home/lerrrtaste/annex/music/library";
         import_dir = "/home/lerrrtaste/Downloads/deemix";
