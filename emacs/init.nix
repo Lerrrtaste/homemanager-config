@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
+  # nixpkgs.overlays = [ (self: super: { nodejs = self.nodejs-17_x; }) ];
   services.emacs.enable = true;
 
   programs.emacs = {
@@ -20,7 +21,18 @@
     sqlite
 
     # copilot
-    nodejs
+    nodejs-16_x
+
+    # sh
+    shellcheck
+
+    # web
+    html-tidy
+    jsbeautifier
+
+    # nix
+    nixfmt
+
   ];
 
   # FIXME it always detects changes when there are non

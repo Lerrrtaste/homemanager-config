@@ -192,6 +192,10 @@ This doesnt feel good yet...
          :map company-mode-map
          ("<tab>" . 'my-tab)
          ("TAB" . 'my-tab)))
+
+;; (map! :after emmet
+;;       :map emmet-minor-mode
+;;       ("<tab>" . nil))
 #+END_SRC
 
 
