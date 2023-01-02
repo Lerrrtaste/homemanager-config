@@ -49,17 +49,17 @@ in
 
   manual.manpages.enable = false;
 
-  xdg = {
-    mimeApps = {
-      enable = true;
-      associations.added = {
-        "application/pdf" = ["org.pwmt.zathura.desktop"];
-      };
-      defaultApplications = {
-        "application/pdf" = ["org.pwmt.zathura.desktop"];
-      };
-    };
-  };
+  # xdg = {
+  #   mimeApps = {
+  #     enable = true;
+  #     associations.added = {
+  #       "application/pdf" = ["org.pwmt.zathura.desktop"];
+  #     };
+  #     defaultApplications = {
+  #       "application/pdf" = ["org.pwmt.zathura.desktop"];
+  #     };
+  #   };
+  # };
   #  enable = true;
   #  mime.enable = true;
   #  mimeApps.enable = true;
@@ -196,7 +196,6 @@ in
 
     };
 
-    # TODO automatically fetch using fetchFromGithub and source all files
     initExtra = ''
       # Append custom scripts to Path
       export PATH=$PATH:${scripts_src}
@@ -282,6 +281,7 @@ in
       settings = { };
       keybindings = {
         D = "trash";
+        R = "trash-restore";
         U = "!du -chs * | sort -h | less";
         I = "set hidden!";
 
@@ -296,7 +296,18 @@ in
         "K" = "top";
       };
       commands = {
-        trash = "trash-put $fx"; # TODO print feedback (maybe require confirm y/n)
+        # ask for y/n confirmation and then run trash-put $fx
+        trash = "\${{
+          read -p \"Trash \$fx? [y/N] \" -n 1 -r
+          echo
+          if [[ \$REPLY =~ ^[Yy]\$ ]]
+          then
+            trash-put \"$fx\"
+          fi
+        }}";
+        trash-restore = "\${{
+          trash-restore \$PWD
+        }}";
       };
       # TODO replace with pistol (https://github.com/workflow/nixos-config/blob/7a57692adaa883b23c213fc7fe5c4be38e56eb81/home/lf.nix#L115)
       previewer.source = pkgs.writeShellScript "pv.sh" ''
