@@ -86,6 +86,6 @@
 
 (package! restclient)
 
-(package! org-bullets)
+;; (package! org-bullets)
 
 (package! speed-type)
