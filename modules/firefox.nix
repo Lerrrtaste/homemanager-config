@@ -5,13 +5,20 @@
 # environment.sessionVariables = {
 #   MOZ_USE_XINPUT2 = "1";
 # };
-
+#
+  home.file = {
+    tridactyl = {
+      source = ../tridactylrc;
+      target = ".tridactylrc";
+    };
+  };
   programs.firefox = {
     enable = true;
 
     package = pkgs.firefox.override {
       cfg = {
         enableTridactylNative = true;
+        # TODO import tridactyl cfg file
       };
       extraPolicies = {
         # AppAutoUpdate = false;
