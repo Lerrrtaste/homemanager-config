@@ -127,6 +127,11 @@ Disable * ligatures for org mode headers
 #+BEGIN_SRC emacs-lisp
 (after! org
   (set-fontset-font t '(#x2a1d . #x2a1d) doom-font))
+
+;; (after! org-superstar
+;;   (setq
+;;    ;; org-superstar-headline-bullets-list '("#")
+;;    org-superstar-special-todo-items nil))
 #+END_SRC
 
 
@@ -246,10 +251,10 @@ And hide evil- prefix spam.
 *** Beacon
 Where point
 #+BEGIN_SRC emacs-lisp
-(beacon-mode 1) ; global minor mode
-(setq beacon-blink-when-point-moves-vertically 4) ; blink when moving 4 or more lines vertically
-(setq beacon-blink-when-point-moves-horizontally nil) ; don't blink when moving horizontally
-(setq beacon-blink-when-focused t) ; blink when Emacs is focused
+;; (beacon-mode 1) ; global minor mode
+;; (setq beacon-blink-when-point-moves-vertically 4) ; blink when moving 4 or more lines vertically
+;; (setq beacon-blink-when-point-moves-horizontally nil) ; don't blink when moving horizontally
+;; (setq beacon-blink-when-focused t) ; blink when Emacs is focused
 #+END_SRC
 
 
@@ -400,7 +405,7 @@ Find Definition and Declaration
 (setf org-blank-before-new-entry '((heading . t) (plain-list-item . auto)))
 (setq org-hide-emphasis-markers t) ; dont show markup
 ;; (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))) ; use bullets for headlines
-(add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
+;; (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
 #+END_SRC
 
 **** TODO LaTeX Export
@@ -412,12 +417,13 @@ Find Definition and Declaration
 (setq org-default-notes-file "~/annex/org/inbox.org")
 
 ;; Capture templates for: TODOs, Notes
-(setq org-capture-templates
-      (quote (("t" "todo" entry (file "~/git/org/refile.org")
-               "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
-              ("n" "note" entry (file "~/git/org/refile.org")
-               "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t))))
+;; (setq org-capture-templates
+;;       (quote (("t" "todo" entry (file "~/git/org/refile.org")
+;;                "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
+;;               ("n" "note" entry (file "~/git/org/refile.org")
+;;                "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t))))
 #+END_SRC
+
 
 **** Tasks and States
 ***** Keywords
@@ -435,9 +441,9 @@ Inactive states
 
 #+BEGIN_SRC emacs-lisp
 ;; FIXME they only show up after doom reload?
-(setq org-todo-keywords
-      '((sequence "TODO(t)" "STRT(s)" "NEXT(n)" "|" "DONE(d)")
-        (sequence "WAIT(w@/!)" "HOLD(h@/!)" "|" "MAYBE(m@/!)" "CANCELLED(c@/!)")))
+;; (setq org-todo-keywords
+;;       '((sequence "TODO(t)" "STRT(s)" "NEXT(n)" "|" "DONE(d)")
+;;         (sequence "WAIT(w@/!)" "HOLD(h@/!)" "|" "MAYBE(m@/!)" "CANCELLED(c@/!)")))
 
 
 ;; ; Colors
@@ -463,14 +469,14 @@ With S-Left and S-Right cycle through, but skip the normal processing for enteri
 
 State Triggers to assign CANCLED, TODO and HOLD Tags
 #+BEGIN_SRC emacs-lisp
-(setq org-todo-state-tags-triggers
-      (quote (("CANCELLED" ("CANCELLED" . t))
-              ("WAIT" ("WAITING" . t))
-              ("HOLD" ("WAITING") ("HOLD" . t))
-              (done ("WAITING") ("HOLD"))
-              ("TODO" ("WAIT") ("CANCELLED") ("HOLD"))
-              ("NEXT" ("WAIT") ("CANCELLED") ("HOLD"))
-              ("DONE" ("WAIT") ("CANCELLED") ("HOLD")))))
+;; (setq org-todo-state-tags-triggers
+;;       (quote (("CANCELLED" ("CANCELLED" . t))
+;;               ("WAIT" ("WAITING" . t))
+;;               ("HOLD" ("WAITING") ("HOLD" . t))
+;;               (done ("WAITING") ("HOLD"))
+;;               ("TODO" ("WAIT") ("CANCELLED") ("HOLD"))
+;;               ("NEXT" ("WAIT") ("CANCELLED") ("HOLD"))
+;;               ("DONE" ("WAIT") ("CANCELLED") ("HOLD")))))
 #+END_SRC
 
 
