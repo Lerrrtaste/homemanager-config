@@ -107,6 +107,7 @@ in
     # docker
     # docker-compose
     # gnumake
+    xcolor
 
     # files
     git-annex
@@ -141,6 +142,8 @@ in
     # protonvpn-cli
 
     # Deps
+    xdotool #scripts
+    xsel #scripts
     # busybox  # git-annex webapp TODO conflicts with default
     # libmusicbrainz # beets
     # picard # beets
