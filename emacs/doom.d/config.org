@@ -411,9 +411,9 @@ Find Definition and Declaration
 **** Clock
 Keybinding to clock in recent tasks from everywhere (1x C-u prefix)
 #+BEGIN_SRC emacs-lisp
-(map! :leader
-      (:prefix-map ("n" . "notes"
-       :desc "org-clock-in" "c" (lambda () (interactive) (org-clock-in '(4)))))
+;; (map! :leader
+;;       (:prefix-map ("n" . "notes"
+;;        :desc "org-clock-in" "c" (lambda () (interactive) (org-clock-in '(4)))))
 #+END_SRC
 **** TODO LaTeX Export
 **** TODO Exporting

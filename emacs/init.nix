@@ -28,7 +28,6 @@
 
     # web
     html-tidy
-    jsbeautifier
 
     # nix
     nixfmt
