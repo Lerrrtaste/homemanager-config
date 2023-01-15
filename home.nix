@@ -244,6 +244,16 @@ in
   #  '';
   #};
 
+  # services.redshift = {
+  #   enable = true;
+  #   provider = "manual";
+  #   latitude = "52.52";
+  #   longitude = "13.41";
+  # };
+  # systemd.services."" #TODO override targets, no graphical-session.target with startx!
+  #   wantedBy = [ "multi-user.target" ];
+  # };
+
   programs = { 
     git = {
       enable = true;
