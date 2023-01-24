@@ -52,6 +52,15 @@ Battery() {
 while true; do
   text=""
 
+  # org clock status FIXME doesnt work sometimes
+  orgClockString="$(emacsclient -e "(if org-clock-current-task (string-trim (substring-no-properties (org-clock-get-clock-string))))")"
+  if [[ $orgClockString != "" && $orgClockString != "nil" ]]; then
+    text+="${orgClockString:1:-1} | "
+  else
+    text+="clocked out | "
+  fi
+
+
   # low battery
   if $bHasBattery; then
     if [ $(Battery) -le 20 ]; then

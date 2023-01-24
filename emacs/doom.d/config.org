@@ -3,6 +3,10 @@
 #+email: lerrrtaste@protonmail.com
 
 * Notes and Todos
+** Config Notes
+This file is evaluated before init.el (before packages)
+therefore need to use !after makro to edit package vars
+(after! org)
 ** Doom Macros
 - load! - for loading a externel el file relativ to this one
 - use-package! - configuring packages
