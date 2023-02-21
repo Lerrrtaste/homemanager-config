@@ -89,3 +89,6 @@
 ;; (package! org-bullets)
 
 (package! speed-type)
+
+(package! zotxt)
+(package! citeproc)

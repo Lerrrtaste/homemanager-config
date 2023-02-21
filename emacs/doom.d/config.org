@@ -419,8 +419,6 @@ Keybinding to clock in recent tasks from everywhere (1x C-u prefix)
 ;;       (:prefix-map ("n" . "notes"
 ;;        :desc "org-clock-in" "c" (lambda () (interactive) (org-clock-in '(4)))))
 #+END_SRC
-**** TODO LaTeX Export
-**** TODO Exporting
 **** TODO Agenda
 **** TODO Tweaks
 **** Capture
