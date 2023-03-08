@@ -14,20 +14,22 @@ let
   conf_dest_base = "/home/lerrrtaste/.config/";
   conf_home = "nixpkgs/home.nix";
   conf_os = "nixos/configuration.nix";
-  scripts_src = if builtins.pathExists("/home/lerrrtaste/repos/github.com/lerrrtaste/scripts") then
+  scripts_src = if builtins.pathExists
+  ("/home/lerrrtaste/repos/github.com/lerrrtaste/scripts") then
     /home/lerrrtaste/repos/github.com/lerrrtaste/scripts
   else
-    builtins.fetchGit "https://github.com/lerrrtaste/scripts.git";  # to force download --option tarball-ttl 0 (default 1 hr)
-in
-{
+    builtins.fetchGit
+    "https://github.com/lerrrtaste/scripts.git"; # to force download --option tarball-ttl 0 (default 1 hr)
+in {
   nixpkgs.config.allowUnfree = true;
 
   # Import NUR
   # TODO pin
   nixpkgs.config.packageOverrides = pkgs: {
-    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-      inherit pkgs;
-    };
+    nur = import (builtins.fetchTarball
+      "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+        inherit pkgs;
+      };
   };
 
   # Import my other modules
@@ -43,8 +45,8 @@ in
   home.homeDirectory = "/home/lerrrtaste";
 
   home.sessionVariables = {
-    EDITOR="vim";
-    VISUAL="vim";
+    EDITOR = "vim";
+    VISUAL = "vim";
   };
 
   manual.manpages.enable = false;
@@ -74,27 +76,25 @@ in
   #  };
   #};
 
-  home.file.".xinitrc" = {
-    source = ./xinitrc;
-  };
+  home.file.".xinitrc" = { source = ./xinitrc; };
 
   # Setup Keybindings
   # TODO (see if it can be replaced with dwm autostart cmd)
   services.xcape = {
     enable = true;
-    mapExpression = {
-      Caps_Lock = "Escape";
-    };
+    mapExpression = { Caps_Lock = "Escape"; };
   };
 
   # Packages
   home.packages = with pkgs; [
     # general
-    maim  # screenshoots
+    maim # screenshoots
     # barrier
     thefuck
     termdown
     tipp10
+    drawio
+    redshift
 
     # ide
     # jetbrains.clion
@@ -119,7 +119,7 @@ in
     # media
     # mkchromecast
     mpv
-    sxiv  # image viewer
+    sxiv # image viewer
     gimp
     # python39Packages.deemix  # TODO manage config with home.files
     # qbittorrent
@@ -143,8 +143,8 @@ in
     # protonvpn-cli
 
     # Deps
-    xdotool #scripts
-    xsel #scripts
+    xdotool # scripts
+    xsel # scripts
     # busybox  # git-annex webapp TODO conflicts with default
     # libmusicbrainz # beets
     # picard # beets
@@ -156,23 +156,24 @@ in
   # Packages with options
   programs.bash = {
     enable = true;
-    shellAliases = {  # TODO port edit aliases to dashboard keymap
+    shellAliases = { # TODO port edit aliases to dashboard keymap
       # Edit desitnation state
       neo = "vim " + conf_dest_base + conf_os;
-      neh = "vim " + conf_dest_base + conf_home; 
+      neh = "vim " + conf_dest_base + conf_home;
 
       # Edit source state
       # nco = "chezmoi edit " + conf_dest_base + conf_os;
       # nch = "chezmoi edit " + conf_dest_base + conf_home;
-      
+
       # Open working state dir
       nlo = "lf " + conf_dest_base + "/nixos";
       nlh = "lf " + conf_dest_base + "/nixpkgs";
-      
+
       # Switch config
       nso = "sudo nixos-rebuild switch";
       nsh = "home-manager switch";
-      nua = "nix-channel --update && sudo nix-channel --update && sudo nixos-rebuild switch && home-manager switch";
+      nua =
+        "nix-channel --update && sudo nix-channel --update && sudo nixos-rebuild switch && home-manager switch";
 
       # Annex
       gas = "git annex sync";
@@ -224,10 +225,10 @@ in
     nix-direnv.enable = true;
   };
 
- # services.barrier = {
- #   client.enable = if builtins.getEnv "HOSTNAME" == "mrfusion" then true else false;
- #   client.server = "delorean";
- # };
+  # services.barrier = {
+  #   client.enable = if builtins.getEnv "HOSTNAME" == "mrfusion" then true else false;
+  #   client.server = "delorean";
+  # };
 
   services.mpd = {
     enable = true;
@@ -244,18 +245,29 @@ in
   #    restore_state = false;
   #  '';
   #};
-
   # services.redshift = {
   #   enable = true;
   #   provider = "manual";
   #   latitude = "52.52";
   #   longitude = "13.41";
+  #   enableVerboseLogging = true;
+  #   settings = {
+  #     redshift = {
+  #       adjustment-method = "randr";
+  #     };
+  #     environment = {
+  #       DISPLAY = ":0";
+  #     };
+  #     # randr = {
+  #     #   screen = 1;
+  #     # };
+  #   };
   # };
   # systemd.services."" #TODO override targets, no graphical-session.target with startx!
   #   wantedBy = [ "multi-user.target" ];
   # };
 
-  programs = { 
+  programs = {
     git = {
       enable = true;
       userName = "Laurenz Foglia";
@@ -278,15 +290,13 @@ in
         };
         plugins = [
           "lyrics"
-          "duplicates"  # list duplicates with beet duplicate
-          "albumtypes"  # tag type of album in name (album, single, compilation, etc)
-          "deezer"  # enter deezer id (additional to musicbrainz)
-          "missing"  # beet missing for missing tracks
-          "unimported"  # beet unimported for tracks still in the import dir
+          "duplicates" # list duplicates with beet duplicate
+          "albumtypes" # tag type of album in name (album, single, compilation, etc)
+          "deezer" # enter deezer id (additional to musicbrainz)
+          "missing" # beet missing for missing tracks
+          "unimported" # beet unimported for tracks still in the import dir
         ];
-        unimported = {
-          ignore_subdirectories = "no";
-        };
+        unimported = { ignore_subdirectories = "no"; };
       };
     };
 
@@ -311,37 +321,39 @@ in
       };
       commands = {
         # ask for y/n confirmation and then run trash-put $fx
-        trash = "\${{
-          read -p \"Trash \$fx? [y/N] \" -n 1 -r
-          echo
-          if [[ \$REPLY =~ ^[Yy]\$ ]]
-          then
-            trash-put \"$fx\"
-          fi
-        }}";
-        trash-restore = "\${{
-          trash-restore \$PWD
-        }}";
+        trash = ''
+          ''${{
+                    read -p "Trash $fx? [y/N] " -n 1 -r
+                    echo
+                    if [[ $REPLY =~ ^[Yy]$ ]]
+                    then
+                      trash-put "$fx"
+                    fi
+                  }}'';
+        trash-restore = ''
+          ''${{
+                    trash-restore $PWD
+                  }}'';
       };
       # TODO replace with pistol (https://github.com/workflow/nixos-config/blob/7a57692adaa883b23c213fc7fe5c4be38e56eb81/home/lf.nix#L115)
       previewer.source = pkgs.writeShellScript "pv.sh" ''
-            #!/bin/sh
-            case "$1" in
-                *.tar*) tar tf "$1";;
-                *.zip) unzip -l "$1";;
-                *.rar) unrar l "$1";;
-                *.7z) 7z l "$1";;
-                *.pdf) pdftotext "$1" -;;
-                *) highlight -O ansi "$1" || cat "$1";;
-            esac
-          '';
+        #!/bin/sh
+        case "$1" in
+            *.tar*) tar tf "$1";;
+            *.zip) unzip -l "$1";;
+            *.rar) unrar l "$1";;
+            *.7z) 7z l "$1";;
+            *.pdf) pdftotext "$1" -;;
+            *) highlight -O ansi "$1" || cat "$1";;
+        esac
+      '';
     };
   };
 
   services.gpg-agent = {
     enable = true;
-    pinentryFlavor = "curses"; 
-  }; 
+    pinentryFlavor = "curses";
+  };
 
   # home.useUserPackages = true;  # install packages to /etc/profiles/per-user/lerrrtaste (instead of home)
   # home.useGlobalPkgs = true;  # use system nixpkgs instead of a seperate home-manager one
