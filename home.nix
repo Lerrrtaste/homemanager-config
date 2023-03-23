@@ -122,9 +122,9 @@ in {
     mpv
     sxiv # image viewer
     gimp
-    # python39Packages.deemix  # TODO manage config with home.files
+    python39Packages.deemix  # TODO manage config with home.files
     # qbittorrent
-    # youtube-dl
+    youtube-dl
 
     # office
     libreoffice
@@ -147,8 +147,8 @@ in {
     xdotool # scripts
     xsel # scripts
     # busybox  # git-annex webapp TODO conflicts with default
-    # libmusicbrainz # beets
-    # picard # beets
+    libmusicbrainz # beets
+    picard # beets
     # jre # language tool emacs layer
     # languagetool
     # python310Packages.gdtoolkit # for gdscript-mode autoformatting
@@ -280,10 +280,10 @@ in {
     };
 
     beets = {
-      enable = false;
+      enable = true;
       settings = {
         directory = "/home/lerrrtaste/annex/music/library";
-        import_dir = "/home/lerrrtaste/Downloads/deemix";
+        import_dir = "/media/ssd/deemix/downloads";
         asciify_paths = "yes";
         import = {
           copy = "no";
@@ -300,6 +300,11 @@ in {
           "missing" # beet missing for missing tracks
           "unimported" # beet unimported for tracks still in the import dir
         ];
+        paths = {
+          default = "$albumartist/$album%aunique{}/$track $title";
+          singleton = "$artist/singles/$title";
+          comp = "Compilations/$album%aunique{}/$track $title";
+        };
         unimported = { ignore_subdirectories = "no"; };
       };
     };
