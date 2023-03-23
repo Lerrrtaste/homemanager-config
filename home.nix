@@ -111,6 +111,7 @@ in {
 
     # files
     git-annex
+    bup
     # sshfs
     p7zip
     trash-cli
@@ -216,6 +217,9 @@ in {
 
       # direnv
       eval "$(direnv hook bash)" # for direnv
+
+      #bup
+      export BUP_DIR=/media/raid/bup
     '';
   };
 
