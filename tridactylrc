@@ -18,7 +18,8 @@ bind --mode=hintmap K hint.focusTop
 bind --mode=hintmap H hint.focusLeft
 bind --mode=hintmap L hint.focusRight
 
-
+# Old reddit guud
+autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
 
 
 

@@ -62,6 +62,7 @@
       bitwarden
 
       # qol
+      terms-of-service-didnt-read
       consent-o-matic
       auto-tab-discard
       augmented-steam
