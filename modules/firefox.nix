@@ -60,6 +60,7 @@
       languagetool
       tridactyl
       bitwarden
+      simplelogin
 
       # qol
       terms-of-service-didnt-read
@@ -79,7 +80,6 @@
       return-youtube-dislikes
 
       # privacy
-      # multi-account-containers
       umatrix
       temporary-containers
       link-cleaner
@@ -87,6 +87,11 @@
       localcdn
       ublock-origin
       canvasblocker
+      multi-account-containers
+      umatrix
+      temporary-containers
+      decentraleyes
+      privacy-badger
     ];
 
     profiles = {
