@@ -11,7 +11,7 @@
       "ncmpcpp_directory" = "~/.config/ncmpcpp";
       "lyrics_directory" = "~/annex/music/lyrics";
       "message_delay_time" = "1";
-      # "visualizer_type" = "spectrum";
+      "visualizer_type" = "wave";
       "song_list_format" = "{$4%a - }{%t}|{$8%f$9}$R{$3(%l)$9}";
       "song_status_format" = "$b{{$8%t}} $3by {$4%a{ $3in $7%b{ (%y)}} $3}|{$8%f}";
       "song_library_format" = "{%n - }{%t}|{%f}";
@@ -27,7 +27,7 @@
       "media_library_primary_tag" = "album_artist";
       "media_library_albums_split_by_date" = "no";
       "startup_screen" = "media_library";
-      "display_volume_level" = "no"; #FIXME
+      "display_volume_level" = "yes"; #FIXME
       "ignore_leading_the" = "yes";
       "external_editor" = "vim";
       "use_console_editor" = "yes";
@@ -44,8 +44,8 @@
 
     bindings =[
       # screens
-#      { key = "+"; command = "show_clock"; }
-#      { key = "-"; command = "show_visualizer"; }
+      { key = "+"; command = "show_clock"; }
+      { key = "-"; command = "show_visualizer"; }
 #      { key = "m"; command = "show_media_library"; }
 #      { key = "m"; command = "toggle_media_library_columns_mode"; }
 #      { key = "P"; command = "show_playlist"; }
@@ -54,20 +54,20 @@
 #      { key = "t"; command = "show_tag_editor"; }
 
       # movement
-#      { key = "ctrl-u"; command = "page_up"; }
-#      { key = "ctrl-d"; command = "page_down"; }
+      { key = "ctrl-u"; command = "page_up"; }
+      { key = "ctrl-d"; command = "page_down"; }
 #      { key = "u"; command = "page_up"; }
 #      { key = "d"; command = "page_down"; }
       { key = "k"; command = "scroll_up"; }
       { key = "j"; command = "scroll_down"; }
       { key = "h"; command = "previous_column"; }
       { key = "l"; command = "next_column"; }
-#      { key = "n"; command = "next_found_item"; }
-#      { key = "N"; command = "previous_found_item"; }
+      { key = "n"; command = "next_found_item"; }
+      { key = "N"; command = "previous_found_item"; }
 
       # media ctrl
-#      { key = "L"; command = "volume_up"; }
-#      { key = "H"; command = "volume_down"; }
+      { key = "L"; command = "volume_up"; }
+      { key = "H"; command = "volume_down"; }
 
       # not customized yet
 #      { key = "J"; command = "move_sort_order_down"; }
