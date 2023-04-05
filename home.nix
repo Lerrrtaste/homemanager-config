@@ -233,6 +233,94 @@ in {
   #   client.enable = if builtins.getEnv "HOSTNAME" == "mrfusion" then true else false;
   #   client.server = "delorean";
   # };
+  #
+  programs.btop = {
+    enable = true;
+    settings = {
+      #* Name of a btop++/bpytop/bashtop formatted ".theme" file, "Default" and "TTY" for builtin themes.
+      #* Themes should be placed in "../share/btop/themes" relative to binary or "$HOME/.config/btop/themes"
+      color_theme = "Default";
+
+      #* If the theme set background should be shown, set to False if you want terminal background transparency.
+      theme_background = true;
+
+      #* Define presets for the layout of the boxes. Preset 0 is always all boxes shown with default settings. Max 9 presets.
+      #* Format: "box_name:P:G,box_name:P:G" P=(0 or 1) for alternate positions, G=graph symbol to use for box.
+      #* Use whitespace " " as separator between different presets.
+      #* Example: "cpu:0:default,mem:0:tty,proc:1:default cpu:0:braille,proc:0:tty"
+      presets = "cpu:1:default,proc:0:default cpu:0:default,mem:0:default,net:0:default cpu:0:block,net:0:tty";
+
+      vim_keys = true;
+      rounded_corners = true;
+
+      #* Default symbols to use for graph creation, "braille", "block" or "tty".
+      #* "braille" offers the highest resolution but might not be included in all fonts.
+      #* "block" has half the resolution of braille but uses more common characters.
+      #* "tty" uses only 3 different symbols but will work with most fonts and should work in a real TTY.
+      graph_symbol = "braille";
+      graph_symbol_cpu = "default";
+      graph_symbol_mem = "default";
+      graph_symbol_net = "default";
+      graph_symbol_proc = "default";
+
+      shown_boxes = "proc cpu mem net";
+
+      update_ms = 2000;
+
+      #* Processes sorting, "pid" "program" "arguments" "threads" "user" "memory" "cpu lazy" "cpu responsive",
+      #* "cpu lazy" sorts top process over time (easier to follow), "cpu responsive" updates top process directly.
+      proc_sorting = "cpu lazy";
+
+      proc_reversed = false;
+      proc_tree = false;
+      proc_colors = true;
+      proc_gradient = true;
+      proc_per_core = true;
+      proc_mem_bytes = true;
+
+      #* Use /proc/[pid]/smaps for memory information in the process info box (very slow but more accurate)
+      proc_info_smaps = false;
+
+      #* Show proc box on left side of screen instead of right.
+      proc_left = false;
+      cpu_graph_upper = "total";
+      # cpu_graph_lower = "total";
+      # cpu_invert_lower = True
+      cpu_single_graph = true;
+      show_uptime = true;
+
+      temp_scale = "celsius";
+      disks_filter = "exclude=/boot";
+
+      show_swap = true;
+      swap_disk = false;
+
+      only_physical = true;
+
+      #* Toggles if io activity % (disk busy time) should be shown in regular disk usage view.
+      show_io_stat = true;
+
+      #* Toggles io mode for disks, showing big graphs for disk read/write speeds.
+      io_mode = false;
+
+      #* Set to True to show combined read/write io graphs in io mode.
+      io_graph_combined = false;
+
+      #* Set fixed values for network graphs in Mebibits. Is only used if net_auto is also set to False.
+      net_download = 100;
+
+      net_upload = 100;
+
+      #* Use network graphs auto rescaling mode, ignores any values set above and rescales down to 10 Kibibytes at the lowest.
+      net_auto = true;
+
+      #* Sync the auto scaling for download and upload to whichever currently has the highest scale.
+      net_sync = false;
+
+      #* Show battery stats in top right if battery is present.
+      show_battery = true;
+    };
+  };
 
   services.mpd = {
     enable = true;
