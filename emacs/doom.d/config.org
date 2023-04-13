@@ -419,7 +419,12 @@ Keybinding to clock in recent tasks from everywhere (1x C-u prefix)
 ;;       (:prefix-map ("n" . "notes"
 ;;        :desc "org-clock-in" "c" (lambda () (interactive) (org-clock-in '(4)))))
 #+END_SRC
-**** TODO Agenda
+**** Agenda
+For ss23 only
+#+BEGIN_SRC emacs-lisp
+(setq org-agenda-files '("~/annex/org/ss23"))
+#+END_SRC
+
 **** TODO Tweaks
 **** Capture
 #+BEGIN_SRC emacs-lisp
