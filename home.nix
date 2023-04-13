@@ -51,30 +51,30 @@ in {
 
   manual.manpages.enable = false;
 
-  # xdg = {
-  #   mimeApps = {
-  #     enable = true;
-  #     associations.added = {
-  #       "application/pdf" = ["org.pwmt.zathura.desktop"];
-  #     };
-  #     defaultApplications = {
-  #       "application/pdf" = ["org.pwmt.zathura.desktop"];
-  #     };
-  #   };
-  # };
-  #  enable = true;
-  #  mime.enable = true;
-  #  mimeApps.enable = true;
+  xdg = {
+    mimeApps = {
+      enable = true;
+      associations.added = {
+        "application/pdf" = ["org.pwmt.zathura.desktop"];
+      };
+      defaultApplications = {
+        "application/pdf" = ["org.pwmt.zathura.desktop"];
+      };
+    };
+  };
+   # enable = true;
+   # mime.enable = true;
+   # mimeApps.enable = true;
 
-  #  mimeApps = {  # FIXME asap
-  #    defaultApplications = {
-  #      "text/plain" = "emc";
-  #      "application/pdf" = ["zorg.pwmt.zathura-pdf-mupdf.desktop"];  #FIXME overriden by libreoffice
-  #      "video/*" = "mpv";
-  #      "image/*" = "sxvi";
-  #    };
-  #  };
-  #};
+   # mimeApps = {  # FIXME asap
+   #   defaultApplications = {
+   #     "text/plain" = "emc";
+   #     "application/pdf" = ["zorg.pwmt.zathura-pdf-mupdf.desktop"];  #FIXME overriden by libreoffice
+   #     "video/*" = "mpv";
+   #     "image/*" = "sxvi";
+   #   };
+   # };
+  # };
 
   home.file.".xinitrc" = { source = ./xinitrc; };
 
@@ -100,6 +100,7 @@ in {
     # jetbrains.clion
     # jetbrains.idea-ultimate
     # godot # TODO reanable once v3.5.x
+    godot_4
 
     # dev tools
     git
