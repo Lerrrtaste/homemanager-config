@@ -86,6 +86,8 @@ Used by GPG, Git, Mail, Snippets, etc.
 )
 
 (global-subword-mode 1) ; iterate through CamelCase words
+
+(setq find-file-visit-truename nil) ; dont resolve linked files filenames (for locked annex files)
 #+END_SRC
 
 
@@ -528,7 +530,18 @@ State Triggers to assign CANCLED, TODO and HOLD Tags
 
 ;; (setq org-refile-target-verify-function 'bh/verify-refile-target)
 #+END_SRC
-**** TODO Roam
+
+**** Roam
+Set org-roam dir
+#+BEGIN_SRC emacs-lisp
+(setq org-roam-directory (file-truename "~/annex/org/roam"))
+#+END_SRC
+
+Keep db in sync and consistent when files change
+#+BEGIN_SRC emacs-lisp
+(org-roam-db-autosync-mode)
+#+END_SRC
+
 **** TODO Snippet Helpers
 **** TODO Flycheck
 
