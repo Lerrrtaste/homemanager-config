@@ -32,6 +32,10 @@
     # nix
     nixfmt
 
+  # cc
+  libclang
+
+
   ];
 
   # FIXME it always detects changes when there are non

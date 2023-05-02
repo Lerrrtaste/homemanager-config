@@ -455,24 +455,36 @@ Inactive states
 - MAYBE - Not sure if this is even worth doing ("archived")
 - CANCEL - Task no longer relevant
 
+SS23 States for roam workflow
+1. TODO - needs rough notes
+2. DRAFT - has rough notes
+3. READY - is final and needs to be sorted into roam files
+4. DONE - not needed anymore
+
 #+BEGIN_SRC emacs-lisp
-;; FIXME they only show up after doom reload?
-;; (setq org-todo-keywords
-;;       '((sequence "TODO(t)" "STRT(s)" "NEXT(n)" "|" "DONE(d)")
-;;         (sequence "WAIT(w@/!)" "HOLD(h@/!)" "|" "MAYBE(m@/!)" "CANCELLED(c@/!)")))
-
-
-;; ; Colors
-;; (setq org-todo-keyword-faces
-;;       (quote (("TODO" :foreground "red" :weight bold)
-;;               ("NEXT" :foreground "blue" :weight bold)
-;;               ("STRT" :foreground "orange" :weight bold)
-;;               ("DONE" :foreground "forest green" :weight bold)
-;;               ("WAIT" :foreground "yellow" :weight bold)
-;;               ("HOLD" :foreground "magenta" :weight bold)
-;;               ("MAYBE" :foreground "cyan" :weight bold)
-;;               ("CANCELLED" :foreground "forest green" :weight bold))))
+;; (after! org
+;;   (setq org-todo-keywords '((sequence "EMPTY(e)" "DRAFT(D)" "READY(r)" "DONE(d)")
+;;         (sequence "TODO(t)" "STRT(s)" "NEXT(n)" "|" "DONE(d)" "WAIT(w)" "HOLD(h)"))))
 #+END_SRC
+
+# ;;#+BEGIN_SRC emacs-lisp
+# ;; FIXME they only show up after doom reload?
+# ;; (setq org-todo-keywords
+# ;;       '((sequence "TODO(t)" "STRT(s)" "NEXT(n)" "|" "DONE(d)")
+# ;;         (sequence "WAIT(w@/!)" "HOLD(h@/!)" "|" "MAYBE(m@/!)" "CANCELLED(c@/!)")))
+
+
+# ;; ; Colors
+# ;; (setq org-todo-keyword-faces
+# ;;       (quote (("TODO" :foreground "red" :weight bold)
+# ;;               ("NEXT" :foreground "blue" :weight bold)
+# ;;               ("STRT" :foreground "orange" :weight bold)
+# ;;               ("DONE" :foreground "forest green" :weight bold)
+# ;;               ("WAIT" :foreground "yellow" :weight bold)
+# ;;               ("HOLD" :foreground "magenta" :weight bold)
+# ;;               ("MAYBE" :foreground "cyan" :weight bold)
+# ;;               ("CANCELLED" :foreground "forest green" :weight bold))))
+# #+END_SRC
 
 
 ***** State Switching
@@ -544,6 +556,12 @@ Keep db in sync and consistent when files change
 
 **** TODO Snippet Helpers
 **** TODO Flycheck
+** C++
+Use clangd binary of direnv
+#+BEGIN_SRC emacs-lisp
+(setq lsp-clangd-binary-path "clangd")
+#+END_SRC
+
 
 ** TODO Latex
 ** TODO Python
