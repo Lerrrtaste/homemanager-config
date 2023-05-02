@@ -201,6 +201,9 @@ in {
       td = "termdown -b";
       tdc = "termdown -b -c 60"; # critical
 
+      # Misc
+      LOCAL_NIXPKGS = "~/repos/github.com/nixos/nixpkgs";
+
     };
 
     initExtra = ''
