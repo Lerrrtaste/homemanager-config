@@ -424,7 +424,7 @@ Keybinding to clock in recent tasks from everywhere (1x C-u prefix)
 **** Agenda
 For ss23 only
 #+BEGIN_SRC emacs-lisp
-(setq org-agenda-files '("~/annex/org/ss23"))
+(setq org-agenda-files (directory-files-recursively "~/annex/org/roam/" "\\.org$"))
 #+END_SRC
 
 **** TODO Tweaks
