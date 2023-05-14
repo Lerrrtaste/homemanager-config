@@ -11,135 +11,151 @@ fi
 
 
 
-if [ "$1" = "steam" ]; then
-  # steam mode
-  autorandr tv
-  exec openbox-session &
-  exec steam -bigpicture
-else
-  # desktop mode
 
-  Day() {
-    printf `date "+%e" | sed -e 's/\ //'`
+# Set the default session
+session=${1:-dwm}
 
-    case `date +%d` in
-      1|21|31) printf "${day}st";;
-      2|22)    printf "${day}nd";;
-      3|23)    printf "${day}rd";;
-      *)       printf "${day}th";;
-    esac
-  }
+case $session in
+    steam)
+        # Set the autorandr profile to "tv"
+        autorandr tv
 
-  Battery() {
-    dir=/sys/class/power_supply/BAT0
+        # Start a fitting window manager for Steam Big Picture mode
+        # For example, you can use Openbox (install it if you haven't already)
+        # You can replace "exec openbox-session" with your preferred WM for this mode
+        exec openbox-session &
 
-    grep -q ^C "${dir}"/status && printf +
-    cat "${dir}"/capacity
-  }
+        # Launch Steam in Big Picture mode
+        exec steam -bigpicture
+        ;;  # desktop mode
 
-  bHasBattery=false
-  if [ -d /sys/class/power_supply/BAT0 ]; then
-    bHasBattery=true
-  fi
+    dwm)
+      Day() {
+        printf `date "+%e" | sed -e 's/\ //'`
 
-  bHasBacklight=false
-  if [[ $(command -v brightnessctl g) ]]; then
-    bHasBacklight=true
-  fi
+        case `date +%d` in
+          1|21|31) printf "${day}st";;
+          2|22)    printf "${day}nd";;
+          3|23)    printf "${day}rd";;
+          *)       printf "${day}th";;
+        esac
+      }
 
-  bHasBluetooth=false
-    if [[ $(command -v bluetoothctl g) ]]; then
-      bHasBluetooth=true
-    fi
+      Battery() {
+        dir=/sys/class/power_supply/BAT0
 
-  while true; do
-    text=""
+        grep -q ^C "${dir}"/status && printf +
+        cat "${dir}"/capacity
+      }
 
-    # org clock status FIXME doesnt work sometimes
-    orgClockString="$(emacsclient -e "(if org-clock-current-task (string-trim (substring-no-properties (org-clock-get-clock-string))))")"
-    if [[ $orgClockString != "" && $orgClockString != "nil" ]]; then
-      text+="${orgClockString:1:-1} | "
-    else
-      text+="clocked out | "
-    fi
-
-
-    # low battery
-    if $bHasBattery; then
-      if [ $(Battery) -le 20 ]; then
-        text="BATTERY LOW | "
+      bHasBattery=false
+      if [ -d /sys/class/power_supply/BAT0 ]; then
+        bHasBattery=true
       fi
-    fi
 
-    # date and time
-    text+="$(date +%Y-%m-%d)"
-    text+=" | $(date +%H:%M)"
+      bHasBacklight=false
+      if [[ $(command -v brightnessctl g) ]]; then
+        bHasBacklight=true
+      fi
 
-    # cpu usage
-    text+=" | CPU $(top -bn1 | grep "Cpu(s)" | \
-            sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | \
-            awk '{print 100 - $1"%"}')"
+      bHasBluetooth=false
+        if [[ $(command -v bluetoothctl g) ]]; then
+          bHasBluetooth=true
+        fi
 
-    # memory
-    text+=" | RAM $(free -m | awk '/Mem/ {printf "%d", $3 * 100 / $2}')%"
+      while true; do
+        text=""
 
-    # volume
-    text+=" | VOL $(amixer get Master | awk '$0~/%/{print $5}' | head -n 1 | tr -d '[]')"
+        # org clock status FIXME doesnt work sometimes
+        orgClockString="$(emacsclient -e "(if org-clock-current-task (string-trim (substring-no-properties (org-clock-get-clock-string))))")"
+        if [[ $orgClockString != "" && $orgClockString != "nil" ]]; then
+          text+="${orgClockString:1:-1} | "
+        else
+          text+="clocked out | "
+        fi
 
-    # backlight
-    if $bHasBacklight; then
-      text+=" | LIT $(($(brightnessctl g) * 100 / 255))%"
-    fi
 
-    # bluetooth
-    # if $bHasBluetooth; then
-    #   isPowered=$(bluetoothctl show | grep Powered | awk '{print $2}')
-    #   isConnect=$(bluetoothctl show | grep Connected | awk '{print $2}')
-    #   if [ "$isPowered" = "yes" ]; then
-    #     if [ "$isConnect" = "yes" ]; then
-    #       text+=" | $(bluetoothctl show | grep Name | awk '{print $2}')"
-    #     else
-    #       text+=" | "
-    #     fi
-    #   else
-    #     text+=" | "
-    #   fi
-    # fi
+        # low battery
+        if $bHasBattery; then
+          if [ $(Battery) -le 20 ]; then
+            text="BATTERY LOW | "
+          fi
+        fi
 
-    # battery
-    if $bHasBattery; then
-      text+=" | BAT $(Battery)%"
-    fi
+        # date and time
+        text+="$(date +%Y-%m-%d)"
+        text+=" | $(date +%H:%M)"
 
-    #TODO ncmpcpp line if playing (scrolling)
-    #TODO scheduled shutdown timer
-    #TODO use icons (then maybe a icon for weather too)
-    #TODO make readable
-    #TODO wifi signal strength / connection status
-    #TODO git annex currently syncing
-    #TODO remaining battery time till auto shutdown (need that too)
-    #TODO https://dwm.suckless.org/patches/statuscolors/
-    #TPDP Powerline background / charackters (idk how)
-    #TODO dynamic (only if higher than threshold) network i/o speeds
-    #TODO "dynamic" disk i/o
-    #TODO regularly updated internet speedtest
-    #TODO server04 status
-    #TODO rice it somehow (different font everywhere?) to make it readable on laptop screen (maybe even more hidden when not relevant)
+        # cpu usage
+        text+=" | CPU $(top -bn1 | grep "Cpu(s)" | \
+                sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | \
+                awk '{print 100 - $1"%"}')"
 
-    # xsetroot -name "`date \"+%a, %b \`Day\` %k:%M\"` | `Battery`%"
-    xsetroot -name "$text"
-    sleep 15
-  done &
+        # memory
+        text+=" | RAM $(free -m | awk '/Mem/ {printf "%d", $3 * 100 / $2}')%"
 
-  autorandr vdesk ;
-  feh --bg-fill $HOME/annex/pictures/wallpapers/rickandmorty1.png ;
-  exec dwm
+        # volume
+        text+=" | VOL $(amixer get Master | awk '$0~/%/{print $5}' | head -n 1 | tr -d '[]')"
 
-  # handle dmenu restart option
-  #While [ -f /tmp/dwmrestart.lock ]; do
-  #  printf "dwm restarting"
-  #  sleep 1
-  #  rm /tmp/dwmrestart.lock
-  #  exec dwm
-  #Done
-fi
+        # backlight
+        if $bHasBacklight; then
+          text+=" | LIT $(($(brightnessctl g) * 100 / 255))%"
+        fi
+
+        # bluetooth
+        # if $bHasBluetooth; then
+        #   isPowered=$(bluetoothctl show | grep Powered | awk '{print $2}')
+        #   isConnect=$(bluetoothctl show | grep Connected | awk '{print $2}')
+        #   if [ "$isPowered" = "yes" ]; then
+        #     if [ "$isConnect" = "yes" ]; then
+        #       text+=" | $(bluetoothctl show | grep Name | awk '{print $2}')"
+        #     else
+        #       text+=" | "
+        #     fi
+        #   else
+        #     text+=" | "
+        #   fi
+        # fi
+
+        # battery
+        if $bHasBattery; then
+          text+=" | BAT $(Battery)%"
+        fi
+
+        #TODO ncmpcpp line if playing (scrolling)
+        #TODO scheduled shutdown timer
+        #TODO use icons (then maybe a icon for weather too)
+        #TODO make readable
+        #TODO wifi signal strength / connection status
+        #TODO git annex currently syncing
+        #TODO remaining battery time till auto shutdown (need that too)
+        #TODO https://dwm.suckless.org/patches/statuscolors/
+        #TPDP Powerline background / charackters (idk how)
+        #TODO dynamic (only if higher than threshold) network i/o speeds
+        #TODO "dynamic" disk i/o
+        #TODO regularly updated internet speedtest
+        #TODO server04 status
+        #TODO rice it somehow (different font everywhere?) to make it readable on laptop screen (maybe even more hidden when not relevant)
+
+        # xsetroot -name "`date \"+%a, %b \`Day\` %k:%M\"` | `Battery`%"
+        xsetroot -name "$text"
+        sleep 15
+      done &
+
+      autorandr vdesk ;
+      feh --bg-fill $HOME/annex/pictures/wallpapers/rickandmorty1.png ;
+      exec dwm
+
+      # handle dmenu restart option
+      #While [ -f /tmp/dwmrestart.lock ]; do
+      #  printf "dwm restarting"
+      #  sleep 1
+      #  rm /tmp/dwmrestart.lock
+      #  exec dwm
+      #Done
+      ;;
+    *)
+        echo "No session defined"
+        exit 1
+        ;;
+esac
