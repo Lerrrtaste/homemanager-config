@@ -409,7 +409,7 @@ Find Definition and Declaration
 **** Layout
 #+BEGIN_SRC emacs-lisp
 (setf org-blank-before-new-entry '((heading . t) (plain-list-item . auto)))
-(setq org-hide-emphasis-markers t) ; dont show markup
+(setq org-hide-emphasis-markers t) ; show markups as they should be
 ;; (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))) ; use bullets for headlines
 ;; (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
 #+END_SRC
@@ -421,13 +421,14 @@ Keybinding to clock in recent tasks from everywhere (1x C-u prefix)
 ;;       (:prefix-map ("n" . "notes"
 ;;        :desc "org-clock-in" "c" (lambda () (interactive) (org-clock-in '(4)))))
 #+END_SRC
+
 **** Agenda
 For ss23 only
 #+BEGIN_SRC emacs-lisp
-(setq org-agenda-files (directory-files-recursively "~/annex/org/roam/" "\\.org$"))
+;; (setq org-agenda-files (directory-files-recursively "~/annex/org/ss23/" "\\.org$"))
+(setq org-agenda-files '("~/annex/org/ss23/"))
 #+END_SRC
 
-**** TODO Tweaks
 **** Capture
 #+BEGIN_SRC emacs-lisp
 (setq org-default-notes-file "~/annex/org/inbox.org")
@@ -554,8 +555,54 @@ Keep db in sync and consistent when files change
 (org-roam-db-autosync-mode)
 #+END_SRC
 
+Roam UI
+#+BEGIN_SRC emacs-lisp
+(use-package! websocket
+    :after org-roam)
+
+(use-package! org-roam-ui
+  :after org-roam
+  :hook (after-init . org-roam-ui-mode)
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
+#+END_SRC
+
 **** TODO Snippet Helpers
 **** TODO Flycheck
+**** Pomodoro
+#+BEGIN_SRC emacs-lisp
+(use-package! org-pomodoro
+   :after org-agenda
+    :config
+    (setq org-pomodoro-ask-upon-killing t
+          org-pomodoro-length 30
+          org-pomodoro-short-break-length 15
+          org-pomodoro-long-break-length 30
+          org-pomodoro-play-sounds t
+          org-pomodoro-format "Pomodoro: %s")
+
+    (add-hook 'org-pomodoro-finished-hook
+              (lambda ()
+                (shell-command "notify-send -u critical -t 10000 'Pomodoro completed!'" nil nil))
+              )
+    (add-hook 'org-pomodoro-break-finished-hook
+                (lambda ()
+                    (shell-command "notify-send -u critical -t 10000 'Pomodoro break finished!'" nil nil))
+                )
+    (add-hook 'org-pomodoro-long-break-finished-hook
+                (lambda ()
+                    (shell-command "notify-send -u critical -t 10000 'Pomodoro long break finished!'" nil nil))
+                )
+    (add-hook 'org-pomodoro-killed-hook
+                (lambda ()
+                    (shell-command "notify-send -u critical -t 10000 'Pomodoro killed!'" nil nil))
+                )
+    )
+#+END_SRC
+
 ** C++
 Use clangd binary of direnv
 #+BEGIN_SRC emacs-lisp

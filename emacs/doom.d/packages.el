@@ -93,3 +93,4 @@
 (package! zotxt)
 (package! citeproc)
 
+(package! org-roam-ui)
