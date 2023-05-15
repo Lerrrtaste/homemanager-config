@@ -456,6 +456,9 @@ in {
     pinentryFlavor = "curses";
   };
 
+  # dunst config file
+  home.file.".config/dunst/dunstrc".source = ./dunstrc;
+
   # home.useUserPackages = true;  # install packages to /etc/profiles/per-user/lerrrtaste (instead of home)
   # home.useGlobalPkgs = true;  # use system nixpkgs instead of a seperate home-manager one
 

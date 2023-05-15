@@ -144,6 +144,7 @@ case $session in
 
       autorandr vdesk ;
       feh --bg-fill $HOME/annex/pictures/wallpapers/rickandmorty1.png ;
+      dunst &
       exec dwm
 
       # handle dmenu restart option
