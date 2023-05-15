@@ -126,6 +126,10 @@ in {
     python39Packages.deemix  # TODO manage config with home.files
     # qbittorrent
     youtube-dl
+    # just for mopidy local scan ??
+    mopidy
+    mopidy-local
+    mopidy-mpd
 
     # office
     libreoffice
@@ -327,10 +331,35 @@ in {
     };
   };
 
-  services.mpd = {
+  # services.mpd = {
+  #   enable = true;
+  #   musicDirectory = "/home/lerrrtaste/annex/music/library";
+  #   playlistDirectory = "/home/lerrrtaste/annex/music/playlists";
+  # };
+
+  services.mopidy = {
     enable = true;
-    musicDirectory = "/home/lerrrtaste/annex/music/library";
-    playlistDirectory = "/home/lerrrtaste/annex/music/playlists";
+    extensionPackages = [
+      pkgs.mopidy-mpd
+      pkgs.mopidy-local
+      # pkgs.mopidy-party # TODO !!!
+    ]; #soptifyy todo
+    settings = {
+      mpd = {
+        enabled = true;
+        # hostname = "1
+        # port = 6600;
+        # password = "";
+      };
+      local = {
+        enabled = true;
+        media_dir = "/home/lerrrtaste/annex/music/library";
+        scan_follow_symlinks = true;
+      };
+      http = {
+        enabled = false;
+      };
+    };
   };
 
   # TODO configure with spotify secrets
