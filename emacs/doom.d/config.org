@@ -337,6 +337,12 @@ automatically hide generated files
         "C-l" #'evil-forward-char
         "C-h" #'evil-backward-char))
   #+END_SRC
+*** Docker
+#+BEGIN_SRC emacs-lisp
+(map! :leader
+(:prefix-map ("o" . "open")
+:desc "compose" "c" #'docker-compose))
+#+END_SRC emacs-lisp
 
 * Fun
 ** TODO xkcd's
