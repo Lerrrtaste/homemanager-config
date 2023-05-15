@@ -167,7 +167,7 @@ Its a major mode so many keybindings are available.
         :desc "Homemanager Config Dir" :ne "h" (cmd! (doom-project-find-file "~/.config/nixpkgs/"))
         :desc "Emacs Config Dir" :ne "E" (cmd! (doom-project-find-file "~/.config/nixpkgs/emacs/doom.d/"))
         :desc "Emacs Config Dotfile" :ne "e" (cmd! (doom-project-find-file "~/.config/nixpkgs/emacs/doom.d/config.org"))
-        :desc "Notes (deft)" :ne "d" #'deft
+        ;; :desc "Notes (deft)" :ne "d" #'deft
         )
 
 )
@@ -401,8 +401,8 @@ Find Definition and Declaration
 **** Directiories
 #+BEGIN_SRC emacs-lisp
 (setq org-directory "~/annex/org/") ; default org directory
-(setq deft-directory "~/annex/org/")
-(setq deft-recursive t)
+;; (setq deft-directory "~/annex/org/")
+;; (setq deft-recursive t)
 #+END_SRC
 
 
@@ -555,7 +555,24 @@ Keep db in sync and consistent when files change
 (org-roam-db-autosync-mode)
 #+END_SRC
 
-Roam UI
+Roam Buffer
+#+BEGIN_SRC emacs-lisp
+;; what to include in theroam buffer
+;; (setq org-roam-mode-sections
+;;       (list #'org-roam-backlinks-section
+;;             #'org-roam-reflinks-section
+;;             #'org-roam-unlinked-references-section ;; slow and off by default
+;;             ))
+
+;; to render unique sources for backlinks (and also keep rendering reference links) (???)
+;; (setq org-roam-mode-sections
+;;       '((org-roam-backlinks-section :unique t)
+;;         org-roam-reflinks-section))
+
+#+END_SRC
+
+
+Roam UI (package)
 #+BEGIN_SRC emacs-lisp
 (use-package! websocket
     :after org-roam)
@@ -569,6 +586,7 @@ Roam UI
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t))
 #+END_SRC
+
 
 **** TODO Snippet Helpers
 **** TODO Flycheck

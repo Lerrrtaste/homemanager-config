@@ -88,9 +88,9 @@
 
 ;; (package! org-bullets)
 
-(package! speed-type)
+;; (package! speed-type)
 
 (package! zotxt)
 (package! citeproc)
-
+(unpin! org-roam)
 (package! org-roam-ui)
