@@ -404,6 +404,10 @@ Find Definition and Declaration
 #+END_SRC
 
 ** Org
+#+BEGIN_SRC emacs-lisp
+(setq org-attach-archive-delete 'query) ; ask before deleting attachments
+#+END_SRC
+
 **** Directiories
 #+BEGIN_SRC emacs-lisp
 (setq org-directory "~/annex/org/") ; default org directory
@@ -591,6 +595,21 @@ Roam UI (package)
         org-roam-ui-follow t
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t))
+#+END_SRC
+
+Templates
+#+BEGIN_SRC emacs-lisp
+;; basic concept or definition
+(setq org-roam-capture-templates
+      '(("d" "definition" plain "%?"
+         :target (file+head "${slug}.org" "#+title: ${title}\n#+filetags: :definition:\n* Definition\n* Examples\n")
+         :unnarrowed t)
+        ("s" "default" plain "%?"
+         :target (file+head "${slug}.org" "#+title: ${title}\n#+filetags:")
+         :unnarrowed t)
+        ("c" "concept" plain "%?"
+         :target (file+head "${slug}.org" "#+title: ${title}\n#+filetags: :concept:\n* Explanation\n* Example\n* Related\n")
+         :unnarrowed t)))
 #+END_SRC
 
 

@@ -117,6 +117,7 @@ in {
     p7zip
     trash-cli
     tree
+    pistol # previews in lf
 
     # media
     # mkchromecast
@@ -152,6 +153,7 @@ in {
     # Deps
     xdotool # scripts
     xsel # scripts
+    xclip # screenshot to clipboard and org-download
     # busybox  # git-annex webapp TODO conflicts with default
     libmusicbrainz # beets
     picard # beets
