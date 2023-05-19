@@ -56,9 +56,15 @@ in {
       enable = true;
       associations.added = {
         "application/pdf" = ["org.pwmt.zathura.desktop"];
+        "image/jpeg" = ["sxiv.desktop"];
+        "image/png" = ["sxiv.desktop"];
+        "image/gif" = ["sxiv.desktop"];
       };
       defaultApplications = {
         "application/pdf" = ["org.pwmt.zathura.desktop"];
+        "image/jpeg" = ["sxiv.desktop"];
+        "image/png" = ["sxiv.desktop"];
+        "image/gif" = ["sxiv.desktop"];
       };
     };
   };
