@@ -81,13 +81,25 @@ Used by GPG, Git, Mail, Snippets, etc.
  auto-save-default t   ; autosave
  truncate-string-ellipsis "…"      ; save space with unicode ellispis
  password-cache-expiry nil ; dont cache passwords
- scroll-margin 4 ; keep a margin
+ scroll-margin 5 ; keep a margin
  ; scroll-preserve-screen-position 'always ; dont move the point
 )
 
 (global-subword-mode 1) ; iterate through CamelCase words
 
 (setq find-file-visit-truename nil) ; dont resolve linked files filenames (for locked annex files)
+
+(setq evil-move-cursor-back nil) ; dont move one char back when exiting insert mode
+
+; rebind evil numbers
+(map! :n "M-+" #'evil-numbers/inc-at-pt
+      :n "M-#" #'evil-numbers/dec-at-pt
+      :v "M-+" #'evil-numbers/inc-at-pt-incremental ;; diffrence with -incremental is doesnt mv pt
+      :v "M-#" #'evil-numbers/dec-at-pt-incremental)
+
+(map! :n "C-+" nil
+      :n "C--" nil
+      :n "C-=" nil)
 #+END_SRC
 
 
