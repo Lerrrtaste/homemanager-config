@@ -54,45 +54,6 @@
       };
     };
 
-    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-      # essential
-      #     keepassxc-browser
-      languagetool
-      tridactyl
-      bitwarden
-      simplelogin
-
-      # qol
-      terms-of-service-didnt-read
-      consent-o-matic
-      auto-tab-discard
-      augmented-steam
-      reddit-enhancement-suite
-      refined-github
-
-      # dev
-      react-devtools
-      reduxdevtools
-
-      # youtube
-      df-youtube
-      sponsorblock
-      return-youtube-dislikes
-
-      # privacy
-      umatrix
-      temporary-containers
-      link-cleaner
-      terms-of-service-didnt-read
-      localcdn
-      ublock-origin
-      canvasblocker
-      multi-account-containers
-      umatrix
-      temporary-containers
-      decentraleyes
-      privacy-badger
-    ];
 
     profiles = {
       #     # TODO import bookmarks!
@@ -140,6 +101,46 @@
         #     { name = "mail"; url = "https://webmail.h-da.de/"; }
         #   ];
         # };
+
+        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          # essential
+          #     keepassxc-browser
+          languagetool
+          tridactyl
+          bitwarden
+          simplelogin
+
+          # qol
+          terms-of-service-didnt-read
+          consent-o-matic
+          auto-tab-discard
+          augmented-steam
+          reddit-enhancement-suite
+          refined-github
+
+          # dev
+          react-devtools
+          reduxdevtools
+
+          # youtube
+          df-youtube
+          sponsorblock
+          return-youtube-dislikes
+
+          # privacy
+          umatrix
+          temporary-containers
+          link-cleaner
+          terms-of-service-didnt-read
+          localcdn
+          ublock-origin
+          canvasblocker
+          multi-account-containers
+          umatrix
+          temporary-containers
+          decentraleyes
+          privacy-badger
+        ];
 
         settings = {
           "browser.toolbars.bookmarks.visibility" = "always";

@@ -68,18 +68,18 @@ in {
       };
     };
   };
-   # enable = true;
-   # mime.enable = true;
-   # mimeApps.enable = true;
+  # enable = true;
+  # mime.enable = true;
+  # mimeApps.enable = true;
 
-   # mimeApps = {  # FIXME asap
-   #   defaultApplications = {
-   #     "text/plain" = "emc";
-   #     "application/pdf" = ["zorg.pwmt.zathura-pdf-mupdf.desktop"];  #FIXME overriden by libreoffice
-   #     "video/*" = "mpv";
-   #     "image/*" = "sxvi";
-   #   };
-   # };
+  # mimeApps = {  # FIXME asap
+  #   defaultApplications = {
+  #     "text/plain" = "emc";
+  #     "application/pdf" = ["zorg.pwmt.zathura-pdf-mupdf.desktop"];  #FIXME overriden by libreoffice
+  #     "video/*" = "mpv";
+  #     "image/*" = "sxvi";
+  #   };
+  # };
   # };
 
   home.file.".xinitrc" = { source = ./xinitrc; };
@@ -130,7 +130,7 @@ in {
     mpv
     sxiv # image viewer
     gimp
-    python39Packages.deemix  # TODO manage config with home.files
+    python39Packages.deemix # TODO manage config with home.files
     # qbittorrent
     youtube-dl
     # just for mopidy local scan ??
@@ -143,7 +143,7 @@ in {
     zathura
     tridactyl-native
     # texlive.combined.scheme-full  # latex full (ca 5 gb!)
-    texlive.combined.scheme-medium
+    # texlive.combined.scheme-medium
     teams
     # protonmailo-bridge # TODO write emacs mu4e config
     # firefox
@@ -221,7 +221,7 @@ in {
 
     initExtra = ''
       # Append custom scripts to Path
-      export PATH=$PATH:${scripts_src}
+      export PATH=$PATH:${scripts_src}:~/.emacs.d/bin
 
       # Enable onlykey-agent
       # export GNUPGHOME=~/.gnupg/onlykey;
@@ -265,7 +265,8 @@ in {
       #* Format: "box_name:P:G,box_name:P:G" P=(0 or 1) for alternate positions, G=graph symbol to use for box.
       #* Use whitespace " " as separator between different presets.
       #* Example: "cpu:0:default,mem:0:tty,proc:1:default cpu:0:braille,proc:0:tty"
-      presets = "cpu:1:default,proc:0:default cpu:0:default,mem:0:default,net:0:default cpu:0:block,net:0:tty";
+      presets =
+        "cpu:1:default,proc:0:default cpu:0:default,mem:0:default,net:0:default cpu:0:block,net:0:tty";
 
       vim_keys = true;
       rounded_corners = true;
@@ -351,7 +352,7 @@ in {
       pkgs.mopidy-mpd
       pkgs.mopidy-local
       # pkgs.mopidy-party # TODO !!!
-    ]; #soptifyy todo
+    ]; # soptifyy todo
     settings = {
       mpd = {
         enabled = true;
@@ -364,14 +365,12 @@ in {
         media_dir = "/home/lerrrtaste/annex/music/library";
         scan_follow_symlinks = true;
       };
-      http = {
-        enabled = false;
-      };
+      http = { enabled = false; };
     };
   };
 
   # TODO configure with spotify secrets
-  #services.mopidy = {
+ #services.mopidy = {
   #  enable = true;
   #  extensionPackages = [ pkgs.mopidy-spotify ];
   #  configuration = ''
