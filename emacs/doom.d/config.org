@@ -330,8 +330,8 @@ Some things that should happen when opening a project:
 
 
 #+BEGIN_SRC emacs-lisp
-(setq projectile-track-known-projects-automatically nil) ; Dont automatically add projects just by opening a file
-(setq projectile-project-search-path '("~/repos/")) ; only auto add from repos folder (TODO probably doesnt work like this)
+(setq projectile-track-known-projects-automatically t) ; Dont automatically add projects just by opening a file
+(setq projectile-project-search-path '(("/home/lerrrtaste/repos/" . 3))) ; only auto add from repos folder (TODO probably doesnt work like this)
 ; FIXME ; (setq projectile-switch-project-action #'treemacs)
 #+END_SRC
 

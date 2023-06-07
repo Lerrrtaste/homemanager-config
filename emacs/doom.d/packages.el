@@ -94,3 +94,6 @@
 (package! citeproc)
 (unpin! org-roam)
 (package! org-roam-ui)
+
+;; give c++ mode (clang lsp) the correct import paths from a cmakelists file
+;; (package! cmake-ide)

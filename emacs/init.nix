@@ -70,7 +70,7 @@ in {
     pkgs.sqlite
 
     # copilot
-    pkgs.nodejs-16_x
+    pkgs.nodejs-18_x # 16 initially
 
     # sh
     pkgs.shellcheck
@@ -83,6 +83,9 @@ in {
 
     #cc
     pkgs.libclang
+    # pkgs.clang-tool # needed in shell for flycheck
+    # pkgs.gcc11
+    # pkgs.gcc11Stdenv
 
     # roam graphs
     pkgs.graphviz
