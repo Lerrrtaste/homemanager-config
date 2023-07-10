@@ -14,6 +14,7 @@ let
   conf_dest_base = "/home/lerrrtaste/.config/";
   conf_home = "nixpkgs/home.nix";
   conf_os = "nixos/configuration.nix";
+  unstable = import <nixos-unstable> {};
   scripts_src = if builtins.pathExists
   ("/home/lerrrtaste/repos/github.com/lerrrtaste/scripts") then
     /home/lerrrtaste/repos/github.com/lerrrtaste/scripts
@@ -106,7 +107,7 @@ in {
     # jetbrains.clion
     # jetbrains.idea-ultimate
     # godot # TODO reanable once v3.5.x
-    godot_4
+    unstable.godot_4
 
     # dev tools
     git
