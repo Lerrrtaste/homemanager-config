@@ -102,6 +102,7 @@ in {
     tipp10
     drawio
     redshift
+    joplin
 
     # ide
     # jetbrains.clion
@@ -139,6 +140,9 @@ in {
     mopidy-local
     mopidy-mpd
 
+    # games
+    playonlinux
+
     # office
     libreoffice
     zathura
@@ -149,6 +153,7 @@ in {
     # protonmailo-bridge # TODO write emacs mu4e config
     # firefox
     zotero
+    xsane
 
     # passwords
     libsecret
