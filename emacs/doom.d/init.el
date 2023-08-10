@@ -177,6 +177,7 @@
        web               ; the tubes
        (yaml +lsp)              ; JSON, but readable
        ;;zig               ; C, but simpler
+       (gdscript +lsp)         ; the language you waited for
 
        :email
        ;; this the one(mu4e +org +gmail)
