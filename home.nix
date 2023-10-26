@@ -103,6 +103,7 @@ in {
     drawio
     redshift
     joplin
+    chromium
 
     # ide
     # jetbrains.clion
@@ -141,7 +142,7 @@ in {
     mopidy-mpd
 
     # games
-    playonlinux
+    # playonlinux
 
     # office
     libreoffice
@@ -149,7 +150,7 @@ in {
     tridactyl-native
     # texlive.combined.scheme-full  # latex full (ca 5 gb!)
     # texlive.combined.scheme-medium
-    teams
+    # teams
     # protonmailo-bridge # TODO write emacs mu4e config
     # firefox
     zotero

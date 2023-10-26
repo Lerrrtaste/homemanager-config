@@ -9,8 +9,8 @@ set hintnames short
 # set hintchars
 
 # Selectors
-bindurl www.google.com f hint -Jc #search div:not(.action-menu) > a
-bindurl www.google.com F hint -Jbc #search div:not(.action-menu) > a
+# bindurl www.google.com f hint -Jc #search div:not(.action-menu) > a
+# bindurl www.google.com F hint -Jbc #search div:not(.action-menu) > a
 
 # Vim Hintmap Bindings
 bind --mode=hintmap J hint.focusBottom
