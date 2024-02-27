@@ -65,7 +65,7 @@ in {
     #optionsl deps (doom)
     pkgs.fd
     pkgs.clang
-    pkgs.pinentry_emacs
+    pkgs.pinentry-emacs
     pkgs.zstd
     pkgs.sqlite
 

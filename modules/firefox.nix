@@ -17,9 +17,10 @@
 
     package = pkgs.firefox.override {
       cfg = {
-        enableTridactylNative = true;
+        # enableTridactylNative = true; # outdated
         # TODO import tridactyl cfg file
       };
+      # nativeMessagingHosts.packages = [ pkgs.tridactyl-native ];
       extraPolicies = {
         # AppAutoUpdate = false;
         # DisableAppUpdate = true;
