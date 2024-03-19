@@ -127,6 +127,7 @@ in {
     trash-cli
     tree
     pistol # previews in lf
+    qbittorrent
 
     # media
     # mkchromecast
@@ -153,7 +154,7 @@ in {
     # teams
     # protonmailo-bridge # TODO write emacs mu4e config
     # firefox
-    zotero
+    # zotero
     xsane
 
     # passwords
