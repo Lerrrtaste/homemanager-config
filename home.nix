@@ -102,8 +102,8 @@ in {
     tipp10
     drawio
     redshift
-    joplin
     chromium
+    joplin-desktop
 
     # ide
     # jetbrains.clion
@@ -121,8 +121,6 @@ in {
 
     # files
     git-annex
-    bup
-    # sshfs
     p7zip
     trash-cli
     tree
@@ -134,9 +132,9 @@ in {
     mpv
     sxiv # image viewer
     gimp
-    python39Packages.deemix # TODO manage config with home.files
+    # python39Packages.deemix # TODO manage config with home.files
     # qbittorrent
-    youtube-dl
+    # youtube-dl
     # just for mopidy local scan ??
     mopidy
     mopidy-local
