@@ -118,6 +118,7 @@ in {
     # docker-compose
     # gnumake
     xcolor
+    github-copilot-cli
 
     # files
     git-annex

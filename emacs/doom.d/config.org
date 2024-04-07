@@ -115,6 +115,7 @@ module and script. Maybe later.
 *** Colors
 #+BEGIN_SRC emacs-lisp
 (setq doom-theme 'doom-moonlight) ; more godot like but doesnt fit to dwm yet (doom-one was defaul)
+(setq doom-themes-treemacs-theme "doom-colors")
 #+END_SRC
 
 
@@ -448,7 +449,7 @@ Keybinding to clock in recent tasks from everywhere (1x C-u prefix)
 For ss23 only
 #+BEGIN_SRC emacs-lisp
 ;; (setq org-agenda-files (directory-files-recursively "~/annex/org/ss23/" "\\.org$"))
-(setq org-agenda-files '("~/annex/org/ws23/"))
+(setq org-agenda-files '("~/annex/org/ss23/"))
 #+END_SRC
 
 **** Capture
