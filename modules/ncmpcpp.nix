@@ -4,12 +4,14 @@
   programs.ncmpcpp = {
     enable = true;
 
-    mpdMusicDir = ~/annex/music/library;
+    mpdMusicDir = /home/lerrrtaste/annex/music/library;
 
     settings = {
       # TODO sort to categories
-      "ncmpcpp_directory" = "~/.config/ncmpcpp";
-      "lyrics_directory" = "~/annex/music/lyrics";
+      "mpd_host" = "127.0.0.1";
+      "mpd_port" = "6600";
+      "ncmpcpp_directory" = "/home/lerrrtaste/.config/ncmpcpp";
+      "lyrics_directory" = "/home/lerrrtaste/annex/music/lyrics";
       "message_delay_time" = "1";
       "visualizer_type" = "wave";
       "song_list_format" = "{$4%a - }{%t}|{$8%f$9}$R{$3(%l)$9}";
@@ -68,6 +70,7 @@
       # media ctrl
       { key = "L"; command = "volume_up"; }
       { key = "H"; command = "volume_down"; }
+      { key = "u"; command = "update_database"; }
 
       # not customized yet
 #      { key = "J"; command = "move_sort_order_down"; }
@@ -78,7 +81,6 @@
 #      { key = "l"; command = "play_item"; }
 #      { key = "G"; command = "move_end"; }
 #      { key = "g"; command = "move_home"; }
-#      { key = "U"; command = "update_database"; }
 #      { key = "s"; command = "reset_search_engine"; }
 #      { key = "s"; command = "show_search_engine"; }
 #      { key = "x"; command = "delete_playlist_items"; }
