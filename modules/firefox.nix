@@ -33,13 +33,13 @@
         # HTTPS = {
         #   Enabled = false;
         # };
-        # DisableFirefoxStudies = true;
-        # DisableTelemetry = true;
+        DisableFirefoxStudies = true;
+        DisableTelemetry = true;
         DisablePocket = true;
         DisableFirefoxAccounts = true;
         # DisableFormHistory = true;
         # DisablePasswordReveal = true;
-        # NoDefaultBookmarks = true;
+        NoDefaultBookmarks = true;
         DontCheckDefaultBrowser = true;
         OfferToSaveLogins = false;
         PasswordManagerEnabled = false;
@@ -129,7 +129,7 @@
           return-youtube-dislikes
 
           # privacy
-          umatrix
+          # umatrix
           temporary-containers
           link-cleaner
           terms-of-service-didnt-read
@@ -248,7 +248,7 @@
           #         "toolkit.telemetry.archive.enabled" = false;
           #         "toolkit.telemetry.bhrPing.enabled" = false;
           #         "toolkit.telemetry.cachedClientID" = "";
-          #         "toolkit.telemetry.enabled" = false;
+          "toolkit.telemetry.enabled" = false;
           #         "toolkit.telemetry.firstShutdownPing.enabled" = false;
           #         "toolkit.telemetry.hybridContent.enabled" = false;
           #         "toolkit.telemetry.newProfilePing.enabled" = false;
