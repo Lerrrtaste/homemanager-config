@@ -99,7 +99,12 @@ in {
     thefuck
     termdown
     tipp10
-    unstable.joplin-desktop
+    drawio
+    redshift
+    chromium
+    joplin-desktop
+    bisq-desktop
+    kiwix
 
     # ide
     # jetbrains.clion
@@ -125,12 +130,22 @@ in {
     tree
     pistol # previews in lf
     qbittorrent
+    filezilla
 
     # media
     mpv
     sxiv # image viewer
     gimp
     # python39Packages.deemix # TODO manage config with home.files
+    # qbittorrent
+    # youtube-dl
+    # just for mopidy local scan ??
+    # mopidy
+    # mopidy-local
+    # mopidy-mpd
+
+    # games
+    # playonlinux
 
     # office
     libreoffice
@@ -144,6 +159,9 @@ in {
     # passwords
     libsecret
     keepassxc
+    # onlykey
+    # onlykey-agent # TODO one day (crashes, how to use?)
+    # protonvpn-cli
 
     # Deps
     xdotool # scripts
@@ -154,7 +172,9 @@ in {
     picard # beets
     # jre # language tool emacs layer
     # languagetool
-    # python310Packages.gdtoolkit # for gdscript-mode autoformatting
+    # python310Packages.gdtoolkit # for gdscript-mode
+    # gst_all_1.gst-plugins-rs # mopidy-spotify
+    # gst_all_1.gstreamer # mopidy-spotify
   ];
 
   # Packages with options
@@ -223,9 +243,6 @@ in {
 
       # direnv
       eval "$(direnv hook bash)" # for direnv
-
-      #bup
-      export BUP_DIR=/media/raid/bup
     '';
   };
 
@@ -357,6 +374,59 @@ in {
   #     http = { enabled = false; };
   #   };
   # };
+    # musicDirectory = "/home/lerrrtaste/annex.old/music/library";
+    # playlistDirectory = "/home/lerrrtaste/annex/music/playlists";
+  # };
+
+  #services.mopidy = { # TODO fix maybe
+  #  enable = true;
+  #  extensionPackages = [
+  #    pkgs.mopidy-mpd
+  #    pkgs.mopidy-local
+  #    pkgs.mopidy-spotify
+  #    pkgs.mopidy-notify
+  #    pkgs.mopidy-ytmusic
+  #    pkgs.mopidy-mopify
+  #    # pkgs.mopidy-spotify-web
+  #    # pkgs.mopidy-party # TODO !!!
+  #  ]; # soptifyy todo
+  #  settings = {
+  #    mpd = {
+  #      enabled = true;
+  #      # hostname = "1
+  #      # port = 6600;
+  #      # password = "";
+  #    };
+  #    local = {
+  #      enabled = true;
+  #      media_dir = "/home/lerrrtaste/annex/music/library";
+  #      scan_follow_symlinks = true;
+  #    };
+  #    spotify = {
+  #      enabled = true;
+  #      client_id = builtins.readFile /run/agenix/spf-id;
+  #      client_secret = builtins.readFile /run/agenix/spf-secret;
+  #      username = "lerrrtaste";
+  #      password = builtins.readFile /run/agenix/spf-pass;
+  #      allow_playlist = false;
+  #    };
+  #    ytmusic = {
+  #      enabled = true;
+  #      auth_json = "/tmp/auth.json";
+  #};
+  ## spotify-web = {
+  ##   enabled = true;
+  ##   client_id = builtins.readFile /run/agenix/spf-id;
+  ##   client_secret = builtins.readFile /run/agenix/spf-secret;
+  ## };
+  ## TODO m3u playlists_dir
+  #file = { enabled = false; };
+  #http = { enabled = true; };
+  #mopify = {
+  #enabled = true;
+  #};
+  #};
+  #};
 
   # TODO configure with spotify secrets
  #services.mopidy = {

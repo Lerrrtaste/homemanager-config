@@ -4,15 +4,14 @@
   programs.ncmpcpp = {
     enable = true;
 
-    mpdMusicDir = /home/lerrrtaste/annex/music/library;
+    mpdMusicDir = ~/annex/music.old/library;
 
     settings = {
       # TODO sort to categories
-      "mpd_host" = "127.0.0.1";
-      "mpd_port" = "6600";
-      "ncmpcpp_directory" = "/home/lerrrtaste/.config/ncmpcpp";
-      "lyrics_directory" = "/home/lerrrtaste/annex/music/lyrics";
+      "ncmpcpp_directory" = "~/.config/ncmpcpp";
+      "lyrics_directory" = "~/annex.old/music/lyrics";
       "message_delay_time" = "1";
+      # "mpd_connection_timeout" = "60";
       "visualizer_type" = "wave";
       "song_list_format" = "{$4%a - }{%t}|{$8%f$9}$R{$3(%l)$9}";
       "song_status_format" = "$b{{$8%t}} $3by {$4%a{ $3in $7%b{ (%y)}} $3}|{$8%f}";
@@ -70,6 +69,9 @@
       # media ctrl
       { key = "L"; command = "volume_up"; }
       { key = "H"; command = "volume_down"; }
+      { key = "u"; command = "update_database"; }
+
+      # misc
       { key = "u"; command = "update_database"; }
 
       # not customized yet

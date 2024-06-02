@@ -143,7 +143,7 @@ case $session in
       done &
 
       autorandr vdesk ;
-      feh --bg-fill $HOME/annex/pictures/wallpapers/rickandmorty1.png ;
+      feh --bg-fill $HOME/annex/photos/wallpapers/rickandmorty_8k.png ;
       dunst &
       exec dwm
 
