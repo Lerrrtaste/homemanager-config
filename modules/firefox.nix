@@ -16,38 +16,37 @@
     enable = true;
 
     package = pkgs.firefox.override {
-      cfg = {
-        # enableTridactylNative = true; # outdated
-        # TODO import tridactyl cfg file
-      };
+      # cfg = {
+      #   # enableTridactylNative = true; # outdated
+      #   # TODO import tridactyl cfg file
+      # };
       # nativeMessagingHosts.packages = [ pkgs.tridactyl-native ];
       extraPolicies = {
-        # AppAutoUpdate = false;
-        # DisableAppUpdate = true;
-        # DisableSystemAddonUpdate = true;
-        # NewTabPage = false;
-        # DisplayMenuBar = false;
+        AppAutoUpdate = false;
+        DisableAppUpdate = true;
+        DisableSystemAddonUpdate = true;
+        NewTabPage = false;
+        DisplayMenuBar = false;
         # NetworkPrediction = false;
         # CaptivePortal = false;
-        # DNSOver
-        # HTTPS = {
+        # DNSOverHTTPS = {
         #   Enabled = false;
         # };
         DisableFirefoxStudies = true;
         DisableTelemetry = true;
         DisablePocket = true;
         DisableFirefoxAccounts = true;
-        # DisableFormHistory = true;
-        # DisablePasswordReveal = true;
+        DisableFormHistory = true;
+        DisablePasswordReveal = true;
         NoDefaultBookmarks = true;
         DontCheckDefaultBrowser = true;
         OfferToSaveLogins = false;
         PasswordManagerEnabled = false;
         # SearchSuggestEnabled = false;
-        # UserMessaging = {
-        #   ExtensionRecommendations = false;
-        #   SkipOnboarding = true;
-        # };
+        UserMessaging = {
+          ExtensionRecommendations = false;
+          SkipOnboarding = true;
+        };
         # TODO remove adds from newtab page
         # TODO dont keep tabs after closing
         # TODO enable https only mode
@@ -108,7 +107,9 @@
           #     keepassxc-browser
           languagetool
           tridactyl
-          bitwarden
+          # bitwarden
+          proton-pass
+
           simplelogin
 
           # qol
