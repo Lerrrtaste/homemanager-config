@@ -111,6 +111,7 @@ in {
     # godot # TODO reanable once v3.5.x
     unstable.godot_4
 
+    unstable.android-tools
     # dev tools
     git
     rsync
@@ -159,9 +160,6 @@ in {
     # passwords
     libsecret
     keepassxc
-    onlykey
-    # onlykey-agent # TODO one day (crashes, how to use?)
-    # protonvpn-cli
 
     # Deps
     xdotool # scripts
