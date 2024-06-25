@@ -105,6 +105,7 @@ in {
     joplin-desktop
     bisq-desktop
     kiwix
+    signal-desktop
 
     # ide
     # jetbrains.clion
@@ -143,6 +144,7 @@ in {
     # mopidy
     # mopidy-local
     # mopidy-mpd
+    jellyfin
 
     # games
     # playonlinux
