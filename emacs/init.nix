@@ -79,7 +79,7 @@ in {
     pkgs.html-tidy
 
     #nix
-    pkgs.nixfmt
+    pkgs.nixfmt-classic
 
     #cc
     pkgs.libclang

@@ -96,13 +96,9 @@ in {
   home.packages = with pkgs; [
     # general
     maim # screenshoots
-    # barrier
     thefuck
     termdown
     tipp10
-    drawio
-    redshift
-    chromium
     joplin-desktop
 
     # ide
@@ -111,7 +107,6 @@ in {
     # godot # TODO reanable once v3.5.x
     unstable.godot_4
 
-    unstable.android-tools
     # dev tools
     git
     rsync
@@ -120,6 +115,7 @@ in {
     # gnumake
     xcolor
     github-copilot-cli
+    # unstable.android-tools
 
     # files
     git-annex
@@ -130,20 +126,10 @@ in {
     qbittorrent
 
     # media
-    # mkchromecast
     mpv
     sxiv # image viewer
     gimp
     # python39Packages.deemix # TODO manage config with home.files
-    # qbittorrent
-    # youtube-dl
-    # just for mopidy local scan ??
-    mopidy
-    mopidy-local
-    mopidy-mpd
-
-    # games
-    # playonlinux
 
     # office
     libreoffice
@@ -152,9 +138,6 @@ in {
     # texlive.combined.scheme-full  # latex full (ca 5 gb!)
     # texlive.combined.scheme-medium
     # teams
-    # protonmailo-bridge # TODO write emacs mu4e config
-    # firefox
-    # zotero
     xsane
 
     # passwords
