@@ -328,34 +328,34 @@ in {
     };
   };
 
-  # services.mpd = {
-  #   enable = true;
-  #   musicDirectory = "/home/lerrrtaste/annex/music/library";
-  #   playlistDirectory = "/home/lerrrtaste/annex/music/playlists";
-  # };
-
-  services.mopidy = {
+  services.mpd = {
     enable = true;
-    extensionPackages = [
-      pkgs.mopidy-mpd
-      pkgs.mopidy-local
-      # pkgs.mopidy-party # TODO !!!
-    ]; # soptifyy todo
-    settings = {
-      mpd = {
-        enabled = true;
-        # hostname = "1
-        # port = 6600;
-        # password = "";
-      };
-      local = {
-        enabled = true;
-        media_dir = "/home/lerrrtaste/annex/music/library";
-        scan_follow_symlinks = true;
-      };
-      http = { enabled = false; };
-    };
+    musicDirectory = "/home/lerrrtaste/annex/music/library";
+    playlistDirectory = "/home/lerrrtaste/annex/music/playlists";
   };
+
+  # services.mopidy = {
+  #   enable = true;
+  #   extensionPackages = [
+  #     pkgs.mopidy-mpd
+  #     pkgs.mopidy-local
+  #     # pkgs.mopidy-party # TODO !!!
+  #   ]; # soptifyy todo
+  #   settings = {
+  #     mpd = {
+  #       enabled = true;
+  #       # hostname = "1
+  #       # port = 6600;
+  #       # password = "";
+  #     };
+  #     local = {
+  #       enabled = true;
+  #       media_dir = "/home/lerrrtaste/annex/music/library";
+  #       scan_follow_symlinks = true;
+  #     };
+  #     http = { enabled = false; };
+  #   };
+  # };
 
   # TODO configure with spotify secrets
  #services.mopidy = {
