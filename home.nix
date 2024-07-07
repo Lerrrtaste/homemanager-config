@@ -108,6 +108,7 @@ in {
     unstable.godot_4
 
     # dev tools
+    devenv
     git
     rsync
     # docker
