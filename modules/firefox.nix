@@ -139,10 +139,10 @@
           ublock-origin
           canvasblocker
           multi-account-containers
-          umatrix
           temporary-containers
-          decentraleyes
+          # decentraleyes # replaced by localcdn
           privacy-badger
+          webrtc-control
         ];
 
         settings = {
