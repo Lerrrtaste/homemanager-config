@@ -423,7 +423,7 @@ Find Definition and Declaration
 
 **** Directiories
 #+BEGIN_SRC emacs-lisp
-(setq org-directory "~/annex/org/") ; default org directory
+;; (setq org-directory "~/annex/org/") ; default org directory
 ;; (setq deft-directory "~/annex/org/")
 ;; (setq deft-recursive t)
 #+END_SRC
@@ -449,12 +449,12 @@ Keybinding to clock in recent tasks from everywhere (1x C-u prefix)
 For ss23 only
 #+BEGIN_SRC emacs-lisp
 ;; (setq org-agenda-files (directory-files-recursively "~/annex/org/ss23/" "\\.org$"))
-(setq org-agenda-files '("~/annex/org/ss23/"))
+;; (setq org-agenda-files '("~/annex/org/ss23/"))
 #+END_SRC
 
 **** Capture
 #+BEGIN_SRC emacs-lisp
-(setq org-default-notes-file "~/annex/org/inbox.org")
+;; (setq org-default-notes-file "~/annex/org/inbox.org")
 
 ;; Capture templates for: TODOs, Notes
 ;; (setq org-capture-templates
@@ -570,7 +570,7 @@ State Triggers to assign CANCLED, TODO and HOLD Tags
 **** Roam
 Set org-roam dir
 #+BEGIN_SRC emacs-lisp
-(setq org-roam-directory (file-truename "~/annex/org/roam"))
+;; (setq org-roam-directory (file-truename "~/annex/org/roam"))
 #+END_SRC
 
 Keep db in sync and consistent when files change

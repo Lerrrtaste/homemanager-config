@@ -94,6 +94,7 @@
 (package! citeproc)
 (unpin! org-roam)
 (package! org-roam-ui)
-
+(package! sly-overlay
+  :recipe (:host sourcehut :repo "fosskers/sly-overlay"))
 ;; give c++ mode (clang lsp) the correct import paths from a cmakelists file
 ;; (package! cmake-ide)
