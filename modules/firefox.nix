@@ -105,36 +105,36 @@
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
           # essential
           #     keepassxc-browser
-          languagetool
+          # languagetool
           tridactyl
           # bitwarden
           proton-pass
 
-          simplelogin
+          # simplelogin
 
           # qol
-          terms-of-service-didnt-read
-          consent-o-matic
-          auto-tab-discard
-          augmented-steam
-          reddit-enhancement-suite
-          refined-github
+          # terms-of-service-didnt-read
+          # consent-o-matic
+          # auto-tab-discard
+          # augmented-steam
+          # reddit-enhancement-suite
+          # refined-github
           joplin-web-clipper
 
           # dev
-          react-devtools
-          reduxdevtools
+          # react-devtools
+          # reduxdevtools
 
           # youtube
-          df-youtube
-          sponsorblock
-          return-youtube-dislikes
+          # df-youtube
+          # sponsorblock
+          # return-youtube-dislikes
 
           # privacy
           # umatrix
           temporary-containers
           link-cleaner
-          terms-of-service-didnt-read
+          # terms-of-service-didnt-read
           localcdn
           ublock-origin
           canvasblocker
@@ -142,7 +142,7 @@
           temporary-containers
           # decentraleyes # replaced by localcdn
           privacy-badger
-          webrtc-control
+          # webrtc-control
         ];
 
         settings = {

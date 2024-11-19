@@ -27,10 +27,26 @@ in {
   # Import NUR
   # TODO pin
   nixpkgs.config.packageOverrides = pkgs: {
-    nur = import (builtins.fetchTarball
-      "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-        inherit pkgs;
-      };
+    # Nix User Repository
+    # Docs: https://github.com/nix-community/NUR/#installation
+    #
+    # Use latest (cached only for 1h)
+    # nur = import (builtins.fetchTarball
+    #   "https://github.com/nix-community/NUR/archive/83139931be39e5cb4deb85f3a86ff17d04a12928.tar.gz") {
+    #     inherit pkgs;
+    #   };
+    #
+    # Use pinned
+    # Pinned 2024-11-19
+    # Latest Revisions: https://github.com/nix-community/NUR/commits/master
+    # nix-prefetch-url --unpack <url>
+    # TODO notify if x days or revisions behind master IF building while online
+    nur = import (builtins.fetchTarball {
+      url = "https://github.com/nix-community/NUR/archive/83139931be39e5cb4deb85f3a86ff17d04a12928.tar.gz";
+      sha256 = "17ilrlpsykf8da8hljgq7f25kbvs8xirclk4k6cxn54yi6s1gsr1";
+    }) {
+      inherit pkgs;
+    };
   };
 
   # Import my other modules
