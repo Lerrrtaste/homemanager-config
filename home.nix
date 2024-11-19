@@ -99,7 +99,7 @@ in {
     thefuck
     termdown
     tipp10
-    joplin-desktop
+    unstable.joplin-desktop
 
     # ide
     # jetbrains.clion
