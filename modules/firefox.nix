@@ -118,6 +118,7 @@
           augmented-steam
           reddit-enhancement-suite
           refined-github
+          joplin-web-clipper
 
           # dev
           react-devtools
