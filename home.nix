@@ -146,8 +146,8 @@ in {
     trash-cli
     tree
     pistol # previews in lf
-    qbittorrent
-    filezilla
+    # qbittorrent
+    # filezilla
 
     # media
     mpv
@@ -177,7 +177,7 @@ in {
     # passwords
     libsecret
     keepassxc
-    # onlykey
+    unstable.onlykey
     # onlykey-agent # TODO one day (crashes, how to use?)
     # protonvpn-cli
 
