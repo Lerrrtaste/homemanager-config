@@ -10,19 +10,20 @@
 # }
 
 let
-  doom-emacs = pkgs.callPackage (builtins.fetchTarball {
-    url = https://github.com/nix-community/nix-doom-emacs/archive/master.tar.gz;
-  }) {
-    doomPrivateDir = /home/lerrrtaste/.doom.d;  # Directory containing your config.el, init.el
-                                # and packages.el files
-  };
+  # NOTE deprecated / abandoned as it seems (2024-11)
+  # doom-emacs = pkgs.callPackage (builtins.fetchTarball {
+  #   url = https://github.com/nix-community/nix-doom-emacs/archive/master.tar.gz;
+  # }) {
+  #   doomPrivateDir = /home/lerrrtaste/.doom.d;  # Directory containing your config.el, init.el
+  #                               # and packages.el files
+  # };
 in {
 nixpkgs.overlays = [ # required for doom according to docs
   (import (builtins.fetchTarball https://github.com/nix-community/emacs-overlay/archive/master.tar.gz))
 ];
   home.packages = [
-    doom-emacs #FIXME maybe...
-    # pkgs.emacsGcc  # Installs Emacs 28 + native-comp
+    # doom-emacs #FIXME maybe...
+    pkgs.emacs-git  # Installs Emacs 28 + native-comp
 
     # required deps (doom)
     pkgs.git
