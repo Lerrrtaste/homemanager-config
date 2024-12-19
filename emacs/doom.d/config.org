@@ -577,7 +577,7 @@ Set org-roam dir
 
 Keep db in sync and consistent when files change
 #+BEGIN_SRC emacs-lisp
-(org-roam-db-autosync-mode)
+;; (org-roam-db-autosync-mode)
 #+END_SRC
 
 Roam Buffer
