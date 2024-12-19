@@ -123,16 +123,18 @@ in {
   home.packages = with pkgs; [
     # general
     maim # screenshoots
-    thefuck
+    # thefuck
     termdown
     tipp10
-    drawio
+    # drawio
     redshift
     chromium
-    joplin-desktop
-    bisq-desktop
+    unstable.joplin-desktop
+    # bisq-desktop
     kiwix
     signal-desktop
+    whatsapp-for-linux
+    obs-studio
 
     # ide
     # jetbrains.clion
@@ -149,7 +151,7 @@ in {
     # gnumake
     xcolor
     github-copilot-cli
-    # unstable.android-tools
+    unstable.android-tools
 
     # files
     git-annex
@@ -181,16 +183,35 @@ in {
     zathura
     tridactyl-native
     # texlive.combined.scheme-full  # latex full (ca 5 gb!)
-    # texlive.combined.scheme-medium
-    # teams
     xsane
 
     # passwords
     libsecret
     keepassxc
     unstable.onlykey
+    unstable.onlykey-cli
     # onlykey-agent # TODO one day (crashes, how to use?)
-    # protonvpn-cli
+
+
+    # Ente
+    ente-auth
+    ente-cli
+
+
+    # Proton etc
+    proton-pass
+    protonvpn-gui
+    protonvpn-cli
+    protonmail-bridge
+    protonmail-bridge-gui
+    protonmail-desktop
+
+    # Hardware Security
+    onlykey-cli
+    onlykey-agent # TODO find out how to use
+    yubikey-manager-qt
+    yubikey-manager
+    yubico-pam
 
     # Deps
     xdotool # scripts
@@ -213,6 +234,8 @@ in {
       # Edit desitnation state
       neo = "vim " + conf_dest_base + conf_os;
       neh = "vim " + conf_dest_base + conf_home;
+    # texlive.combined.scheme-medium
+    # teams
 
       # Edit source state
       # nco = "chezmoi edit " + conf_dest_base + conf_os;
@@ -584,8 +607,9 @@ in {
   # dunst config file
   home.file.".config/dunst/dunstrc".source = ./dunstrc;
 
-  # home.useUserPackages = true;  # install packages to /etc/profiles/per-user/lerrrtaste (instead of home)
-  # home.useGlobalPkgs = true;  # use system nixpkgs instead of a seperate home-manager one
+  # home.useGlobalPkgs = true; 
+  # home-manager.useGlobalPkgs = true;  1650950068000232736# use system nixpkgs instead of a seperate home-manager one
+  # home-manager.useUserPackages = true; # install packages to /etc/profiles/per-user/lerrrtaste (instead of home)
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
