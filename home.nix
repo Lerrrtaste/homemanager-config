@@ -49,6 +49,16 @@ in {
     };
   };
 
+  # Webcam (obs)
+   programs.obs-studio = {
+    enable = true;
+    plugins = with pkgs.obs-studio-plugins; [
+      wlrobs
+      obs-backgroundremoval
+      obs-pipewire-audio-capture
+    ];
+  };
+
   # Import my other modules
   imports = [
     ./vim/init.nix
@@ -68,6 +78,7 @@ in {
 
   manual.manpages.enable = false;
 
+  # Webcam obs
   xdg = {
     mimeApps = {
       enable = true;
