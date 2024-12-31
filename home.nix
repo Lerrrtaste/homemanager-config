@@ -51,7 +51,7 @@ in {
 
   # Webcam (obs)
    programs.obs-studio = {
-    enable = true;
+    enable = false;
     plugins = with pkgs.obs-studio-plugins; [
       wlrobs
       obs-backgroundremoval
@@ -121,6 +121,9 @@ in {
 
   # Packages
   home.packages = with pkgs; [
+    # temp
+    unstable.ente-web
+
     # general
     maim # screenshoots
     # thefuck
@@ -189,7 +192,7 @@ in {
     libsecret
     keepassxc
     unstable.onlykey
-    unstable.onlykey-cli
+    # unstable.onlykey-cli
     # onlykey-agent # TODO one day (crashes, how to use?)
 
 
@@ -603,6 +606,7 @@ in {
     enable = true;
     pinentryPackage = pkgs.pinentry-curses;
   };
+  services.pass-secret-service.enable = true;
 
   # dunst config file
   home.file.".config/dunst/dunstrc".source = ./dunstrc;
