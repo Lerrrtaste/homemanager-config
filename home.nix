@@ -93,6 +93,9 @@ in {
         "image/jpeg" = ["sxiv.desktop"];
         "image/png" = ["sxiv.desktop"];
         "image/gif" = ["sxiv.desktop"];
+        "x-scheme-handler/http" = ["firefox.desktop"];
+        "x-scheme-handler/https" = ["firefox.desktop"];
+        "text/html" = ["firefox.desktop"];
       };
     };
   };
@@ -131,7 +134,7 @@ in {
     tipp10
     # drawio
     redshift
-    chromium
+    # chromium
     unstable.joplin-desktop
     # bisq-desktop
     kiwix
