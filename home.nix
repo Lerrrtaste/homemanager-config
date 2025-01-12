@@ -224,9 +224,13 @@ in {
     # Hardware Security
     onlykey-cli
     onlykey-agent # TODO find out how to use
-    yubikey-manager-qt
+
     yubikey-manager
+    yubikey-manager-qt
     yubico-pam
+
+    yubioath-flutter
+    yubikey-personalization-gui
 
     # Deps
     xdotool # scripts
