@@ -137,9 +137,12 @@ in {
     # chromium
     unstable.joplin-desktop
     # bisq-desktop
+    bisq2
     kiwix
     signal-desktop
-    whatsapp-for-linux
+    session-desktop
+    element-desktop
+    zapzap
     obs-studio
 
     # ide
@@ -157,7 +160,7 @@ in {
     # gnumake
     xcolor
     github-copilot-cli
-    unstable.android-tools
+    # unstable.android-tools
 
     # files
     git-annex
@@ -179,7 +182,11 @@ in {
     # mopidy
     # mopidy-local
     # mopidy-mpd
-    jellyfin
+    # jellyfin
+    # ytmdesktop
+    # ytmdl
+    # spotify
+    # mpris-scrobbler
 
     # games
     # playonlinux
@@ -190,6 +197,7 @@ in {
     tridactyl-native
     # texlive.combined.scheme-full  # latex full (ca 5 gb!)
     xsane
+    protonmail-desktop
 
     # passwords
     libsecret
@@ -201,13 +209,14 @@ in {
 
     # Ente
     ente-auth
-    ente-cli
+    # ente-cli
+    bottles
 
 
     # Proton etc
     proton-pass
     protonvpn-gui
-    protonvpn-cli
+    # protonvpn-cli
     protonmail-bridge
     protonmail-bridge-gui
     protonmail-desktop
