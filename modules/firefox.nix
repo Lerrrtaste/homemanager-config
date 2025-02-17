@@ -102,48 +102,48 @@
         #   ];
         # };
 
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        # extensions = with pkgs.nur.repos.rycee.firefox-addons; [
           # essential
-          #     keepassxc-browser
-          # languagetool
-          tridactyl
-          # bitwarden
-          proton-pass
+          # #     keepassxc-browser
+          # # languagetool
+          # tridactyl
+          # # bitwarden
+          # proton-pass
 
-          # simplelogin
+          # # simplelogin
 
-          # qol
-          # terms-of-service-didnt-read
-          # consent-o-matic
-          # auto-tab-discard
-          # augmented-steam
-          # reddit-enhancement-suite
-          # refined-github
-          joplin-web-clipper
+          # # qol
+          # # terms-of-service-didnt-read
+          # # consent-o-matic
+          # # auto-tab-discard
+          # # augmented-steam
+          # # reddit-enhancement-suite
+          # # refined-github
+          # joplin-web-clipper
 
-          # dev
-          # react-devtools
-          # reduxdevtools
+          # # dev
+          # # react-devtools
+          # # reduxdevtools
 
-          # youtube
-          # df-youtube
-          # sponsorblock
-          # return-youtube-dislikes
+          # # youtube
+          # # df-youtube
+          # # sponsorblock
+          # # return-youtube-dislikes
 
-          # privacy
-          # umatrix
-          temporary-containers
-          link-cleaner
-          # terms-of-service-didnt-read
-          localcdn
-          ublock-origin
-          canvasblocker
-          multi-account-containers
-          temporary-containers
-          # decentraleyes # replaced by localcdn
-          privacy-badger
+          # # privacy
+          # # umatrix
+          # temporary-containers
+          # link-cleaner
+          # # terms-of-service-didnt-read
+          # localcdn
+          # ublock-origin
+          # canvasblocker
+          # multi-account-containers
+          # temporary-containers
+          # # decentraleyes # replaced by localcdn
+          # privacy-badger
           # webrtc-control
-        ];
+        # ];
 
         settings = {
           "browser.toolbars.bookmarks.visibility" = "always";
