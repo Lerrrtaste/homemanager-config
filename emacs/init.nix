@@ -18,9 +18,11 @@ let
   #                               # and packages.el files
   # };
 in {
-nixpkgs.overlays = [ # required for doom according to docs
-  (import (builtins.fetchTarball https://github.com/nix-community/emacs-overlay/archive/master.tar.gz))
-];
+
+  # !!!!
+  # NOTE requires nixpkgs overlay pinned in home.nix
+  # !!!!
+
   home.packages = [
     # doom-emacs #FIXME maybe...
     pkgs.emacs-git  # Installs Emacs 28 + native-comp
@@ -58,10 +60,10 @@ nixpkgs.overlays = [ # required for doom according to docs
     pkgs.graphviz
   ];
 
-  services.emacs = {
-    enable = false; # broken
-    package = pkgs.emacsGcc;
-  };
+  # services.emacs = {
+  #   enable = false; # broken
+  #   package = pkgs.emacsGcc;
+  # };
   # programs.emacs = {
   #   enable = true;
   #   package = pkgs.emacs-git;
@@ -69,9 +71,18 @@ nixpkgs.overlays = [ # required for doom according to docs
 
    # FIXME it always detects changes when there are non
    # maybe link the files so i can reload by hand too someow
-   home.file.".doom.d" = {
-     source = ./doom.d;
+   home.file.doom = {
+     enable = true;
+     executable = false;
      recursive = true;
+
+     source = ./doom.d;
+     target = "/home/lerrrtaste/.doom.d";
+
      # onChange = builtins.readFile ./reload_doom.sh;
    };
+
+   home.activation.doom = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          doom sync
+  '';
 }
