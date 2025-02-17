@@ -7,7 +7,7 @@
 #  /_/        \/_/\/_/\/___/  \/_/\/_/\/_/\/____/_/       \/____/\/____/ \/_/   \/_/   \/_/   \/__/\/__/\/_/\/___/   \/__/\/____/
 #
 
-{ config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
 let
   conf_src_base = "home/lerrrtaste/.local/share/chezmoi/dot_config/";
@@ -22,42 +22,57 @@ let
     builtins.fetchGit
     "https://github.com/lerrrtaste/scripts.git"; # to force download --option tarball-ttl 0 (default 1 hr)
 in {
-  nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfree = true; #dont
 
-  # Import NUR
-  # TODO pin
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "github-copilot-cli"
+  ];
+
+  # For pinned revs
+  # TODO notify if x days or revisions behind master IF building while online
+  # (browse commit, dl code)
+  # nix-prefetch-url --unpack <url>
+
   nixpkgs.config.packageOverrides = pkgs: {
-    # Nix User Repository
-    # Docs: https://github.com/nix-community/NUR/#installation
-    #
-    # Use latest (cached only for 1h)
-    # nur = import (builtins.fetchTarball
-    #   "https://github.com/nix-community/NUR/archive/83139931be39e5cb4deb85f3a86ff17d04a12928.tar.gz") {
-    #     inherit pkgs;
-    #   };
-    #
-    # Use pinned
-    # Pinned 2024-11-19
+  # Overrides
     # Latest Revisions: https://github.com/nix-community/NUR/commits/master
-    # nix-prefetch-url --unpack <url>
-    # TODO notify if x days or revisions behind master IF building while online
     nur = import (builtins.fetchTarball {
-      url = "https://github.com/nix-community/NUR/archive/83139931be39e5cb4deb85f3a86ff17d04a12928.tar.gz";
-      sha256 = "17ilrlpsykf8da8hljgq7f25kbvs8xirclk4k6cxn54yi6s1gsr1";
+      # 2024-11-19
+      # url = "https://github.com/nix-community/NUR/archive/83139931be39e5cb4deb85f3a86ff17d04a12928.tar.gz";
+      # sha256 = "17ilrlpsykf8da8hljgq7f25kbvs8xirclk4k6cxn54yi6s1gsr1";
+
+      # 2025-01-15
+      url = "https://github.com/nix-community/NUR/archive/0755c44a34a4fece9fb3d436a8b359e373d845fd.tar.gz";
+      sha256 = "00052wrgxm3gzlaq48xz9php4wjzsjrb9ld12dxb6lxl3xrllq52";
     }) {
       inherit pkgs;
     };
   };
 
+  # Overlays
+  nixpkgs.overlays = [
+    # Bleeding edge emacs overlay
+    # required for doom according to docs
+    # Latest Revisions: https://github.com/nix-community/emacs-overlay/commits/master/
+    (import (builtins.fetchTarball {
+        # 2025-01-15
+        url = "https://github.com/nix-community/emacs-overlay/archive/0b1bd916e2dcb4adcd655c5095ab3b14092ed610.zip";
+        sha256 = "1cy81gx825s00121jhnq023nn4cdc4ayif7w1r78is1yrr22sryr";
+    }))
+  ];
+  # nixpkgs.overlays = [
+  #   (import (builtins.fetchTarball https://github.com/nix-community/emacs-overlay/archive/master.tar.gz))
+  # ];
+
   # Webcam (obs)
-   programs.obs-studio = {
-    enable = false;
-    plugins = with pkgs.obs-studio-plugins; [
-      wlrobs
-      obs-backgroundremoval
-      obs-pipewire-audio-capture
-    ];
-  };
+  #  programs.obs-studio = {
+  #   enable = true;
+  #   plugins = with pkgs.obs-studio-plugins; [
+  #      # wlrobs
+  #     obs-backgroundremoval
+  #     obs-pipewire-audio-capture
+  #         ];
+  # };
 
   # Import my other modules
   imports = [
