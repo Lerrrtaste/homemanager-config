@@ -142,8 +142,8 @@ case $session in
         sleep 15
       done &
 
-      autorandr vdesk ;
-      feh --bg-fill $HOME/annex/photos/wallpapers/rickandmorty_8k.png ;
+      # autorandr bibs ;
+      feh --bg-fill $HOME/annex/libraries/wallpapers/rickandmorty-neon8k.png ;
       dunst &
       exec dwm
 
