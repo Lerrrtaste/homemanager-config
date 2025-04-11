@@ -81,8 +81,8 @@ in {
 
      # onChange = builtins.readFile ./reload_doom.sh;
    };
-
-   home.activation.doom = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-          doom sync
-  '';
+#
+#   home.activation.doom = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+#          doom sync
+  #'';
 }
