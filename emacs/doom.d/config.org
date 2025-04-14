@@ -310,7 +310,13 @@ also gitignores
 
 ** Tools
 TODO read https://tecosaur.github.io/emacs-config/config.html#tools
-
+*** llms
+#+BEGIN_SRC emacs-lisp
+(use-package! gptel
+ :config
+ ;; (setq! gptel-api-key "your key")
+ )
+#+END_SRC emacs-lisp
 *** git-gutter
 Add keybindings for evil-vc-gutter-hydra (SPC g ,)
 #+BEGIN_SRC emacs-lisp

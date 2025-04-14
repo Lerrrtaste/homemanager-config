@@ -76,11 +76,11 @@
 
 (package! copilot
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
-
+(package! gptel :recipe (:nonrecursive t))
 ;; (package! geben)
 ;; (package! phpactor)
 
-;; (package! beacon)
+(package! beacon)
 
 (package! cheat-sh)
 
@@ -90,11 +90,11 @@
 
 ;; (package! speed-type)
 
-(package! zotxt)
-(package! citeproc)
-(unpin! org-roam)
-(package! org-roam-ui)
-(package! sly-overlay
-  :recipe (:host sourcehut :repo "fosskers/sly-overlay"))
+;;(package! zotxt)
+;;(package! citeproc)
+;;(unpin! org-roam)
+;;(package! org-roam-ui)
+;;(package! sly-overlay
+;;  :recipe (:host sourcehut :repo "fosskers/sly-overlay"))
 ;; give c++ mode (clang lsp) the correct import paths from a cmakelists file
 ;; (package! cmake-ide)

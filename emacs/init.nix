@@ -25,7 +25,7 @@ in {
 
   home.packages = [
     # doom-emacs #FIXME maybe...
-    pkgs.emacs-git  # Installs Emacs 28 + native-comp
+    # pkgs.emacs-git  # Installs Emacs 28 + native-comp
 
     # required deps (doom)
     pkgs.git
@@ -57,17 +57,17 @@ in {
     # pkgs.gcc11Stdenv
 
     # roam graphs
-    pkgs.graphviz
+    # pkgs.graphviz
   ];
 
   # services.emacs = {
   #   enable = false; # broken
   #   package = pkgs.emacsGcc;
   # };
-  # programs.emacs = {
-  #   enable = true;
-  #   package = pkgs.emacs-git;
-  # };
+  programs.emacs = {
+    enable = true;
+    package = pkgs.emacs-git;
+  };
 
    # FIXME it always detects changes when there are non
    # maybe link the files so i can reload by hand too someow
@@ -81,8 +81,4 @@ in {
 
      # onChange = builtins.readFile ./reload_doom.sh;
    };
-#
-#   home.activation.doom = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-#          doom sync
-  #'';
 }

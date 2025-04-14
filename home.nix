@@ -24,9 +24,9 @@ let
 in {
   # nixpkgs.config.allowUnfree = true; #dont
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "github-copilot-cli"
-  ];
+  # nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+  #   "github-copilot-cli"
+  # ];
 
   # For pinned revs
   # TODO notify if x days or revisions behind master IF building while online
@@ -78,8 +78,8 @@ in {
   imports = [
     ./vim/init.nix
     ./emacs/init.nix
-    ./modules/ncmpcpp.nix
-    ./modules/firefox.nix
+    # ./modules/ncmpcpp.nix
+    # ./modules/firefox.nix
   ];
 
   # Setup Home
@@ -108,9 +108,9 @@ in {
         "image/jpeg" = ["sxiv.desktop"];
         "image/png" = ["sxiv.desktop"];
         "image/gif" = ["sxiv.desktop"];
-        "x-scheme-handler/http" = ["firefox.desktop"];
-        "x-scheme-handler/https" = ["firefox.desktop"];
-        "text/html" = ["firefox.desktop"];
+       # "x-scheme-handler/http" = ["firefox.desktop"];
+       # "x-scheme-handler/https" = ["firefox.desktop"];
+       # "text/html" = ["firefox.desktop"];
       };
     };
   };
@@ -155,10 +155,10 @@ in {
     # bisq-desktop
     # bisq2
     # kiwix
-    signal-desktop
-    session-desktop
+    # signal-desktop
+    # session-desktop
     # element-desktop
-    zapzap
+    # zapzap
     # whatsapp-for-linux
     # thunderbird
     # evolution
@@ -175,7 +175,7 @@ in {
     # docker-compose
     # gnumake
     xcolor
-    github-copilot-cli
+    # github-copilot-cli
     # unstable.android-tools
 
     # files
@@ -204,9 +204,9 @@ in {
     # ytmdl
     # spotify
     # mpris-scrobbler
-    tidal-dl
-    tidal-hifi
-    streamrip
+    # tidal-dl
+    # tidal-hifi
+    # streamrip
 
     # games
     # playonlinux
@@ -214,10 +214,9 @@ in {
     # office
     libreoffice
     zathura
-    tridactyl-native
+    # tridactyl-native
     # texlive.combined.scheme-full  # latex full (ca 5 gb!)
     xsane
-    protonmail-desktop
 
     # passwords
     libsecret
@@ -252,6 +251,7 @@ in {
 
     # Proton etc
     proton-pass
+    protonmail-desktop
     # protonvpn-gui
     # protonvpn-cli
     # protonmail-bridge
@@ -264,8 +264,8 @@ in {
     xsel # scripts
     xclip # screenshot to clipboard and org-download
     # busybox  # git-annex webapp TODO conflicts with default
-    libmusicbrainz # beets
-    picard # beets
+    # libmusicbrainz # beets
+    # picard # beets
     # jre # language tool emacs layer
     # languagetool
     # python310Packages.gdtoolkit # for gdscript-mode
@@ -387,66 +387,13 @@ in {
       # export GNUPGHOME=~/.gnupg/onlykey;
 
       # Source scripts with "src_" prefix
-      for f in ${scripts_src}/src_*; do source $f; done
+    #   for f in ${scripts_src}/src_*; do source $f; done
 
       # the fuck
       # eval "$(thefuck --alias)"
 
       # direnv
       eval "$(direnv hook bash)" # for direnv
-
-      # github-copilot-cli
-  copilot_what-the-shell () {
-    TMPFILE=$(mktemp);
-    trap 'rm -f $TMPFILE' EXIT;
-    if /nix/store/7cl36glk7jnv4p4dd3i5z72zjynb29ch-github-copilot-cli-0.1.36/lib/node_modules/@githubnext/github-copilot-cli/cli.js what-the-shell "$@" --shellout $TMPFILE; then
-      if [ -e "$TMPFILE" ]; then
-        FIXED_CMD=$(cat $TMPFILE);
-        history -s $(history 1 | cut -d' ' -f4-); history -s "$FIXED_CMD";
-        eval "$FIXED_CMD"
-      else
-        echo "Apologies! Extracting command failed"
-      fi
-    else
-      return 1
-    fi
-  };
-alias '??'='copilot_what-the-shell';
-
-  copilot_git-assist () {
-    TMPFILE=$(mktemp);
-    trap 'rm -f $TMPFILE' EXIT;
-    if /nix/store/7cl36glk7jnv4p4dd3i5z72zjynb29ch-github-copilot-cli-0.1.36/lib/node_modules/@githubnext/github-copilot-cli/cli.js git-assist "$@" --shellout $TMPFILE; then
-      if [ -e "$TMPFILE" ]; then
-        FIXED_CMD=$(cat $TMPFILE);
-        history -s $(history 1 | cut -d' ' -f4-); history -s "$FIXED_CMD";
-        eval "$FIXED_CMD"
-      else
-        echo "Apologies! Extracting command failed"
-      fi
-    else
-      return 1
-    fi
-  };
-alias 'git?'='copilot_git-assist';
-
-  copilot_gh-assist () {
-    TMPFILE=$(mktemp);
-    trap 'rm -f $TMPFILE' EXIT;
-    if /nix/store/7cl36glk7jnv4p4dd3i5z72zjynb29ch-github-copilot-cli-0.1.36/lib/node_modules/@githubnext/github-copilot-cli/cli.js gh-assist "$@" --shellout $TMPFILE; then
-      if [ -e "$TMPFILE" ]; then
-        FIXED_CMD=$(cat $TMPFILE);
-        history -s $(history 1 | cut -d' ' -f4-); history -s "$FIXED_CMD";
-        eval "$FIXED_CMD"
-      else
-        echo "Apologies! Extracting command failed"
-      fi
-    else
-      return 1
-    fi
-  };
-alias 'gh?'='copilot_gh-assist';
-alias 'wts'='copilot_what-the-shell';
     '';
   };
 
@@ -552,7 +499,7 @@ alias 'wts'='copilot_what-the-shell';
   };
 
   services.mpd = {
-    enable = true;
+    enable = false;
     musicDirectory = "/home/lerrrtaste/annex/music/library";
     playlistDirectory = "/home/lerrrtaste/annex/music/playlists";
   };
@@ -673,7 +620,7 @@ alias 'wts'='copilot_what-the-shell';
     };
 
     beets = {
-      enable = true;
+      enable = false;
       settings = {
         directory = "/home/lerrrtaste/annex/music/library";
         import_dir = "/media/ssd/deemix/downloads";
@@ -761,7 +708,7 @@ alias 'wts'='copilot_what-the-shell';
   # https://web.archive.org/web/20250114154204/https://ludovicrousseau.blogspot.com/2019/06/gnupg-and-pcsc-conflicts.html
  
   # dunst config file
-  home.file.".config/dunst/dunstrc".source = ./dunstrc;
+   # home.file.".config/dunst/dunstrc".source = ./dunstrc;
 
   # Commands when idle or active
   # services.hypridle = {
