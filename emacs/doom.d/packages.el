@@ -74,8 +74,10 @@
 ;; (package! langtool)
 ;; (package! flycheck-languagetool)
 
+
 (package! copilot
-  :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
+  :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
+
 (package! gptel :recipe (:nonrecursive t))
 ;; (package! geben)
 ;; (package! phpactor)
@@ -86,7 +88,7 @@
 
 (package! restclient)
 
-;; (package! org-bullets)
+(package! org-bullets)
 
 ;; (package! speed-type)
 

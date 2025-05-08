@@ -193,12 +193,11 @@ Its a major mode so many keybindings are available.
 
 * Packages
 ** Code Completion
-*** FIXME Copilot
+*** Copilot
 Load Copilot recipe (from github) and add keybindings for by word completion or full completion.
 Fall back to company suggestion if copilot has no completion.
 
 This doesnt feel good yet...
-
 #+BEGIN_SRC emacs-lisp
 
 (defun my-tab () ;; accept completion from copilot and fallback to company

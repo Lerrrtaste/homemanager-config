@@ -152,8 +152,7 @@ in {
     redshift
     # chromium
     joplin-desktop
-    # bisq-desktop
-    # bisq2
+    bisq2
     # kiwix
     # signal-desktop
     # session-desktop
