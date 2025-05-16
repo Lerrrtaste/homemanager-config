@@ -199,24 +199,35 @@ Fall back to company suggestion if copilot has no completion.
 
 This doesnt feel good yet...
 #+BEGIN_SRC emacs-lisp
-
-(defun my-tab () ;; accept completion from copilot and fallback to company
-  (interactive)
-  (or (copilot-accept-completion)
-      (company-indent-or-complete-common nil)))
+;; Debug Options
+(setq copilot-server-args '("--stdio" "--debug"))
+(setq copilot-log-max 1000)
+;; (defun my-tab () ;; accept completion from copilot and fallback to company
+;;   (interactive)
+;;   (or (copilot-accept-completion)
+;;       (company-indent-or-complete-common nil)))
+;; ;; accept completion from copilot and fallback to company
 
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
-  :bind (("C-TAB" . 'copilot-accept-completion-by-word)
-         ("C-<tab>" . 'copilot-accept-completion-by-word)
-         :map company-active-map
-         ("<tab>" . 'copilot-accept-completion)
-         ("TAB" . 'copilot-accept-completion)
-         ;("<tab>" . 'my-tab)
-         ;("TAB" . 'my-tab)
-         :map company-mode-map
-         ("<tab>" . 'my-tab)
-         ("TAB" . 'my-tab)))
+  :bind (:map copilot-completion-map
+              ("<tab>" . 'copilot-accept-completion)
+              ("TAB" . 'copilot-accept-completion)
+              ("C-TAB" . 'copilot-accept-completion-by-word)
+              ("C-<tab>" . 'copilot-accept-completion-by-word)))
+
+;;(use-package! copilot
+;;  :hook (prog-mode . copilot-mode)
+;;  :bind (("C-TAB" . 'copilot-accept-completion-by-word)
+;;         ("C-<tab>" . 'copilot-accept-completion-by-word)
+;;         :map company-active-map
+;;         ("<tab>" . 'copilot-accept-completion)
+;;         ("TAB" . 'copilot-accept-completion)
+;;         ;("<tab>" . 'my-tab)
+;;         ;("TAB" . 'my-tab)
+;;         :map company-mode-map
+;;         ("<tab>" . 'my-tab)
+;;         ("TAB" . 'my-tab)))
 
 ;; (map! :after emmet
 ;;       :map emmet-minor-mode
@@ -637,33 +648,33 @@ Templates
 **** TODO Flycheck
 **** Pomodoro
 #+BEGIN_SRC emacs-lisp
-(use-package! org-pomodoro
-   :after org-agenda
-    :config
-    (setq org-pomodoro-ask-upon-killing t
-          org-pomodoro-length 30
-          org-pomodoro-short-break-length 15
-          org-pomodoro-long-break-length 30
-          org-pomodoro-play-sounds t
-          org-pomodoro-format "Pomodoro: %s")
-
-    (add-hook 'org-pomodoro-finished-hook
-              (lambda ()
-                (shell-command "notify-send -u critical -t 10000 'Pomodoro completed!'" nil nil))
-              )
-    (add-hook 'org-pomodoro-break-finished-hook
-                (lambda ()
-                    (shell-command "notify-send -u critical -t 10000 'Pomodoro break finished!'" nil nil))
-                )
-    (add-hook 'org-pomodoro-long-break-finished-hook
-                (lambda ()
-                    (shell-command "notify-send -u critical -t 10000 'Pomodoro long break finished!'" nil nil))
-                )
-    (add-hook 'org-pomodoro-killed-hook
-                (lambda ()
-                    (shell-command "notify-send -u critical -t 10000 'Pomodoro killed!'" nil nil))
-                )
-    )
+;; (use-package! org-pomodoro
+;;   :after org-agenda
+;;    :config
+;;    (setq org-pomodoro-ask-upon-killing t
+;;          org-pomodoro-length 30
+;;          org-pomodoro-short-break-length 15
+;;          org-pomodoro-long-break-length 30
+;;          org-pomodoro-play-sounds t
+;;          org-pomodoro-format "Pomodoro: %s")
+;;
+;;    (add-hook 'org-pomodoro-finished-hook
+;;              (lambda ()
+;;                (shell-command "notify-send -u critical -t 10000 'Pomodoro completed!'" nil nil))
+;;              )
+;;    (add-hook 'org-pomodoro-break-finished-hook
+;;                (lambda ()
+;;                    (shell-command "notify-send -u critical -t 10000 'Pomodoro break finished!'" nil nil))
+;;                )
+;;    (add-hook 'org-pomodoro-long-break-finished-hook
+;;                (lambda ()
+;;                    (shell-command "notify-send -u critical -t 10000 'Pomodoro long break finished!'" nil nil))
+;;                )
+;;    (add-hook 'org-pomodoro-killed-hook
+;;                (lambda ()
+;;                    (shell-command "notify-send -u critical -t 10000 'Pomodoro killed!'" nil nil))
+;;                )
+;;    )
 #+END_SRC
 
 ** C++

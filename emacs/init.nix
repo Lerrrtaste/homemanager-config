@@ -38,8 +38,20 @@ in {
     pkgs.zstd
     pkgs.sqlite
 
+    # langs
+    pkgs.python3
+    pkgs.gdtoolkit_4
+    pkgs.shfmt
+    pkgs.rust-analyzer
+    pkgs.cargo
+    pkgs.rustc
+    pkgs.ispell
+
+
     # copilot
-    pkgs.nodejs-18_x # 16 initially
+    # pkgs.nodejs-18_x # 16 initially
+    pkgs.nodejs_20 # 16 initially
+
 
     # sh
     pkgs.shellcheck
@@ -51,8 +63,8 @@ in {
     pkgs.nixfmt-classic
 
     #cc
-    pkgs.libclang
-    # pkgs.clang-tool # needed in shell for flycheck
+    # pkgs.libclang
+    # pkgs.clang-tools # needed in shell for flycheck
     # pkgs.gcc11
     # pkgs.gcc11Stdenv
 
