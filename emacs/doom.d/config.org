@@ -190,6 +190,14 @@ Its a major mode so many keybindings are available.
 (add-hook! 'doom-init-ui-hook :append (+doom-dashboard-setup-modified-keymap))
 #+END_SRC
 
+** General Keybindings
+Jump to File at point with SPC f j
+#+BEGIN_SRC emacs-lisp
+(map! :leader
+      (:prefix-map ("f" . "file")
+       :desc "Jump to file at point" "j" #'find-file-at-point))
+#+END_SRC
+
 
 * Packages
 ** Code Completion
