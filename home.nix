@@ -696,8 +696,78 @@ in {
         esac
       '';
     };
+    newsboat = {
+      enable = true;
+    autoReload = true;
+    reloadTime = 10;
+    extraConfig = ''
+      # show-keymap-hint false
+      # swap-title-and-hints false
+      browser "librewolf"
+      # external-url-viewer "/usr/bin/urlview"
+      # pager internal
+      # html-renderer "/usr/bin/elinks -dump"
+      text-width 100
+      reload-threads 1
+      show-read-feeds yes
+
+      macro v set browser "exec mpv"; open-in-browser ; set browser "librewolf"
+      macro f open-in-browser
+
+      color background white default
+      color listnormal white default
+      color listfocus white blue  standout
+      color info blue default standout
+      color listfocus_unread white blue    standout
+      color listnormal_unread white default
+
+      feed-sort-order name
+
+      ## keybindings
+      unbind-key j
+      unbind-key k
+      unbind-key x
+
+      ## rebinding
+      bind-key j next
+      bind-key k prev
+      bind-key l open
+      bind-key h quit
+      bind-key u pageup
+      bind-key d pagedown
+      bind-key n next-unread
+      bind-key N prev-unread
+      bind-key d pagedown
+      bind-key J next-feed
+      bind-key K prev-feed
+      bind-key j down article
+      bind-key k up article
+      bind-key J next article
+      bind-key K prev article
+
+      # Theme newsboat
+      # Color chart: https://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
+      # Color docs: https://newsboat.org/releases/2.37/docs/newsboat.html#_colors
+      # color listnormal         color237 color254
+      # color listnormal_unread  color237  color254 bold
+      # color listfocus_unread   color237  color250 bold
+      # color listfocus          color237 color254 bold
+      # color background         color254 color254
+      # color article            color237 color254
+      # color end-of-text-marker color8  default
+      # color info               color4  color15 bold
+      # color hint-separator     color4 color15
+      # color hint-description   color4 color15
+      # color title              color4 color15 bold
+
+    '';
+
+    };
   };
 
+  home.file.".config/newsboat/urls" = {
+    source = ./rssfeeds;
+  };
   # services.gpg-agent = {
   #   enable = true;
   #   pinentryPackage = pkgs.pinentry-curses;

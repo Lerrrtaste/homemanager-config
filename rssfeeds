@@ -1,0 +1,26 @@
+# Blogs
+https://lukesmith.xyz/rss.xml "linux" "blogs"
+https://www.archlinux.org/feeds/news/ "tech" "linux"
+https://discourse.nixos.org/c/announcements/8.rss "linux" "announcements"
+
+# https://www.youtube.com/feeds/videos.xml?channel_id= "yt" "~"
+# Hi copilot could you please give me the template line with the channelids and Title filled out
+
+# yt tech
+https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "yt" "~Luke Smith"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCXuqSBlHAE6Xw-yeJA0Tunw "yt" "~Linus Tech Tips"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCsBjURrPoezykLs9EqgamOA "yt" "~Fireship"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC2TXq_t06Hjdr2g_KdKpHQg "yt" "~ccc"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCW6xlqxSY3gGur4PkGPEUeA "yt" "~Seytonic"
+
+# yt live
+https://www.youtube.com/feeds/videos.xml?channel_id=UCvcEBQ0K3UsQ8bzWKHKQmbw "yt" "~struthless"
+
+# yt gamedev
+https://www.youtube.com/feeds/videos.xml?channel_id=UCJfJWct8jN1RpCuVWk3zHTA "yt" "~Daryl Talks Games"
+
+# yt fun
+https://www.youtube.com/feeds/videos.xml?channel_id=UCDAMHRTNtvuZ7lC_BSYepFw "yt" "~Florentin Will"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC6C1dyHHOMVIBAze8dWfqCw "yt" "~GameStar"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC6VcWc1rAoWdBCM0JxrRQ3A "yt" "~Rockstar Games"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCzH549YlZhdhIqhtvz7XHmQ "yt" "~AlexiBexi"
