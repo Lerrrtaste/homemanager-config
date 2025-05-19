@@ -177,9 +177,9 @@ Its a major mode so many keybindings are available.
         :desc "Find file" :ne "f" #'find-file
         :desc "Recent files" :ne "r" #'consult-recent-file
         :desc "Nixos Config Dir" :ne "o" (cmd! (doom-project-find-file "~/.config/nixos/"))
-        :desc "Homemanager Config Dir" :ne "h" (cmd! (doom-project-find-file "~/.config/nixpkgs/"))
-        :desc "Emacs Config Dir" :ne "E" (cmd! (doom-project-find-file "~/.config/nixpkgs/emacs/doom.d/"))
-        :desc "Emacs Config Dotfile" :ne "e" (cmd! (doom-project-find-file "~/.config/nixpkgs/emacs/doom.d/config.org"))
+        :desc "Homemanager Config Dir" :ne "h" (cmd! (doom-project-find-file "~/.config/home-manager/"))
+        :desc "Emacs Config Dir" :ne "E" (cmd! (doom-project-find-file "~/.config/home-manager/emacs/doom.d/"))
+        :desc "Emacs Config Dotfile" :ne "e" (cmd! (doom-project-find-file "~/.config/home-manager/emacs/doom.d/config.org"))
         ;; :desc "Notes (deft)" :ne "d" #'deft
         )
 

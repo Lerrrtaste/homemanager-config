@@ -9,6 +9,8 @@
 
 { lib, config, pkgs, ... }:
 
+# TODO
+# psd - sync firefox https://nix-community.github.io/home-manager/options.xhtml#opt-services.psd.enable
 let
   conf_src_base = "home/lerrrtaste/.local/share/chezmoi/dot_config/";
   conf_dest_base = "/home/lerrrtaste/.config/";
@@ -78,7 +80,7 @@ in {
   imports = [
     ./vim/init.nix
     ./emacs/init.nix
-    # ./modules/ncmpcpp.nix
+    ./modules/music.nix
     # ./modules/firefox.nix
   ];
 
@@ -127,6 +129,12 @@ in {
   #   };
   # };
   # };
+  services.picom = {
+    enable = true;
+    inactiveOpacity = 0.9;
+    activeOpacity = 1.0;
+    fade = true;
+  };
 
   home.file.".xinitrc" = { source = ./xinitrc; };
 
@@ -136,7 +144,7 @@ in {
     enable = true;
     mapExpression = { Caps_Lock = "Escape"; };
   };
-
+  services.xscreensaver.enable = true;
   # Packages
   home.packages = with pkgs; [
     # temp
@@ -153,6 +161,8 @@ in {
     # chromium
     joplin-desktop
     bisq2
+    gpodder
+    cht-sh
     # kiwix
     # signal-desktop
     # session-desktop
@@ -497,118 +507,9 @@ in {
     };
   };
 
-  services.mpd = {
-    enable = false;
-    musicDirectory = "/home/lerrrtaste/annex/music/library";
-    playlistDirectory = "/home/lerrrtaste/annex/music/playlists";
+  home.file.".config/lf/icons" = {
+    source = ./lficons;
   };
-
-  # services.mopidy = {
-  #   enable = true;
-  #   extensionPackages = [
-  #     pkgs.mopidy-mpd
-  #     pkgs.mopidy-local
-  #     # pkgs.mopidy-party # TODO !!!
-  #   ]; # soptifyy todo
-  #   settings = {
-  #     mpd = {
-  #       enabled = true;
-  #       # hostname = "1
-  #       # port = 6600;
-  #       # password = "";
-  #     };
-  #     local = {
-  #       enabled = true;
-  #       media_dir = "/home/lerrrtaste/annex/music/library";
-  #       scan_follow_symlinks = true;
-  #     };
-  #     http = { enabled = false; };
-  #   };
-  # };
-    # musicDirectory = "/home/lerrrtaste/annex.old/music/library";
-    # playlistDirectory = "/home/lerrrtaste/annex/music/playlists";
-  # };
-
-  #services.mopidy = { # TODO fix maybe
-  #  enable = true;
-  #  extensionPackages = [
-  #    pkgs.mopidy-mpd
-  #    pkgs.mopidy-local
-  #    pkgs.mopidy-spotify
-  #    pkgs.mopidy-notify
-  #    pkgs.mopidy-ytmusic
-  #    pkgs.mopidy-mopify
-  #    # pkgs.mopidy-spotify-web
-  #    # pkgs.mopidy-party # TODO !!!
-  #  ]; # soptifyy todo
-  #  settings = {
-  #    mpd = {
-  #      enabled = true;
-  #      # hostname = "1
-  #      # port = 6600;
-  #      # password = "";
-  #    };
-  #    local = {
-  #      enabled = true;
-  #      media_dir = "/home/lerrrtaste/annex/music/library";
-  #      scan_follow_symlinks = true;
-  #    };
-  #    spotify = {
-  #      enabled = true;
-  #      client_id = builtins.readFile /run/agenix/spf-id;
-  #      client_secret = builtins.readFile /run/agenix/spf-secret;
-  #      username = "lerrrtaste";
-  #      password = builtins.readFile /run/agenix/spf-pass;
-  #      allow_playlist = false;
-  #    };
-  #    ytmusic = {
-  #      enabled = true;
-  #      auth_json = "/tmp/auth.json";
-  #};
-  ## spotify-web = {
-  ##   enabled = true;
-  ##   client_id = builtins.readFile /run/agenix/spf-id;
-  ##   client_secret = builtins.readFile /run/agenix/spf-secret;
-  ## };
-  ## TODO m3u playlists_dir
-  #file = { enabled = false; };
-  #http = { enabled = true; };
-  #mopify = {
-  #enabled = true;
-  #};
-  #};
-  #};
-
-  # TODO configure with spotify secrets
- #services.mopidy = {
-  #  enable = true;
-  #  extensionPackages = [ pkgs.mopidy-spotify ];
-  #  configuration = ''
-  #    [core]
-  #    restore_state = false;
-  #  '';
-  #};
-  # services.redshift = {
-  #   enable = true;
-  #   provider = "manual";
-  #   latitude = "52.52";
-  #   longitude = "13.41";
-  #   enableVerboseLogging = true;
-  #   settings = {
-  #     redshift = {
-  #       adjustment-method = "randr";
-  #     };
-  #     environment = {
-  #       DISPLAY = ":0";
-  #     };
-  #     # randr = {
-  #     #   screen = 1;
-  #     # };
-  #   };
-  # };
-  # systemd.services."" #TODO override targets, no graphical-session.target with startx!
-  #   wantedBy = [ "multi-user.target" ];
-  # };
 
   programs = {
     git = {
@@ -616,36 +517,6 @@ in {
       userName = "Laurenz Foglia";
       userEmail = "lerrrtaste@protonmail.com";
       diff-so-fancy.enable = true;
-    };
-
-    beets = {
-      enable = false;
-      settings = {
-        directory = "/home/lerrrtaste/annex/music/library";
-        import_dir = "/media/ssd/deemix/downloads";
-        asciify_paths = "yes";
-        import = {
-          copy = "no";
-          move = "yes";
-          from_scratch = "no";
-          # autotag = "no";  # maybe enable if it works well
-          bell = "yes";
-        };
-        plugins = [
-          "lyrics"
-          "duplicates" # list duplicates with beet duplicate
-          "albumtypes" # tag type of album in name (album, single, compilation, etc)
-          "deezer" # enter deezer id (additional to musicbrainz)
-          "missing" # beet missing for missing tracks
-          "unimported" # beet unimported for tracks still in the import dir
-        ];
-        paths = {
-          default = "$albumartist/$album%aunique{}/$track $title";
-          singleton = "$artist/singles/$title";
-          comp = "Compilations/$album%aunique{}/$track $title";
-        };
-        unimported = { ignore_subdirectories = "no"; };
-      };
     };
 
     lf = {

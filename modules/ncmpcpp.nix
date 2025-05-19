@@ -4,15 +4,20 @@
   programs.ncmpcpp = {
     enable = true;
 
-    mpdMusicDir = ~/annex/music.old/library;
+    mpdMusicDir = /home/lerrrtaste/annex/media/music/libraries;
 
     settings = {
       # TODO sort to categories
       "ncmpcpp_directory" = "~/.config/ncmpcpp";
-      "lyrics_directory" = "~/annex.old/music/lyrics";
+      # "lyrics_directory" = "~/annex/music/lyrics";
       "message_delay_time" = "1";
       # "mpd_connection_timeout" = "60";
+      # "visualizer_type" = "wave"; # "spectrum"; # "ellipse" # "wave_filled"
       "visualizer_type" = "wave";
+      "visualizer_data_source" = "/tmp/mpd.fifo";
+      "visualizer_output_name" = "my_fifo";
+      "visualizer_in_stereo" = "yes";
+      "visualizer_look" = "+|"; # visualizer's look (string has to be exactly 2 characters long: first one is for wave and whereas second for frequency spectrum, wave_filled and ellipse).
       "song_list_format" = "{$4%a - }{%t}|{$8%f$9}$R{$3(%l)$9}";
       "song_status_format" = "$b{{$8%t}} $3by {$4%a{ $3in $7%b{ (%y)}} $3}|{$8%f}";
       "song_library_format" = "{%n - }{%t}|{%f}";

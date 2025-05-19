@@ -30,6 +30,7 @@ case $session in
         ;;  # desktop mode
 
     dwm)
+      autorandr bibs
       Day() {
         printf `date "+%e" | sed -e 's/\ //'`
 
@@ -95,7 +96,9 @@ case $session in
         text+=" | RAM $(free -m | awk '/Mem/ {printf "%d", $3 * 100 / $2}')%"
 
         # volume
-        text+=" | VOL $(amixer get Master | awk '$0~/%/{print $5}' | head -n 1 | tr -d '[]')"
+        if $bHasBacklight; then
+          text+=" | VOL $(amixer get Master | awk '$0~/%/{print $5}' | head -n 1 | tr -d '[]')"
+        fi
 
         # backlight
         if $bHasBacklight; then
@@ -143,7 +146,7 @@ case $session in
       done &
 
       # autorandr bibs ;
-      feh --bg-fill $HOME/annex/libraries/wallpapers/rickandmorty-neon8k.png ;
+      feh --bg-fill $HOME/annex/wallpapers/rickandmorty-neon8k.png ;
       dunst &
       exec dwm
 
