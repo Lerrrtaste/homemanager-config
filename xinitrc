@@ -146,7 +146,7 @@ case $session in
       done &
 
       # autorandr bibs ;
-      feh --bg-fill $HOME/annex/wallpapers/rickandmorty-neon8k.png ;
+      feh --bg-fill $HOME/annex/media/photos/wallpapers/rickandmorty-neon8k.png ;
       dunst &
       exec dwm
 

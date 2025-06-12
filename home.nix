@@ -26,51 +26,23 @@ let
 in {
   # nixpkgs.config.allowUnfree = true; #dont
 
-  # nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-  #   "github-copilot-cli"
-  # ];
-
-  # For pinned revs
-  # TODO notify if x days or revisions behind master IF building while online
-  # (browse commit, dl code)
-  # nix-prefetch-url --unpack <url>
-
-  nixpkgs.config.packageOverrides = pkgs: {
-  # Overrides
-    # Latest Revisions: https://github.com/nix-community/NUR/commits/master
-    nur = import (builtins.fetchTarball {
-      # 2024-11-19
-      # url = "https://github.com/nix-community/NUR/archive/83139931be39e5cb4deb85f3a86ff17d04a12928.tar.gz";
-      # sha256 = "17ilrlpsykf8da8hljgq7f25kbvs8xirclk4k6cxn54yi6s1gsr1";
-
-      # 2025-01-15
-      url = "https://github.com/nix-community/NUR/archive/0755c44a34a4fece9fb3d436a8b359e373d845fd.tar.gz";
-      sha256 = "00052wrgxm3gzlaq48xz9php4wjzsjrb9ld12dxb6lxl3xrllq52";
-    }) {
-      inherit pkgs;
-    };
-  };
-
-  # Overlays
-  nixpkgs.overlays = [
-    # Bleeding edge emacs overlay
-    # required for doom according to docs
-    # Latest Revisions: https://github.com/nix-community/emacs-overlay/commits/master/
-    (import (builtins.fetchTarball {
-        # 2025-01-15
-        url = "https://github.com/nix-community/emacs-overlay/archive/0b1bd916e2dcb4adcd655c5095ab3b14092ed610.zip";
-        sha256 = "1cy81gx825s00121jhnq023nn4cdc4ayif7w1r78is1yrr22sryr";
-    }))
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "github-copilot-cli"
+    "libvgm"
+    "bearer"
+    "discord"
+    # "wavebox"
+    "typora"
+    "drawio"
+    # "notion-app-enhanced"
+    # "opera"
+    # "vivaldi"
+    # "clickup"
+    "obsidian"
+    # "bluemail"
+    # "slack"
+    "dropbox"
   ];
-  # nixpkgs.overlays = [
-  #   (import (builtins.fetchTarball https://github.com/nix-community/emacs-overlay/archive/master.tar.gz))
-  # ];
-
-  # Webcam (obs)
-  #  programs.obs-studio = {
-  #   enable = true;
-  #   plugins = with pkgs.obs-studio-plugins; [
-  #      # wlrobs
   #     obs-backgroundremoval
   #     obs-pipewire-audio-capture
   #         ];
@@ -81,8 +53,13 @@ in {
     ./vim/init.nix
     ./emacs/init.nix
     ./modules/music.nix
-    # ./modules/firefox.nix
+    ./modules/web.nix
   ];
+
+
+  # Temp Fix
+  # Override pkgs.bottles. removeWarningPopup = true;
+
 
   # Setup Home
   home.username = "lerrrtaste";
@@ -131,9 +108,9 @@ in {
   # };
   services.picom = {
     enable = true;
-    inactiveOpacity = 0.9;
+    # inactiveOpacity = 0.9;
     activeOpacity = 1.0;
-    fade = true;
+    # fade = true;
   };
 
   home.file.".xinitrc" = { source = ./xinitrc; };
@@ -144,133 +121,133 @@ in {
     enable = true;
     mapExpression = { Caps_Lock = "Escape"; };
   };
-  services.xscreensaver.enable = true;
+
   # Packages
   home.packages = with pkgs; [
     # temp
     # unstable.ente-web
+    # unstable.android-tools
+    # speedtest-cli
+    # slurm
+    # maestral
+    # maestral-gui
+    # git-annex-remote-dbx
+    dropbox-cli
+    # ivpn
 
-    # general
-    surf # https://surf.suckless.org/
-    maim # screenshoots
-    # thefuck
-    termdown
-    tipp10
-    # drawio
-    redshift
-    # chromium
-    joplin-desktop
-    bisq2
-    gpodder
+    # Utilities
     cht-sh
+    termdown
+    maim # screenshoots
+    # clipmenu
+    # devenv
+    # xcolor
+
+    # Misc
+    # tipp10
+    # bisq2
+    # bottles
+    kdePackages.kleopatra
+    gnupg
     # kiwix
+
+    # clickup
+    # askiflow
+    obsidian
+    # notion-app-enhanced # paid drawio with collab
+
+    # Proper Mail
+    # evolution #TODO decide
+    # thunderbird-latest
+    # go-autoconfig
+    # mailspring
+    # bluemail
+
+    # Notes, Documentation
+    joplin-desktop
+    # kdePackages.ghostwriter # replace with typore oneday
+    # typora
+    # unstable.super-productivity # super old version, doesnt sync FIXME
+    # drawio # the best
+    # obsidian
+    # dropbox
+
+    # Creation of Things
+    # gimp3
+    # godot_4
+
+    # Office
+    libreoffice # off
+    zathura # pdf
+    # xsane # scan good
+    # cups
+    # texlive.combined.scheme-full  # latex full (ca 5 gb!)
+
+    #### Electron Apps
+    # Instant Comms
     # signal-desktop
     # session-desktop
     # element-desktop
+    # threema-desktop
     # zapzap
-    # whatsapp-for-linux
-    # thunderbird
-    # evolution
-    # jetbrains.clion
-    # jetbrains.idea-ultimate
-    # godot # TODO reanable once v3.5.x
-    # unstable.godot_4
+    # discord # use webapp, broken screenshare
+    # # slack
+    # nextcloud-client
 
-    # dev tools
-    # devenv
+    # Services
+    # protonmail-desktop
+    # protonmail-bridge
+    # protonmail-bridge-gui
+    # tutanota-desktop
+    ente-desktop
+    # protonvpn-gui
+    # protonvpn-cli
+    # ente-auth #broken
+
+    # Pass
+    # proton-pass
+    # bitwarden-desktop
+    libsecret
+    keepassxc
+
+
+    # Media Files
+    pistol # previews in lf
+    mpv # okay
+    sxiv # view
+    qbittorrent
+    gpodder
+
+    # File Management
     git
-    rsync
-    # docker
-    # docker-compose
-    # gnumake
-    xcolor
-    # github-copilot-cli
-    # unstable.android-tools
-
-    # files
     git-annex
     git-remote-gcrypt
+    rsync
     p7zip
     trash-cli
     tree
-    pistol # previews in lf
-    qbittorrent
-    # filezilla
 
-    # media
-    mpv
-    sxiv # image viewer
-    gimp
-    # python39Packages.deemix # TODO manage config with home.files
-    # qbittorrent
-    # youtube-dl
-    # just for mopidy local scan ??
-    # mopidy
-    # mopidy-local
-    # mopidy-mpd
-    # jellyfin
-    # ytmdesktop
-    # ytmdl
-    # spotify
-    # mpris-scrobbler
-    # tidal-dl
-    # tidal-hifi
-    # streamrip
+    # Onlykey
+    # onlykey
+    # onlykey-cli
+    # onlykey-agent # gpg agent
 
-    # games
-    # playonlinux
-
-    # office
-    libreoffice
-    zathura
-    # tridactyl-native
-    # texlive.combined.scheme-full  # latex full (ca 5 gb!)
-    xsane
-
-    # passwords
-    libsecret
-    keepassxc
-    # unstable.onlykey
-    # unstable.onlykey-cli
-    # Hardware Security
-    onlykey-agent
-    onlykey-cli
-    # onlykey-agent # TODO find out how to use
-
-    yubikey-manager # cli for configuring any YubiKey over all USB transports # https://developers.yubico.com/yubikey-manager/
-    # yubikey-manager-qt
-    # # yubico-pam
-    # # yubikey-agent # Seamless ssh-agent for YubiKeys
-    # # yubihsm-connector # performs the communication between the YubiHSM 2 and applications that use it
-    yubihsm-shell # yubihsm-shell and libyubihsm
-    # # yubico-piv-tool # for interacting with the Privilege and Identification Card (PIV) application on a YubiKey
-    kleopatra
-    # # shavee # automatically decrypt and mount ZFS datasets using Yubikey HMAC as 2FA or any File on USB/SFTP/HTTPS
-    pcsclite
-    gnupg
-
+    # Yubikey
     yubioath-flutter
-    # # yubikey-personalization-gui # outdated
-
-    # Ente
-    # ente-auth
-    # ente-cli
-    bottles
-
-
-    # Proton etc
-    proton-pass
-    protonmail-desktop
-    # protonvpn-gui
-    # protonvpn-cli
-    # protonmail-bridge
-    # protonmail-bridge-gui
-    # protonmail-desktop
+    # yubihsm-shell # yubihsm-shell and libyubihsm
+    # yubikey-manager # cli for configuring any YubiKey over all USB transports # https://developers.yubico.com/yubikey-manager/
+    # yubikey-manager-qt
+    # yubihsm-connector # performs the communication between the YubiHSM 2 and applications that use it
+    # yubikey-agent # ssh-agnet for Yubikey
+    pcsclite
+    # yubico-pam TODO
+    # yubico-piv-tool # for interacting with the Privilege and Identification Card (PIV) application on a YubiKey
+    # shavee # automatically decrypt and mount ZFS datasets using Yubikey HMAC as 2FA or any File on USB/SFTP/HTTPS
 
 
     # Deps
-    xdotool # scripts
-    xsel # scripts
+    # xdotool # scripts
+    # xsel # scripts
     xclip # screenshot to clipboard and org-download
     # busybox  # git-annex webapp TODO conflicts with default
     # libmusicbrainz # beets
@@ -281,66 +258,26 @@ in {
     # gst_all_1.gst-plugins-rs # mopidy-spotify
     # gst_all_1.gstreamer # mopidy-spotify
   ];
-#     programs.firefox = {
-#   enable = true;
-#   package = pkgs.librewolf;
-#   policies = {
-#     DisableTelemetry = true;
-#     DisableFirefoxStudies = true;
-#     Preferences = {
-#       "cookiebanners.service.mode.privateBrowsing" = 2; # Block cookie banners in private browsing
-#       "cookiebanners.service.mode" = 2; # Block cookie banners
-#       "privacy.donottrackheader.enabled" = true;
-#       "privacy.fingerprintingProtection" = true;
-#       "privacy.resistFingerprinting" = true;
-#       "privacy.trackingprotection.emailtracking.enabled" = true;
-#       "privacy.trackingprotection.enabled" = true;
-#       "privacy.trackingprotection.fingerprinting.enabled" = true;
-#       "privacy.trackingprotection.socialtracking.enabled" = true;
-#     };
-#     ExtensionSettings = {
-#       "jid1-ZAdIEUB7XOzOJw@jetpack" = {
-#         install_url = "https://addons.mozilla.org/firefox/downloads/latest/duckduckgo-for-firefox/latest.xpi";
-#         installation_mode = "force_installed";
-#       };
-#       "uBlock0@raymondhill.net" = {
-#         install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-#         installation_mode = "force_installed";
-#       };
-#     };
-#   };
-# };
-  programs.librewolf = {
-    enable = true;
-    # Enable WebGL, cookies and history
-    settings = {
-      "webgl.disabled" = true;
-      "privacy.resistFingerprinting" = true;
-      "privacy.clearOnShutdown.history" = false;
-      "privacy.clearOnShutdown.cookies" = false;
-      "network.cookie.lifetimePolicy" = 0;
-    };
-  };
-# security.pam.yubico = {
-# enable = true;
-# debug = true;
+  # security.pam.yubico = {
+  # enable = true;
+  # debug = true;
 
 
-# control = "required" ;
-# mode = "challenge-response";
-# # challenge response need to write configuration to yubikey with yubikey personalization tool, installed below
-# # then a "challenge* file is written to ~/.yubico with the command “ykpamcfg -2 -v”
-# # id generated by : nix-shell --command ‘ykinfo -s’ -p yubikey-personalization
-# id = [ "12345678" ];
-# };
+  # control = "required" ;
+  # mode = "challenge-response";
+  # # challenge response need to write configuration to yubikey with yubikey personalization tool, installed below
+  # # then a "challenge* file is written to ~/.yubico with the command “ykpamcfg -2 -v”
+  # # id generated by : nix-shell --command ‘ykinfo -s’ -p yubikey-personalization
+  # id = [ "12345678" ];
+  # };
 
-  # Packages with options
-  programs.bash = {
-    enable = true;
-    shellAliases = { # TODO port edit aliases to dashboard keymap
-      # Edit desitnation state
-      neo = "vim " + conf_dest_base + conf_os;
-      neh = "vim " + conf_dest_base + conf_home;
+    # Packages with options
+    programs.bash = {
+      enable = true;
+      shellAliases = { # TODO port edit aliases to dashboard keymap
+        # Edit desitnation state
+        neo = "vim " + conf_dest_base + conf_os;
+        neh = "vim " + conf_dest_base + conf_home;
     # texlive.combined.scheme-medium
     # teams
 
@@ -507,9 +444,10 @@ in {
     };
   };
 
-  home.file.".config/lf/icons" = {
-    source = ./lficons;
-  };
+  #FIXME
+  # home.file.".config/lf/icons" = {
+  #   source = ./lficons;
+  # };
 
   programs = {
     git = {
@@ -567,83 +505,83 @@ in {
         esac
       '';
     };
-    newsboat = {
-      enable = true;
-    autoReload = true;
-    reloadTime = 10;
-    extraConfig = ''
-      # show-keymap-hint false
-      # swap-title-and-hints false
-      browser "librewolf"
-      # external-url-viewer "/usr/bin/urlview"
-      # pager internal
-      # html-renderer "/usr/bin/elinks -dump"
-      text-width 100
-      reload-threads 1
-      show-read-feeds yes
+    # newsboat = {
+    #   enable = true;
+    # autoReload = true;
+    # reloadTime = 10;
+    # extraConfig = ''
+    #   # show-keymap-hint false
+    #   # swap-title-and-hints false
+    #   browser "librewolf"
+    #   # external-url-viewer "/usr/bin/urlview"
+    #   # pager internal
+    #   # html-renderer "/usr/bin/elinks -dump"
+    #   text-width 100
+    #   reload-threads 1
+    #   show-read-feeds yes
 
-      macro v set browser "exec mpv"; open-in-browser ; set browser "librewolf"
-      macro f open-in-browser
+    #   macro v set browser "exec mpv"; open-in-browser ; set browser "librewolf"
+    #   macro f open-in-browser
 
-      color background white default
-      color listnormal white default
-      color listfocus white blue  standout
-      color info blue default standout
-      color listfocus_unread white blue    standout
-      color listnormal_unread white default
+    #   color background white default
+    #   color listnormal white default
+    #   color listfocus white blue  standout
+    #   color info blue default standout
+    #   color listfocus_unread white blue    standout
+    #   color listnormal_unread white default
 
-      feed-sort-order name
+    #   feed-sort-order name
 
-      ## keybindings
-      unbind-key j
-      unbind-key k
-      unbind-key x
+    #   ## keybindings
+    #   unbind-key j
+    #   unbind-key k
+    #   unbind-key x
 
-      ## rebinding
-      bind-key j next
-      bind-key k prev
-      bind-key l open
-      bind-key h quit
-      bind-key u pageup
-      bind-key d pagedown
-      bind-key n next-unread
-      bind-key N prev-unread
-      bind-key d pagedown
-      bind-key J next-feed
-      bind-key K prev-feed
-      bind-key j down article
-      bind-key k up article
-      bind-key J next article
-      bind-key K prev article
+    #   ## rebinding
+    #   bind-key j next
+    #   bind-key k prev
+    #   bind-key l open
+    #   bind-key h quit
+    #   bind-key u pageup
+    #   bind-key d pagedown
+    #   bind-key n next-unread
+    #   bind-key N prev-unread
+    #   bind-key d pagedown
+    #   bind-key J next-feed
+    #   bind-key K prev-feed
+    #   bind-key j down article
+    #   bind-key k up article
+    #   bind-key J next article
+    #   bind-key K prev article
 
-      # Theme newsboat
-      # Color chart: https://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
-      # Color docs: https://newsboat.org/releases/2.37/docs/newsboat.html#_colors
-      # color listnormal         color237 color254
-      # color listnormal_unread  color237  color254 bold
-      # color listfocus_unread   color237  color250 bold
-      # color listfocus          color237 color254 bold
-      # color background         color254 color254
-      # color article            color237 color254
-      # color end-of-text-marker color8  default
-      # color info               color4  color15 bold
-      # color hint-separator     color4 color15
-      # color hint-description   color4 color15
-      # color title              color4 color15 bold
+    #   # Theme newsboat
+    #   # Color chart: https://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
+    #   # Color docs: https://newsboat.org/releases/2.37/docs/newsboat.html#_colors
+    #   # color listnormal         color237 color254
+    #   # color listnormal_unread  color237  color254 bold
+    #   # color listfocus_unread   color237  color250 bold
+    #   # color listfocus          color237 color254 bold
+    #   # color background         color254 color254
+    #   # color article            color237 color254
+    #   # color end-of-text-marker color8  default
+    #   # color info               color4  color15 bold
+    #   # color hint-separator     color4 color15
+    #   # color hint-description   color4 color15
+    #   # color title              color4 color15 bold
 
-    '';
+    # '';
 
-    };
+    # };
   };
 
-  home.file.".config/newsboat/urls" = {
-    source = ./rssfeeds;
-  };
-  # services.gpg-agent = {
-  #   enable = true;
-  #   pinentryPackage = pkgs.pinentry-curses;
+  # home.file.".config/newsboat/urls" = {
+  #   source = ./rssfeeds;
   # };
-  # services.pass-secret-service.enable = true;
+  services.gpg-agent = {
+    enable = true;
+    pinentry.package = pkgs.pinentry-curses;
+  };
+  services.pass-secret-service.enable = true;
   # https://developers.yubico.com/yubikey-manager/Device_Permissions.html
   # https://web.archive.org/web/20250114154204/https://ludovicrousseau.blogspot.com/2019/06/gnupg-and-pcsc-conflicts.html
  
