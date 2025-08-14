@@ -293,7 +293,7 @@ in {
       nso = "sudo nixos-rebuild switch";
       nsh = "home-manager switch";
       nua =
-        "nix-channel --update && sudo nix-channel --update && sudo nixos-rebuild switch && home-manager switch";
+        "sudo nix-channel --update &&  nix-channel --update && sudo nixos-rebuild switch && home-manager switch";
 
       # Annex
       gas = "git annex sync -g";
